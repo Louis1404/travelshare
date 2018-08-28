@@ -43,7 +43,7 @@
   color: white;
   transition: 0.3s ease;
   border: 1px solid white;
-  border-radius: 5px;
+  border-radius: 10px;
   text-decoration: none;
 }
 
@@ -83,4 +83,11 @@
   width: 100%;
   background: transparent;
   box-shadow: none;
+  .navbar-travel-link:hover {
+  color: white;
+  transition: 0.3s ease;
+  border: 1px solid white;
+  border-radius: 5px;
+  text-decoration: none;
+}
 }

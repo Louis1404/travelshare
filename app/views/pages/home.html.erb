@@ -1,1 +1,58 @@
 <%= content_for(:navbar_class, "navbar-home") %>
+
+<div class="banner">
+  <div class="banner-content text-center">
+    <h1>Travel Share</h1>
+    <h2>travel and meet your friends</h2>
+    <%= link_to "Start now", dashboard_path, class: "btn btn-lg btn-home"  %>
+  </div>
+</div>
+<div class="container home-container">
+  <div class="simple-card">
+    <div class="simple-card-icon">
+      <%= image_tag "user-icon.png", class:"user-icon" %>
+    </div>
+    <div class="simple-card-content">
+      <h3>Invite your Friends</h3>
+      <p>
+        Create a profil and invite your friends on a trip
+      </p>
+    </div>
+  </div>
+  <div class="simple-card">
+    <div class="simple-card-icon">
+      <%= image_tag "user-icon.png", class:"user-icon" %>
+    </div>
+    <div class="simple-card-content">
+      <h3>Find the Best Match</h3>
+      <p>Let's us find the best place for you and your friends to meet!</p>
+    </div>
+  </div>
+  <div class="simple-card">
+    <div class="simple-card-icon">
+      <%= image_tag "user-icon.png", class:"user-icon" %>
+    </div>
+    <div class="simple-card-content">
+      <h3>Book your trip</h3>
+      <p>We give you the informations that you nedd for book the trip.</p>
+    </div>
+  </div>
+</div>
+<div class="container second-home-container">
+  <div class="horizontal-card">
+    <div class="horizontal-card-content">
+      <p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.</p>
+    </div>
+    <div class="horizontal-card-photo">
+      <%= image_tag "card-image-1.jpg", class:"image-card" %>
+    </div>
+  </div>
+  <div class="horizontal-card">
+    <div class="horizontal-card-content">
+      <p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.</p>
+    </div>
+    <div class="horizontal-card-photo">
+      <%= image_tag "card-image-1.jpg", class:"image-card" %>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,116 @@
-// Specific CSS for your home-page
+.banner {
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-image: linear-gradient(rgba(232, 143, 53, 0.9), rgba(218, 67, 41, 0.9)), image-url("background.jpg");
+  background-size: cover;
+  background-position: center;
+  h1 {
+    color: white;
+    font-weight: bold;
+    font-size: 60px;
+  }
+  h2 {
+    color: white;
+    opacity: .8;
+    font-size: 25px;
+    font-weight: lighter;
+    margin-bottom: 150px;
+  }
+  .btn {
+    padding: 15px 50px;
+  }
+  .btn-home {
+    background-color: transparent;
+    font-weight: 400;
+    font-size: 28px;
+    color: white;
+    border: 1px solid white;
+    border-radius: 30px;
+    padding: 15px 40px;
+  }
+
+  .btn-home:hover {
+    padding: 15px 40px;
+    background-color: white;
+    color: rgb(180,180,180);
+    border: 1px solid rgb(180,180,180);
+    font-weight: 400;
+    font-size: 28px;
+  }
+}
+
+.home-container {
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.simple-card {
+  background-color: transparent;
+  border-bottom: 2px solid rgb(232, 143, 53);
+  border-radius: 10px;
+  width: 300px;
+  height: 300px;
+  box-shadow: 5px 5px 22px 1px rgba(210, 210, 210, 1);
+  .simple-card-icon {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+  }
+
+  .user-icon {
+    margin: 30px;
+  }
+  .simple-card-content {
+    text-color: $gray;
+    padding: 10px;
+    text-align: center;
+  }
+}
+
+.second-home-container {
+  margin: 100px auto;
+
+}
+
+
+.horizontal-card {
+  height: 360px;
+  width: 90%;
+  box-shadow: 5px 5px 22px 1px rgba(210, 210, 210, 1);
+  border-bottom: 2px solid rgb(232, 143, 53);
+  border-left: 2px solid rgb(232, 143, 53);
+  border-radius: 10px;
+
+  margin: 50px auto;
+  display: flex;
+
+  .horizontal-card-content {
+    padding: 20px 30px;
+    width: 50%;
+    height: 100%;
+    border-radius: 10px;
+    margin: 1px;
+    background-color: transparent;
+  }
+
+  .horizontal-card-photo {
+    width: 50%;
+    border-radius: 10px;
+    margin: 1px;
+    height: 100%;
+  }
+
+  .image-card {
+    width: 100%;
+    flex-basis: 50%;
+    height: 100%;
+    background-size: cover;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-bottom: 1px;
+  }
+}
