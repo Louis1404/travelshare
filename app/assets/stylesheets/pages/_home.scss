@@ -24,20 +24,20 @@
   .btn-home {
     background-color: transparent;
     font-weight: 400;
-    font-size: 28px;
+    font-size: 26px;
     color: white;
     border: 1px solid white;
     border-radius: 30px;
-    padding: 15px 40px;
+    padding: 15px 30px;
   }
 
   .btn-home:hover {
-    padding: 15px 40px;
+    padding: 15px 30px;
     background-color: white;
     color: rgb(180,180,180);
     border: 1px solid rgb(180,180,180);
     font-weight: 400;
-    font-size: 28px;
+    font-size: 26px;
   }
 }
 
@@ -95,6 +95,10 @@
     border-radius: 10px;
     margin: 1px;
     background-color: transparent;
+    text-align: center;
+    h3 {
+      color: rgb(218, 67, 41)
+    }
   }
 
   .horizontal-card-photo {
@@ -104,13 +108,23 @@
     height: 100%;
   }
 
-  .image-card {
+  .image-card-right {
     width: 100%;
     flex-basis: 50%;
     height: 100%;
     background-size: cover;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+    padding-bottom: 1px;
+  }
+
+  .image-card-left {
+    width: 100%;
+    flex-basis: 50%;
+    height: 100%;
+    background-size: cover;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
     padding-bottom: 1px;
   }
 }
