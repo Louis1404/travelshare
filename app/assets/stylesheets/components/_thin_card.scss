@@ -1,0 +1,28 @@
+.thin-card {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 2px solid rgba(42, 48, 49,0.4);
+}
+
+.thin-card img {
+  border-radius: 50%;
+}
+
+.thin-card .profil_avatar_photo {
+  margin: 30px;
+}
+
+.thin-card .user-city {
+  padding-left: 50px;
+  min-weight: 100px;
+}
+
+.thin-card .user-name {
+  padding-left: 10px;
+  min-width: 100px;
+}
+
+.thin-card .list-profiles {
+  list-style-type: none;
+}
