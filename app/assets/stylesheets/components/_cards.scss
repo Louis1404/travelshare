@@ -1,8 +1,8 @@
 .best-match-card {
-  width: calc(100vh - 150px);
-  height: calc(100vh - 150px);
+  width: calc(100vh - 100px);
+  height: calc(100vh - 100px);
   background-size: cover;
-  margin: 50px 0;
+  margin: 20px 0;
   position: relative;
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
@@ -14,31 +14,54 @@
     top: 10px;
     left: 150px;
     background-color: rgba(240, 240,240, 0.7);
+    border: 2px solid white;
     border-radius: 30px;
     padding: 10px 30px;
   }
   .little-card {
     background-color: rgba(240, 240,240, 0.7);
-    border-top-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    height: 300px;
-    width: 300px;
+    border-radius: 5px;
+    height: 260px;
+    width: 260px;
+    border: 2px solid white;
     position: absolute;
-    bottom: 0px;
-    right: 0px;
+    bottom: 10px;
+    right: 10px;
+    text-align: center;
     h3 {
       font-size: 2em;
       color: $gray;
+      .destination {
+        position: absolute;
+        top: 10px;
+        left: 50px;
+      }
+      .price {
+        position: absolute;
+        top: 30px;
+        left: 50px;
+      }
     }
   }
   .little-card-button {
-    background-color: transparent;
-    font-size: 26px;
+    background-color: white;
+    font-size: 18px;
     color: $gray;
-    border: 1px solid $gray;
+    border: 1px solid rgba(232, 143, 53, 1);
     border-radius: 30px;
     padding: 15px 30px;
     text-decoration: none;
+    margin-top: 10px;
+    :hover {
+    padding: 15px 30px;
+    background-color: rgba(232, 143, 53, 0.8);
+    color: rgb(180,180,180);
+    border: 1px solid rgb(180,180,180);
+    font-size: 18px;
+    margin-top: 10px;
+    }
   }
 }
+.bateau_card {
 
+}

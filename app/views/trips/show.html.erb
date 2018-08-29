@@ -1,14 +1,35 @@
-<div class="wrapper">
-  <div class="best-match-card" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://kitt.lewagon.com/placeholder/cities/berlin');">
+<div class="wrapper display-inline">
+  <div class="best-match-card" style="background-image: url('https://kitt.lewagon.com/placeholder/cities/berlin');">
     <h2>The Best Match</h2>
     <div class="little-card">
       <div class="little-card-destination">
-        <h3>BERLIN</h3>
-        <h3>Price: 345€</h3>
+        <h3 class="destination">BERLIN</h3>
+        <h3 class="price">Price: 345€</h3>
       </div>
-      <%= link_to "Book It",{
-        :class=>"btn little-card-button"
-      } %>
+      <%= link_to "Book it!", dashboard_path, class: "btn btn-primary little-card-button"%>
     </div>
+  </div>
+  <div class="detail-ways">
+    <h3>Flights Details</h3>
+    <ul>
+      <% @travellers.each do |traveller| %>
+        <li class="card-inline">
+          <%= traveller.ways.each do |way| %>
+            <div class="way-departure-city">
+              <h4><%= way.departure_city %></h4>
+            </div>
+            <div class="way-content">
+              <h4><%= way.content %></h4>
+            </div>
+            <div class="way-travel_time">
+              <h4><%= way.travel_time %></h4>
+            </div>
+            <div class="way-price">
+              <h4><%= way.price %></h4>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>
