@@ -8,7 +8,7 @@ class TripsController < ApplicationController
 
   def new
     @trip = Trip.new
-    @profiles = Profile.all
+    @profile = Profile.new
     authorize @trip
   end
 
@@ -16,10 +16,14 @@ class TripsController < ApplicationController
     @trip = Trip.new
     authorize @trip
     if @trip.save
-
+      @time = params[:travellers].each { |d| puts d }.length
+      @travellers = []
+      create_travellers
     else
       render :new
     end
+    @cities = create_list_city(@travellers)
+    search_on_API(@cities)
   end
 
   def edit
@@ -33,13 +37,38 @@ class TripsController < ApplicationController
   private
 
   def trip_params
-    params.require(:trip).permit(:description, :title, :destination)
+    params.require(:trip).permit(:description, :title, :destination )
   end
 
    private
 
+  def create_travellers
+    @time.times do |i|
+      traveller = Traveller.new()
+      array_de_travelers = params[:travellers].each { |d| puts d }.to_a
+      traveller.profile_id = array_de_travelers[i][1]
+      if traveller.profile_id == current_user.id
+        traveller.organizer = true
+      end
+      traveller.trip_id = @trip.id
+      traveller.save
+      @travellers << traveller
+    end
+    @travellers
+  end
+
+  def create_list_city(travellers)
+    @cities = []
+    @travellers.each do |traveller|
+      @id = traveller.profile_id
+      profile = Profile.find(@id)
+      @cities << profile.city
+    end
+    @cities
+  end
+
   def search_on_API(origin_city_list)
-    city_destination = []
+    city_destination = ["Paris", "Lyon", "Berlin", "Sarajevo", "Madrid"]
     hash_result = {}
     origin_city_list.each do |city|
       city_destination.each do |destination|

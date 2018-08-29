@@ -7,7 +7,6 @@ class TravellersController < ApplicationController
 
 #   def create
 #     @trip = Trip.new
-#     X
 #     @traveller = Traveller.new(traveller_params)
 #   end
 
