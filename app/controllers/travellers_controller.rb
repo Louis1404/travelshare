@@ -5,13 +5,15 @@ class TravellersController < ApplicationController
 #     authorize @traveller
 #   end
 
-#   def create
-#     @trip = Trip.new
-#     @traveller = Traveller.new(traveller_params)
-#   end
+  def create
+    @trip = Trip.new
+   
+    @traveller = Traveller.new(traveller_params)
+  end
 
 
-# private
+  private
+
 
 #   def traveller_params
 #     params.require(:traveller).permit(:user_id)
