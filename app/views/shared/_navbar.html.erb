@@ -14,7 +14,7 @@
       <!-- Profile picture with dropdown list -->
       <div class="navbar-travel-item">
         <div class="dropdown">
-          <%= cl_image_tag current_user.photo, class: "avatar dropdown-toggle", id: "navbar-travel-menu", "data-toggle" => "dropdown" %>
+          <%= image_tag "logo.png", class: "avatar dropdown-toggle", id: "navbar-travel-menu", "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu dropdown-menu-right navbar-travel-dropdown-menu">
             <li>
               <%= link_to dashboard_path do %>
