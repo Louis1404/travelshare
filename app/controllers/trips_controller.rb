@@ -8,6 +8,7 @@ class TripsController < ApplicationController
 
   def new
     @trip = Trip.new
+    @profiles = Profile.all
     authorize @trip
   end
 
