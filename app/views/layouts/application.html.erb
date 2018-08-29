@@ -11,8 +11,7 @@
   </head>
   <body>
     <%= render 'shared/navbar' %>
-    <p class="notice absolute"><%= notice %></p>
-    <p class="alert absolute"><%= alert %></p>
+    <%= render 'shared/flashes' %>
     <%= yield %>
     <%= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>
