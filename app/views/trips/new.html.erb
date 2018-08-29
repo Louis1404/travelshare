@@ -1,3 +1,4 @@
+
 <div class="white-wrapper">
   <div class="container">
     <div class="row">
@@ -22,6 +23,15 @@
           <% end %>
         </ul>
       </div>
+      <div class="container">
+        <%= simple_form_for @trip do |f| %>
+          <%= select_tag "travellers[profile_1]", options_for_select(Profile.all.collect{ |u| [u.first_name, u.id]}) %>
+          <%= select_tag "travellers[profile_2]", options_for_select(Profile.all.collect{ |u| [u.first_name, u.id]}) %>
+          <%= select_tag "travellers[profile_3]", options_for_select(Profile.all.collect{ |u| [u.first_name, u.id]}) %>
+          <%= f.submit class: 'btn btn-success' %>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
+
+
