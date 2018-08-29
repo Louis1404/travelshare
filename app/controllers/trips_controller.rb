@@ -23,7 +23,8 @@ class TripsController < ApplicationController
       render :new
     end
     @cities = create_list_city(@travellers)
-    search_on_API(@cities)
+    hash_result = search_on_API(@cities)
+    compare_result(hash_result)
   end
 
   def edit
@@ -60,8 +61,8 @@ class TripsController < ApplicationController
   def create_list_city(travellers)
     @cities = []
     @travellers.each do |traveller|
-      @id = traveller.profile_id
-      profile = Profile.find(@id)
+      id = traveller.profile_id
+      profile = Profile.find(id)
       @cities << profile.city
     end
     @cities
@@ -75,10 +76,11 @@ class TripsController < ApplicationController
         url = "http://free.rome2rio.com/api/1.4/xml/Search?key=&oName=#{city}&dName=#{destination}&noRideshare"
         research_result = open(url).read
         total_result = JSON.parse(research_result)
+        total_result[:routes][0][:segments][0][:indicativePrice][:price]
         hash_result[:city][:destination] = total_result[:data]
       end
     end
-    return  hash_result
+    return hash_result
   end
 
     # API exemple = http://free.rome2rio.com/api/1.4/xml/Search?key=&oName=Bern&dName=Zurich&noRideshare
@@ -89,7 +91,7 @@ class TripsController < ApplicationController
     # return le résultat pour le create
 
   def compare_result(hash_result)
-
+    hash_result
   end
 
 end
