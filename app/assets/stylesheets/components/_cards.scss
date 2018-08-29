@@ -1,1 +1,44 @@
+.best-match-card {
+  width: calc(100vh - 150px);
+  height: calc(100vh - 150px);
+  background-size: cover;
+  margin: 50px 0;
+  position: relative;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  box-shadow: 5px 5px 22px 1px rgba(210, 210, 210, 1);
+  h2 {
+    font-size: 2.5em;
+    color: $gray;
+    position: absolute;
+    top: 10px;
+    left: 150px;
+    background-color: rgba(240, 240,240, 0.7);
+    border-radius: 30px;
+    padding: 10px 30px;
+  }
+  .little-card {
+    background-color: rgba(240, 240,240, 0.7);
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    h3 {
+      font-size: 2em;
+      color: $gray;
+    }
+  }
+  .little-card-button {
+    background-color: transparent;
+    font-size: 26px;
+    color: $gray;
+    border: 1px solid $gray;
+    border-radius: 30px;
+    padding: 15px 30px;
+    text-decoration: none;
+  }
+}
 

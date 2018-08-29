@@ -3,6 +3,7 @@ class TripsController < ApplicationController
   require 'open-uri'
 
   def show
+    @trip = Trip.find(params[:id])
     authorize @trip
   end
 

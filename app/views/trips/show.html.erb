@@ -1,1 +1,14 @@
-show.html.erb
+<div class="wrapper">
+  <div class="best-match-card" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://kitt.lewagon.com/placeholder/cities/berlin');">
+    <h2>The Best Match</h2>
+    <div class="little-card">
+      <div class="little-card-destination">
+        <h3>BERLIN</h3>
+        <h3>Price: 345€</h3>
+      </div>
+      <%= link_to "Book It",{
+        :class=>"btn little-card-button"
+      } %>
+    </div>
+  </div>
+</div>
