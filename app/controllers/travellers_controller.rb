@@ -7,12 +7,12 @@ class TravellersController < ApplicationController
 
   def create
     @trip = Trip.new
-    X
+    # X
     @traveller = Traveller.new(traveller_params)
   end
 
 
-private
+  private
 
   def traveller_params
     params.require(:traveller).permit(:user_id)
