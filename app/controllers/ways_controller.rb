@@ -16,7 +16,6 @@ class WaysController < ApplicationController
   private
 
   def search_on_API(origin_city_list)
-    # city_destination = [list of city]
     # hash_result = {}
     # origin_city_list.each do |city|
     #   city_destination.each do |destination|
