@@ -8,16 +8,38 @@ class TripsController < ApplicationController
   end
 
   def new
-    @trip = Trip.new # ou .find par id
+    if params[:id]
+      @trip = Trip.find(:id)
+      @profiles = @trip.travellers.pluck("profile_id")
+      @travellers = @trip.travellers
+    else
+      @trip = Trip.new
+      @profiles = Profile.all
+    end
+    # @trip = Trip.new # ou .find par id
     # @profiles = Trip.find(2).travellers.pluck("profile_id")
-    @profiles = Profile.all # Profile.where.not(id: t) si j'ai une id
+    # @profiles = Profile.all # Profile.where.not(id: t) si j'ai une id
     # si j'ai une ID
     # @travellers = aux travellers associés au trip
-    authorize @trip
+    # authorize @trip
     # ajout d'un input hidden dans la view si j'ai une id avec la valeur de l'id
   end
 
   def create
+<<<<<<< HEAD
+    @trip = Trip.new
+    authorize @trip
+    if @trip.save
+      @time = params[:travellers].each { |d| puts d }.length
+      @travellers = []
+      create_travellers
+    else
+      render :new
+    end
+    @cities = create_list_city(@travellers)
+    hash_result = search_on_API(@cities)
+    @final_destination = compare_result(hash_result)
+=======
     # @trip = Trip.new #ou .find par id
     # authorize @trip
     # if @trip.save
@@ -31,6 +53,7 @@ class TripsController < ApplicationController
     # hash_result = search_on_API(@cities)
     # compare_result(hash_result)
     redirect_to controller: 'trips', action: 'new', id: 3
+>>>>>>> master
   end
 
   def edit
@@ -77,16 +100,16 @@ class TripsController < ApplicationController
   def search_on_API(origin_city_list)
     city_destination = ["Paris", "Lyon", "Berlin", "Sarajevo", "Madrid"]
     hash_result = {}
-    origin_city_list.each do |city|
-      city_destination.each do |destination|
-        url = "http://free.rome2rio.com/api/1.4/xml/Search?key=&oName=#{city}&dName=#{destination}&noRideshare"
-        research_result = open(url).read
-        total_result = JSON.parse(research_result)
-        total_result[:routes][0][:segments][0][:indicativePrice][:price]
-        hash_result[:city][:destination] = total_result[:data]
-      end
+    # origin_city_list.each do |city|
+    #   city_destination.each do |destination|
+    #     url = "http://free.rome2rio.com/api/1.4/xml/Search?key=&oName=#{city}&dName=#{destination}&noRideshare"
+    #     research_result = open(url).read
+    #     total_result = JSON.parse(research_result)
+    #     total_result[:routes][0][:segments][0][:indicativePrice][:price]
+    #     hash_result[:city][:destination] = total_result[:data]
+    #   end
     end
-    return hash_result
+    return :results
   end
 
     # API exemple = http://free.rome2rio.com/api/1.4/xml/Search?key=&oName=Bern&dName=Zurich&noRideshare
@@ -97,7 +120,101 @@ class TripsController < ApplicationController
     # return le résultat pour le create
 
   def compare_result(hash_result)
-    hash_result
+    array_total_price = {}
+    hash_result.each do |depart|
+      depart.each do |destination|
+        array_total_price["#{destination}"] += destination[:routes][0][:segments][0][:indicativePrice][:price]
+      end
+    end
+    array_for_compare = []
+    array_total_price.each do |key, value|
+      array_for_compare << value
+    end
+    best_match = array_for_compare.sort.first
+    final_destination = array_total_price.key(best_match)
+  end
+
+  def results
+    {
+      agencies:
+        [{
+        code:       'SWISSRAILWAYS',
+        name:       'Swiss Railways (SBB/CFF/FFS)',
+        url:        'http://www.sbb.ch'
+        iconPath:   '/logos/trains/ch.png',
+        iconSize:   '27,23',
+        iconOffset: '0,0'
+        ]},
+      routes:
+        [{
+        name:     'Train',
+        distance: 95.92,
+        duration: 56,
+        stops:
+          [{
+          name: 'Bern',
+          pos:  '46.94926,7.43883',
+          kind: 'station'
+          },{
+          name: 'Zürich HB',
+          pos:  '47.37819,8.54019',
+          kind: 'station'
+          }],
+        segments:
+          [{
+          kind:     'train',
+          subkind:     'train',
+          isMajor:  1,
+          distance: 95.92,
+          duration: 56,
+          sName:    'Bern',
+          sPos:     '46.94938,7.43927',
+          tName:    'ZÃ¼rich HB',
+          tPos:     '47.37819,8.54019',
+          path:     '{wp}Gu{kl@wb@uVo|AqiDyoBhUibDeiDc`AsmDaxBqk@wwA...',
+          indicativePrice: {
+            price: 45,
+            currency: 'USD',
+            isFreeTransfer: 0,
+            nativePrice: 40,
+            nativeCurrency: 'CHF'
+          },
+          itineraries:
+            [{
+            legs:
+              [{
+              url: 'http://fahrplan.sbb.ch/bin/query.exe/en...',
+              hops:
+                [{
+                distance:  95.92,
+                duration:  56,
+                sName:     'Bern',
+                sPos:      '46.94938,7.43927',
+                tName:     'ZÃ¼rich HB',
+                tPos:      '47.37819,8.54019',
+                frequency: 400,
+                indicativePrice: {
+                  price: 45,
+                  currency: 'USD',
+                  isFreeTransfer: 0,
+                  nativePrice: 40,
+                  nativeCurrency: 'CHF'
+                },
+                lines:
+                  [{
+                  name:      '',
+                  vehicle:   'train',
+                  agency:    'SWISSRAILWAYS',
+                  frequency: 400,
+                  duration:  57,
+                  }]
+                }]
+              }]
+            }]
+          }]
+        }]
+      }]
+    }
   end
 
 end
