@@ -7,8 +7,15 @@ class TripsController < ApplicationController
   end
 
   def new
-    @trip = Trip.new
-    @profiles = Profile.all
+    if params[:id]
+      @trip = Trip.find(:id)
+      @profiles = @trip.travellers.pluck("profile_id")
+      @travellers = @trip.travellers
+    else
+      @trip = Trip.new
+      @profiles = Profile.all
+    end
+
     authorize @trip
   end
 
