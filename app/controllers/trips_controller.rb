@@ -4,6 +4,7 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
+    @travellers = Traveller.all
     authorize @trip
   end
 
