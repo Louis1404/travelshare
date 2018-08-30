@@ -23,7 +23,6 @@ class User < ApplicationRecord
   end
 
   def edit_profile
-    puts 'bite'
     profile = self.profile
     profile.first_name = self.first_name
     profile.last_name = self.last_name
