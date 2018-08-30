@@ -59,11 +59,7 @@
             <% end %>
           <% end %>
         </ul>
-        <%= link_to "Let's Go", {:controller => "trips", :action => "create", :trip_id => @trip.id, :travellers => @travellers}, :method=>:post %>
-        <%= simple_form_for @trip do |f| %>
-          <%= f.input :id, :as => :hidden %>
-          <%= f.submit class: 'btn btn-success' %>
-        <% end %>
+        <%= link_to "Let's Go", search_path(:trip_id => @trip.id, :travellers => @travellers), class: 'btn btn-success' %>
       </div>
     </div>
   </div>

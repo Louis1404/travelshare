@@ -53,7 +53,7 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = Trip.find(params[:id])
+    @trip = Trip.find(params[:trip_id])
     authorize @trip
     if @trip.save
       @time = params[:travellers].each { |d| puts d }.length
