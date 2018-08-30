@@ -31,16 +31,36 @@
           <% end %>
         </ul>
       </div>
-      <div class="container">
-        <ul>
-          <% @travellers.each do |t| %>
-            <li><%= t.profile.first_name %></li>
+      <div class="col-xs-6">
+        <h3> Travellers </h3>
+        <ul class="list-profiles">
+          <% if !@travellers.nil? %>
+            <% @travellers.each do |t| %>
+              <li class="list-profiles">
+                <div class="thin-card">
+                  <div class="profil_avatar_photo">
+                    <%= cl_image_tag(User.find(t.profile.user_id).photo,
+                    width: 100, height: 100, crop: :thumb, gravity: :face) %>
+                  </div>
+                  <div class="user-name">
+                    <%= t.profile.first_name %>
+                    <%= t.profile.last_name %>
+                  </div>
+                  <div class="user-city">
+                    <%= t.profile.city %>
+                  </div>
+                  <form action=<%= delete_travellers_path %>>
+                    <input type="hidden" name="trip" value=<%= @trip.id %>>
+                    <input type="hidden" name="traveller" value=<%= t.id %>>
+                    <input type="submit" value="-" class="btn btn-success">
+                  </form>
+                </div>
+              </li>
+            <% end %>
           <% end %>
         </ul>
+        <%= link_to "Let's Go", {:controller => "trips", :action => "create", :trip_id => @trip.id, :travellers => @travellers}, :method=>:post %>
         <%= simple_form_for @trip do |f| %>
-          <%= select_tag "travellers[profile_1]", options_for_select(Profile.all.collect{ |u| [u.first_name, u.id]}) %>
-          <%= select_tag "travellers[profile_2]", options_for_select(Profile.all.collect{ |u| [u.first_name, u.id]}) %>
-          <%= select_tag "travellers[profile_3]", options_for_select(Profile.all.collect{ |u| [u.first_name, u.id]}) %>
           <%= f.input :id, :as => :hidden %>
           <%= f.submit class: 'btn btn-success' %>
         <% end %>

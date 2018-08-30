@@ -41,7 +41,15 @@ class TripsController < ApplicationController
       profile: Profile.find(params[:profile]),
       trip: @trip
     )
-    redirect_to controller: 'trips', action: 'new', trip: "1"
+    redirect_to controller: 'trips', action: 'new', trip: "#{@trip.id}"
+  end
+
+  def delete_travellers
+    skip_authorization
+    @trip = Trip.find(params[:trip])
+    traveller = Traveller.find(params[:traveller])
+    traveller.destroy
+    redirect_to controller: 'trips', action: 'new', trip: "#{@trip.id}"
   end
 
   def create
