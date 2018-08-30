@@ -11,11 +11,11 @@ class TripPolicy < ApplicationPolicy
   end
 
   def new?
-    create?
+    true
   end
 
   def create?
-    true
+    new?
   end
 
   def edit
