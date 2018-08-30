@@ -3,15 +3,16 @@ require 'open-uri'
 
 class TripsController < ApplicationController
   after_action :verify_authorized, except: [:create]
+  # before_action :skip_policy_scope, only: :add_travellers
 
   def show
     authorize @trip
   end
 
   def new
-    if params[:id]
-      @trip = Trip.find(params[:id])
-      @profiles = @trip.travellers.pluck("profile_id")
+    if params[:trip]
+      @trip = Trip.find(params[:trip])
+      @profiles = Profile.where.not(id: @trip.travellers.pluck("profile_id"))
       # Est ce que le @profiles ne sélectionne que les profiles qui ne sont pas dans le trip?
       @travellers = @trip.travellers
     else
@@ -30,15 +31,17 @@ class TripsController < ApplicationController
   end
 
   def add_travellers
-    if params[:id]
-      @trip = Trip.find(params[:id])
-      authorize @trip
-      @trip.save
+    skip_authorization
+    if params[:trip]
+      @trip = Trip.find(params[:trip])
     else
       @trip = Trip.new
     end
-    #raise
-    redirect_to controller: 'trips', action: 'new', id: "#{@trip.id}"
+    Traveller.create(
+      profile: Profile.find(params[:profile]),
+      trip: @trip
+    )
+    redirect_to controller: 'trips', action: 'new', trip: "1"
   end
 
   def create

@@ -19,15 +19,24 @@
                 <div class="user-city">
                   <%= profile.city %>
                 </div>
-                <div class="btn btn-success">
-                  <%= link_to "+", add_travellers_path(profile.id, trip: "#{@trip.id}") %>
-                </div>
+                  <form action=<%= add_travellers_path %>>
+                    <% if @trip %>
+                      <input type="hidden" name="trip" value=<%= @trip.id %>>
+                    <% end %>
+                    <input type="hidden" name="profile" value=<%= profile.id %>>
+                    <input type="submit" value="+" class="btn btn-success">
+                  </form>
               </div>
             </li>
           <% end %>
         </ul>
       </div>
       <div class="container">
+        <ul>
+          <% @travellers.each do |t| %>
+            <li><%= t.profile.first_name %></li>
+          <% end %>
+        </ul>
         <%= simple_form_for @trip do |f| %>
           <%= select_tag "travellers[profile_1]", options_for_select(Profile.all.collect{ |u| [u.first_name, u.id]}) %>
           <%= select_tag "travellers[profile_2]", options_for_select(Profile.all.collect{ |u| [u.first_name, u.id]}) %>
