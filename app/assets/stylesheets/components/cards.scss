@@ -29,6 +29,30 @@
 
 }
 
+.form-card {
+  background-color: white;
+  border-bottom: 4px solid rgb(230, 79, 15);
+  border-radius: 5px;
+  // height: 700px;
+  box-shadow: 5px 5px 20px 0px rgba(210, 210, 210, 1);
+  margin-top: 30px;
+  padding: 20px 10px;
+  margin: 40px;
+  .card-submit {
+    background-color: white;
+    border: 1px solid $red;
+    border-radius: 30px;
+    color: $red;
+  }
+  #photo-loader {
+    background-color: white;
+    border: 1px solid $blue;
+    border-radius: 30px;
+    color: $blue;
+  }
+}
+
+
 @media (min-width: 200px) {
   .horizontal-card {
     display: flex;
@@ -42,6 +66,7 @@
     flex-wrap: nowrap;
   }
 }
+
 
 .horizontal-card {
   border-radius: 5px;
@@ -97,3 +122,4 @@
   box-shadow: 5px 5px 20px 0px rgba(210, 210, 210, 1);
   border-right: 4px solid rgb(222, 53, 11);
 }
+
