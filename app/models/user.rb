@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  mount_uploader :photo, PhotoUploader
 
   has_one :profile
 
@@ -10,6 +9,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  mount_uploader :photo, PhotoUploader
 
   private
 
