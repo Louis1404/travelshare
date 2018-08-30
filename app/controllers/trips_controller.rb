@@ -91,7 +91,17 @@ class TripsController < ApplicationController
     # return le résultat pour le create
 
   def compare_result(hash_result)
-    hash_result
+    array_total_price = []
+    hash_result.each do |depart|
+      depart_array = []
+      depart_array << depart
+      depart.each do |destination|
+        destination_array = []
+        destination_array << destination
+        destination_array << destination[:routes][0][:segments][0][:indicativePrice][:price]
+        array_total_price << destination_array
+    end
+    array_total_price.sort.first
   end
 
   def results
