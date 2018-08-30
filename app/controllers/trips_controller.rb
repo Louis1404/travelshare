@@ -71,16 +71,16 @@ class TripsController < ApplicationController
   def search_on_API(origin_city_list)
     city_destination = ["Paris", "Lyon", "Berlin", "Sarajevo", "Madrid"]
     hash_result = {}
-    origin_city_list.each do |city|
-      city_destination.each do |destination|
-        url = "http://free.rome2rio.com/api/1.4/xml/Search?key=&oName=#{city}&dName=#{destination}&noRideshare"
-        research_result = open(url).read
-        total_result = JSON.parse(research_result)
-        total_result[:routes][0][:segments][0][:indicativePrice][:price]
-        hash_result[:city][:destination] = total_result[:data]
-      end
+    # origin_city_list.each do |city|
+    #   city_destination.each do |destination|
+    #     url = "http://free.rome2rio.com/api/1.4/xml/Search?key=&oName=#{city}&dName=#{destination}&noRideshare"
+    #     research_result = open(url).read
+    #     total_result = JSON.parse(research_result)
+    #     total_result[:routes][0][:segments][0][:indicativePrice][:price]
+    #     hash_result[:city][:destination] = total_result[:data]
+    #   end
     end
-    return hash_result
+    return :results
   end
 
     # API exemple = http://free.rome2rio.com/api/1.4/xml/Search?key=&oName=Bern&dName=Zurich&noRideshare
@@ -92,6 +92,89 @@ class TripsController < ApplicationController
 
   def compare_result(hash_result)
     hash_result
+  end
+
+  def results
+    {
+      agencies:
+        [{
+        code:       'SWISSRAILWAYS',
+        name:       'Swiss Railways (SBB/CFF/FFS)',
+        url:        'http://www.sbb.ch'
+        iconPath:   '/logos/trains/ch.png',
+        iconSize:   '27,23',
+        iconOffset: '0,0'
+        ]},
+      routes:
+        [{
+        name:     'Train',
+        distance: 95.92,
+        duration: 56,
+        stops:
+          [{
+          name: 'Bern',
+          pos:  '46.94926,7.43883',
+          kind: 'station'
+          },{
+          name: 'Zürich HB',
+          pos:  '47.37819,8.54019',
+          kind: 'station'
+          }],
+        segments:
+          [{
+          kind:     'train',
+          subkind:     'train',
+          isMajor:  1,
+          distance: 95.92,
+          duration: 56,
+          sName:    'Bern',
+          sPos:     '46.94938,7.43927',
+          tName:    'ZÃ¼rich HB',
+          tPos:     '47.37819,8.54019',
+          path:     '{wp}Gu{kl@wb@uVo|AqiDyoBhUibDeiDc`AsmDaxBqk@wwA...',
+          indicativePrice: {
+            price: 45,
+            currency: 'USD',
+            isFreeTransfer: 0,
+            nativePrice: 40,
+            nativeCurrency: 'CHF'
+          },
+          itineraries:
+            [{
+            legs:
+              [{
+              url: 'http://fahrplan.sbb.ch/bin/query.exe/en...',
+              hops:
+                [{
+                distance:  95.92,
+                duration:  56,
+                sName:     'Bern',
+                sPos:      '46.94938,7.43927',
+                tName:     'ZÃ¼rich HB',
+                tPos:      '47.37819,8.54019',
+                frequency: 400,
+                indicativePrice: {
+                  price: 45,
+                  currency: 'USD',
+                  isFreeTransfer: 0,
+                  nativePrice: 40,
+                  nativeCurrency: 'CHF'
+                },
+                lines:
+                  [{
+                  name:      '',
+                  vehicle:   'train',
+                  agency:    'SWISSRAILWAYS',
+                  frequency: 400,
+                  duration:  57,
+                  }]
+                }]
+              }]
+            }]
+          }]
+        }]
+      }]
+    }
   end
 
 end
