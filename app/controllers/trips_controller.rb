@@ -24,7 +24,7 @@ class TripsController < ApplicationController
     end
     @cities = create_list_city(@travellers)
     hash_result = search_on_API(@cities)
-    compare_result(hash_result)
+    @final_destination = compare_result(hash_result)
   end
 
   def edit
@@ -91,17 +91,18 @@ class TripsController < ApplicationController
     # return le résultat pour le create
 
   def compare_result(hash_result)
-    array_total_price = []
+    array_total_price = {}
     hash_result.each do |depart|
-      depart_array = []
-      depart_array << depart
       depart.each do |destination|
-        destination_array = []
-        destination_array << destination
-        destination_array << destination[:routes][0][:segments][0][:indicativePrice][:price]
-        array_total_price << destination_array
+        array_total_price["#{destination}"] += destination[:routes][0][:segments][0][:indicativePrice][:price]
+      end
     end
-    array_total_price.sort.first
+    array_for_compare = []
+    array_total_price.each do |key, value|
+      array_for_compare << value
+    end
+    best_match = array_for_compare.sort.first
+    final_destination = array_total_price.key(best_match)
   end
 
   def results
