@@ -5,12 +5,10 @@
   <% end %>
 
   <!-- Right Navigation -->
-  <div class="navbar-travel-right hidden-xs hidden-sm">
+  <div class="navbar-travel-right">
 
     <% if user_signed_in? %>
-
-      <%= link_to "Create a Trip", new_trip_path, class: "navbar-travel-item navbar-travel-link" %>
-
+        <%= link_to "Create a Trip", new_trip_path, class: "navbar-travel-item navbar-travel-link" %>
       <!-- Profile picture with dropdown list -->
       <div class="navbar-travel-item">
         <div class="dropdown">
@@ -37,10 +35,10 @@
             </li>
           </ul>
         </div>
-      </div>
-    <% else %>
-      <%= link_to t(".sign_up", default: "Sign up"), new_user_registration_path, class: "navbar-travel-item navbar-travel-link"  %>
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-travel-item navbar-travel-link" %>
-    <% end %>
+      <% else %>
+        <%= link_to t(".sign_up", default: "Sign up"), new_user_registration_path, class: "navbar-travel-item navbar-travel-link"  %>
+        <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-travel-item navbar-travel-link" %>
+      <% end %>
+    </div>
   </div>
 </div>
