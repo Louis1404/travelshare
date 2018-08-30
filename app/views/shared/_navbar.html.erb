@@ -14,7 +14,12 @@
       <!-- Profile picture with dropdown list -->
       <div class="navbar-travel-item">
         <div class="dropdown">
-          <%= cl_image_tag current_user.photo, class: "avatar dropdown-toggle", id: "navbar-travel-menu", "data-toggle" => "dropdown" %>
+          <% if current_user && !current_user.photo_url.nil? %>
+            <% fail %>
+            <%= cl_image_tag current_user.photo, class: "avatar dropdown-toggle", id: "navbar-travel-menu", "data-toggle" => "dropdown" %>
+          <% else %>
+            <%= image_tag 'profile.png', class: "avatar dropdown-toggle", id: "navbar-travel-menu", "data-toggle" => "dropdown" %>
+          <% end %>
           <ul class="dropdown-menu dropdown-menu-right navbar-travel-dropdown-menu">
             <li>
               <%= link_to dashboard_path do %>
