@@ -14,11 +14,15 @@ class TripPolicy < ApplicationPolicy
     true
   end
 
+  def add_traveller
+    true
+  end
+
   def create?
     new?
   end
 
-  def edit
+  def edit?
     update?
   end
 

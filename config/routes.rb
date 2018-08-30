@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :trips
   get '/dashboard', to: 'accounts#dashboard'
   get '/profile', to: 'profile#edit'
+  get '/add_travellers', to: 'trips#add_travellers'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
