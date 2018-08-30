@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  mount_uploader :photo, PhotoUploader
+
   has_one :profile
 
   after_create :create_profile
@@ -6,6 +8,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
 
   private
 
