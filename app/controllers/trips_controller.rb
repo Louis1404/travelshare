@@ -1,7 +1,8 @@
-class TripsController < ApplicationController
-  require 'json'
-  require 'open-uri'
+require 'json'
+require 'open-uri'
 
+class TripsController < ApplicationController
+  after_action :verify_authorized, except: [:create]
   def show
     authorize @trip
   end
@@ -15,23 +16,29 @@ class TripsController < ApplicationController
       @trip = Trip.new
       @profiles = Profile.all
     end
-
-    authorize @trip
+    # @trip = Trip.new # ou .find par id
+    # @profiles = Trip.find(2).travellers.pluck("profile_id")
+    # @profiles = Profile.all # Profile.where.not(id: t) si j'ai une id
+    # si j'ai une ID
+    # @travellers = aux travellers associés au trip
+    # authorize @trip
+    # ajout d'un input hidden dans la view si j'ai une id avec la valeur de l'id
   end
 
   def create
-    @trip = Trip.new
-    authorize @trip
-    if @trip.save
-      @time = params[:travellers].each { |d| puts d }.length
-      @travellers = []
-      create_travellers
-    else
-      render :new
-    end
-    @cities = create_list_city(@travellers)
-    hash_result = search_on_API(@cities)
-    compare_result(hash_result)
+    # @trip = Trip.new #ou .find par id
+    # authorize @trip
+    # if @trip.save
+    #   @time = params[:travellers].each { |d| puts d }.length
+    #   @travellers = []
+    #   create_travellers
+    # else
+    #   render :new
+    # end
+    # @cities = create_list_city(@travellers)
+    # hash_result = search_on_API(@cities)
+    # compare_result(hash_result)
+    redirect_to controller: 'trips', action: 'new', id: 3
   end
 
   def edit
