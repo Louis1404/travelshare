@@ -10,4 +10,8 @@ class ProfilePolicy < ApplicationPolicy
     true
   end
 
+  def edit?
+    record.user == user
+  end
+
 end
