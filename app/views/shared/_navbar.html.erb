@@ -15,7 +15,6 @@
       <div class="navbar-travel-item">
         <div class="dropdown">
           <% if current_user && !current_user.photo_url.nil? %>
-            <% fail %>
             <%= cl_image_tag current_user.photo, class: "avatar dropdown-toggle", id: "navbar-travel-menu", "data-toggle" => "dropdown" %>
           <% else %>
             <%= image_tag 'profile.png', class: "avatar dropdown-toggle", id: "navbar-travel-menu", "data-toggle" => "dropdown" %>
@@ -32,7 +31,7 @@
               <% end %>
             </li>
             <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
+              <%= link_to destroy_user_session_path do %>
                 <i class="fa fa-sign-out"></i> <%= t(".sign_out", default: "Log out") %>
               <% end %>
             </li>
