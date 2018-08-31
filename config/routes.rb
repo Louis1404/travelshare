@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
-  resources :trips
+  resources :trips, except: [:create]
   get '/dashboard', to: 'accounts#dashboard'
   get '/profile', to: 'profile#edit'
   get '/add_travellers', to: 'trips#add_travellers'
