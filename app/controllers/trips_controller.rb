@@ -6,7 +6,8 @@ class TripsController < ApplicationController
   # before_action :skip_policy_scope, only: :add_travellers
 
   def show
-    authorize @trip
+    skip_authorization
+    @trip = Trip.find(params[:id])
   end
 
   def new
@@ -65,8 +66,8 @@ class TripsController < ApplicationController
     end
 
     @cities = create_list_city(@travellers)
-    hash_result = search_on_API(@cities)
-    @final_destination = compare_result(hash_result)
+    @hash_result = RomToRioApiCaller.new(@cities).call
+    @final_destination = ResultComparaison.new(@hash_result).call
     # @trip = Trip.new #ou .find par id
     # authorize @trip
     # if @trip.save
@@ -79,6 +80,9 @@ class TripsController < ApplicationController
     # @cities = create_list_city(@travellers)
     # hash_result = search_on_API(@cities)
     # compare_result(hash_result)
+    @trip.destination = @final_destination
+    @trip.save
+    redirect_to trip_path(@trip.id)
   end
 
   def edit
@@ -121,30 +125,6 @@ class TripsController < ApplicationController
     end
     @cities
   end
-
-  def search_on_API(origin_city_list)
-    city_destination = ["Paris", "Lyon", "Berlin", "Sarajevo", "Madrid"]
-    hash_result = {}
-    origin_city_list.each do |city|
-      city_destination.each do |destination|
-        if city != destination
-          url = "http://free.rome2rio.com/api/1.4/json/Search?key=9fFq6F68&oName=#{city}&dName=#{destination}"
-          research_result = open(url).read
-          total_result = JSON.parse(research_result)
-          one_search_price = total_result["routes"][0]["indicativePrices"][0]["price"]
-          if hash_result[destination] == 0
-            hash_result[destination] = one_search_price
-          else
-            hash_result[destination] = (hash_result[destination] + one_search_price)
-            raise
-          end
-        end
-        hash_result
-      end
-    end
-    raise
-  end
-
     # API exemple = http://free.rome2rio.com/api/1.4/xml/Search?key=&oName=Bern&dName=Zurich&noRideshare
     # Rechercher pour chaque ville des travellers la destination la moins cher sur notre liste de destination
     # Récupérer tous les résultats dans un Hash avec des arrays
