@@ -4,7 +4,7 @@ require 'json'
 class RomToRioApiCaller
   def initialize(cities)
     @o_cities = cities
-    @city_destinations = ["Paris", "Lyon", 'Marseille', 'Londres', 'Turin']
+    @city_destinations = ["Paris", "Lyon", 'Marseille', 'Londres', 'Turin', 'Milan', 'Rome', 'Budapest', 'Prague', 'Berlin', 'Lisbonne', 'Amsterdam']
     @key = ENV['ROM2RIO_API_KEY']
   end
 
