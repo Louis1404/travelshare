@@ -1,0 +1,71 @@
+.trip-creator-col {
+  height: calc(100vh - 140px);
+  overflow: scroll;
+}
+
+.validate-trip {
+  height: 70px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.info-user {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-bottom: 2px solid rgba(42, 48, 49,0.4);
+}
+
+.info-user img {
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+}
+
+.info-user .profil_avatar_photo {
+  margin: 15px;
+}
+
+.user-city {
+  padding-left: 30px;
+  flex-grow: 1;
+}
+
+.user-name {
+  padding-left: 20px;
+  min-width: 100px;
+  margin-top: 5px;
+  width: 150px;
+}
+
+.form-action {
+  padding-left: 50px;
+  border-radius: 20px;
+}
+
+.btn-small {
+  background-color: rgba(42, 48, 49,0.4);
+  color: white;
+  border: 1px solid rgba(42, 48, 49,0.4);
+  border-radius: 30px;
+  padding: 5px 10px;
+  width: 50px;
+}
+
+.btn-med {
+  background-color: $blue;
+  color: white;
+  border: 1px solid $blue;
+  border-radius: 30px;
+  padding: 10px 25px;
+}
+
+ul {
+  list-style-type: none;
+}

@@ -1,12 +1,12 @@
 <div class="white-wrapper">
   <div class="container">
     <div class="row">
-      <div class="col-xs-6">
+      <div class="col-xs-6 trip-creator-col">
         <h3> Profiles </h3>
         <ul class="list-profiles">
           <% @profiles.each do |profile| %>
             <li class="list-profiles">
-              <div class="thin-card">
+              <div class="info-user">
                 <div class="profil_avatar_photo">
                   <%= cl_image_tag(User.find(profile.user_id).photo,
                   width: 100, height: 100, crop: :thumb, gravity: :face) %>
@@ -18,25 +18,29 @@
                 <div class="user-city">
                   <%= profile.city %>
                 </div>
+                <div class="form-action">
                   <form action=<%= add_travellers_path %>>
                     <% if @trip %>
                       <input type="hidden" name="trip" value=<%= @trip.id %>>
                     <% end %>
                     <input type="hidden" name="profile" value=<%= profile.id %>>
-                    <input type="submit" value="+" class="btn btn-success">
+                    <input type="submit" value="+" class="btn-small">
                   </form>
+                </div>
               </div>
             </li>
           <% end %>
         </ul>
       </div>
-      <div class="col-xs-6">
-        <h3> Travellers </h3>
-        <ul class="list-profiles">
+      <div class="col-xs-6 trip-creator-col">
+        <div class="lets-go">
+          <h3> Travellers </h3>
+        </div>
+        <ul class="list-profiles-right">
           <% if !@travellers.nil? %>
             <% @travellers.each do |t| %>
               <li class="list-profiles">
-                <div class="thin-card">
+                <div class="info-user">
                   <div class="profil_avatar_photo">
                     <%= cl_image_tag(User.find(t.profile.user_id).photo,
                     width: 100, height: 100, crop: :thumb, gravity: :face) %>
@@ -51,16 +55,21 @@
                   <form action=<%= delete_travellers_path %>>
                     <input type="hidden" name="trip" value=<%= @trip.id %>>
                     <input type="hidden" name="traveller" value=<%= t.id %>>
-                    <input type="submit" value="-" class="btn btn-success">
+                    <input type="submit" value="-" class="btn-small">
                   </form>
                 </div>
               </li>
             <% end %>
           <% end %>
         </ul>
-        <%= link_to "Let's Go", search_path(:trip_id => @trip.id, :travellers => @travellers.pluck('id')), class: 'btn btn-success' %>
+        </div>
       </div>
     </div>
-  </div>
-
-
+    <div class="validate-trip">
+      <div>
+        <% if !@travellers.nil? %>
+          <%= link_to "Let's Go", search_path(:trip_id => @trip.id, :travellers => @travellers.pluck('id')), class: 'btn-med' %>
+        <% end %>
+      </div>
+    </div>
+</div>
