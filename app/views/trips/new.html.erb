@@ -59,7 +59,7 @@
             <% end %>
           <% end %>
         </ul>
-        <%= link_to "Let's Go", search_path(:trip_id => @trip.id, :travellers => @travellers), class: 'btn btn-success' %>
+        <%= link_to "Let's Go", search_path(:trip_id => @trip.id, :travellers => @travellers.pluck('id')), class: 'btn btn-success' %>
       </div>
     </div>
   </div>
