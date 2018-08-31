@@ -1,41 +1,65 @@
-<%= simple_form_for(current_user, url: user_registration_path, method: :put) do |f| %>
-  <%= f.error_notification %>
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-    <%= f.input :first_name,
-                required: true,
-                autofocus: true ,
-                input_html: { autocomplete: "first_name" }%>
-    <%= f.input :last_name,
-                required: true,
-                autofocus: true ,
-                input_html: { autocomplete: "last_name" }%>
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2  ">
+    <div class="form-card">
+      <%= simple_form_for(current_user, url: user_registration_path, method: :put) do |f| %>
+      <%= f.error_notification %>
+      <div class="form-inputs">
+        <div class="row">
+          <div class="col-xs-12 col-lg-6">
+            <%= f.input :first_name,
+                    required: true,
+                    autofocus: true ,
+                    input_html: { autocomplete: "first_name" }%>
+          </div>
+          <div class="col-xs-12 col-lg-6">
+            <%= f.input :last_name,
+                    required: true,
+                    autofocus: true ,
+                    input_html: { autocomplete: "last_name" }%>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-lg-6">
+            <%= f.input :email, required: true, autofocus: true %>
+          </div>
+          <div class="col-xs-12 col-lg-6">
+            <%= f.input :city,
+                    hint: "leave it blank if you don't want to change it",
+                    required: false %>
+          </div>
+        </div>
+        <%= f.input :current_password,
+                    hint: "we need your current password to confirm your changes",
+                    required: true %>
 
+        <div class="row">
+          <div class="col-xs-12 col-lg-6">
+            <%= f.input :new_password,
+                    hint: "leave it blank if you don't want to change it",
+                    required: false %>
+          </div>
+          <div class="col-xs-12 col-lg-6">
+        <%= f.input :new_password_confirmation,
+                    required: false %>
+          </div>
+        </div>
 
-    <%= f.input :city,
-                hint: "leave it blank if you don't want to change it",
-                required: false %>
+        <div class="hidden">
+          <%= f.input :photo %>
+          <%= f.error_notification message: 'Something went wrong' %>
+          <%= f.input :photo_cache, as: :hidden %>
+        </div>
+        <button id="photo-loader">Add a photo</button>
+        <hr>
 
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false %>
-    <%= f.input :password_confirmation,
-                required: false %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true %>
-    <%= f.input :photo %>
-    <%= f.error_notification message: 'Something went wrong' %>
-    <%= f.input :photo_cache, as: :hidden %>
+        <div class="form-actions">
+          <%= f.button :submit, "Update", class: "card-submit" %>
+        </div>
+        <% end %>
+      </div>
+
+    <p>Unhappy?
+      <%= link_to "Cancel my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete %></p>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>
