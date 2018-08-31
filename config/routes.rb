@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :trips, except: [:create]
   get '/dashboard', to: 'accounts#dashboard'
-  get '/profile', to: 'profile#edit'
   get '/add_travellers', to: 'trips#add_travellers'
   get '/delete_travellers', to: 'trips#delete_travellers'
   get '/search', to: 'trips#create'
