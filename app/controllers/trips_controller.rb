@@ -65,7 +65,6 @@ class TripsController < ApplicationController
     @cities = create_list_city(@travellers)
     hash_result = search_on_API(@cities)
     @final_destination = compare_result(hash_result)
-
     # @trip = Trip.new #ou .find par id
     # authorize @trip
     # if @trip.save
@@ -78,7 +77,6 @@ class TripsController < ApplicationController
     # @cities = create_list_city(@travellers)
     # hash_result = search_on_API(@cities)
     # compare_result(hash_result)
-    redirect_to controller: 'trips', action: 'new', id: 3
   end
 
   def edit
