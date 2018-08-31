@@ -18,7 +18,7 @@ class TripPolicy < ApplicationPolicy
     new?
   end
 
-  def edit
+  def edit?
     update?
   end
 
