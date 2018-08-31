@@ -56,12 +56,14 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:trip_id])
     authorize @trip
     if @trip.save
-      @time = params[:travellers].each { |d| puts d }.length
       @travellers = []
-      create_travellers
+      params[:travellers].each do |traveller_id|
+        @travellers << Traveller.find(traveller_id)
+      end
     else
       render :new
     end
+
     @cities = create_list_city(@travellers)
     hash_result = search_on_API(@cities)
     @final_destination = compare_result(hash_result)
@@ -95,20 +97,20 @@ class TripsController < ApplicationController
 
    private
 
-  def create_travellers
-    @time.times do |i|
-      traveller = Traveller.new()
-      array_de_travelers = params[:travellers].each { |d| puts d }.to_a
-      traveller.profile_id = array_de_travelers[i][1]
-      if traveller.profile_id == current_user.id
-        traveller.organizer = true
-      end
-      traveller.trip_id = @trip.id
-      traveller.save
-      @travellers << traveller
-    end
-    @travellers
-  end
+  # def create_travellers
+  #   @time.times do |i|
+  #     traveller = Traveller.new()
+  #     array_de_travelers = params[:travellers].each { |d| puts d }.to_a
+  #     traveller.profile_id = array_de_travelers[i][1]
+  #     if traveller.profile_id == current_user.id
+  #       traveller.organizer = true
+  #     end
+  #     traveller.trip_id = @trip.id
+  #     traveller.save
+  #     @travellers << traveller
+  #   end
+  #   @travellers
+  # end
 
   def create_list_city(travellers)
     @cities = []
@@ -125,15 +127,22 @@ class TripsController < ApplicationController
     hash_result = {}
     origin_city_list.each do |city|
       city_destination.each do |destination|
-        url = "http://free.rome2rio.com/api/1.4/xml/Search?key=9fFq6F68&oName=#{city}&dName=#{destination}"
-        research_result = open(url).read
-        total_result = JSON.parse(research_result)
-        total_result[:routes][0][:segments][0][:indicativePrice][:price]
-        hash_result[:city][:destination] = total_result[:data]
+        if city != destination
+          url = "http://free.rome2rio.com/api/1.4/json/Search?key=9fFq6F68&oName=#{city}&dName=#{destination}"
+          research_result = open(url).read
+          total_result = JSON.parse(research_result)
+          one_search_price = total_result["routes"][0]["indicativePrices"][0]["price"]
+          if hash_result[destination] == 0
+            hash_result[destination] = one_search_price
+          else
+            hash_result[destination] = (hash_result[destination] + one_search_price)
+            raise
+          end
+        end
+        hash_result
       end
     end
     raise
-    return :results
   end
 
     # API exemple = http://free.rome2rio.com/api/1.4/xml/Search?key=&oName=Bern&dName=Zurich&noRideshare
