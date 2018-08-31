@@ -121,7 +121,7 @@ class TripsController < ApplicationController
     @travellers.each do |traveller|
       id = traveller.profile_id
       profile = Profile.find(id)
-      @cities << profile.city
+      @cities << profile.city.split(",")[0]
     end
     @cities
   end
