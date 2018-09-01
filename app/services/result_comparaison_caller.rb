@@ -1,4 +1,4 @@
-class ResultComparaison
+class ResultComparaisonCaller
 
   def initialize(hash_result)
     @hash_result = hash_result
