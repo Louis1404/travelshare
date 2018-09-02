@@ -13,6 +13,7 @@ class TripsController < ApplicationController
         @travellers << Traveller.find(traveller_id)
       end
     @information_destination = BestMatchCaller.new(@trip, @travellers).call
+    raise
   end
 
   def new

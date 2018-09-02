@@ -4,7 +4,7 @@
     <%= image_tag "https://kitt.lewagon.com/placeholder/cities/berlin", class: "image-city"%>
   </div>
   <div class="container text-center">
-    <h1><%= @trip.destination %></h1>
+    <h1>The Best Match: <%= @trip.destination %></h1>
   </div>
   <div
   id="map"
@@ -14,17 +14,20 @@
     <div class="row">
       <div class="col-xs-12">
         <% @travellers.each do |traveller| %>
+          <% profile = Profile.find(traveller.profile_id) %>
           <div class="horizontal-card background-ticket">
             <div class="trip-detail-title">
               <h2>
                 From
-                <%= Profile.find(traveller.profile_id).city  %>
+                <%= profile.city  %>
                 to
                 <%= @trip.destination %>
               </h2>
             </div>
             <div class="trip-detail-content">
-
+              <div class="way-to-go">
+                <p><%= profile.titles %></p>
+              </div>
             </div>
           </div>
         <% end %>
