@@ -70,7 +70,7 @@
 
 
 .background-ticket {
-  background-image: linear-gradient(rgba(240, 255, 255, 0.3), rgba(240, 255, 255, 0.2)), url('image-billet-2.png');
+  background-image: linear-gradient(rgba(240, 255, 255, 0.4), rgba(240, 255, 255, 0.4)), url('image-billet-2.png');
   background-size: cover;
   background-position: center;
   height: 40vh;
@@ -93,8 +93,22 @@
   }
 
   .trip-detail-content {
+    display: flex;
+    position: absolute;
+    top: 70px;
     .way-to-go {
-
+      border: 1px solid white;
+      border-radius: 3px;
+      background-color: rgba(240, 240, 240, 0.6);
+      padding: 3px 10px;
+      text-align: center;
+    }
+    .traveller-name {
+      border: 1px solid white;
+      border-radius: 3px;
+      background-color: rgba(240, 240, 240, 0.6);
+      padding: 3px 10px;
+      text-align: center;
     }
   }
 

@@ -13,7 +13,7 @@ class TripsController < ApplicationController
         @travellers << Traveller.find(traveller_id)
       end
     @information_destination = BestMatchCaller.new(@trip, @travellers).call
-    raise
+    @ways = create_ways(@information_destination)
   end
 
   def new
@@ -122,6 +122,29 @@ class TripsController < ApplicationController
   #   end
   #   @travellers
   # end
+
+  def create_ways(hash_result)
+    @information_destination = hash_result
+    @ways = []
+    @travellers.each do |traveller|
+      profile = Profile.find(traveller.profile_id)
+      @information_destination.each do |key, value|
+        if profile.city == key
+          way = Way.new
+          way.departure_city = profile.city
+          # way.arrival_city =
+          way.traveller_id = traveller.id
+          way.price = value["price"]
+          way.content = value["title"]
+          way.travel_time = value["time"]
+          way.duration = value["distance"]
+          way.save
+          @ways << way
+        end
+      end
+    end
+    @ways
+  end
 
   def create_list_city(travellers)
     @cities = []
