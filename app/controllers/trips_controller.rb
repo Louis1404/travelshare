@@ -132,7 +132,7 @@ class TripsController < ApplicationController
         if profile.city == key
           way = Way.new
           way.departure_city = profile.city
-          # way.arrival_city =
+          way.arrival_city = @trip.destination
           way.traveller_id = traveller.id
           way.price = value["price"]
           way.content = value["title"]

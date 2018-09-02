@@ -31,6 +31,16 @@
               <div class="way-to-go">
                 <p>Way: <%= way.content %></p>
               </div>
+              <div class="way-time">
+                <p>Duration: <%= way.travel_time %> minutes</p>
+              </div>
+              <div class="way-distance">
+                <p>Distance: <%= way.duration %> kms</p>
+              </div>
+              <div class="vide"></div>
+              <div class="way-detail-price">
+                <p>Price: <%= way.price %> $</p>
+              </div>
             </div>
           </div>
         <% end %>

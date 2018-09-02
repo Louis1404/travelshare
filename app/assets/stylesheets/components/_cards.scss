@@ -93,25 +93,45 @@
   }
 
   .trip-detail-content {
-    display: flex;
     position: absolute;
-    top: 70px;
-    .way-to-go {
-      border: 1px solid white;
-      border-radius: 3px;
-      background-color: rgba(240, 240, 240, 0.6);
-      padding: 3px 10px;
-      text-align: center;
-    }
+    top: 90px;
+    width: 80%;
+    height: 20vh;
+    border: 1px solid white;
+    border-radius: 3px;
+    background-color: rgba(240, 240, 240, 0.6);
+    padding: 3px 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     .traveller-name {
-      border: 1px solid white;
-      border-radius: 3px;
-      background-color: rgba(240, 240, 240, 0.6);
-      padding: 3px 10px;
+      grid-row: 1 / span 1;
+      grid-column: 1 / span 2;
+    }
+    .way-to-go {
+      grid-row: 2 / span 1;
+      grid-column: 1 / span 2;
+    }
+    .way-time {
       text-align: center;
+      grid-row: 1 / span 1;
+      grid-column: 3 /span 1;
+    }
+    .way-distance {
+      text-align: center;
+      grid-row: 2 / span 1;
+      grid-column: 3 /span 1;
+    }
+    .vide {
+      grid-row: 3 / span 1;
+      grid-column: 1 /span 1;
+    }
+    .way-detail-price {
+      text-align: center;
+      grid-row: 3 / span 1;
+      grid-column: 2 /span 1;
     }
   }
-
 }
 
 .horizontal-card {
