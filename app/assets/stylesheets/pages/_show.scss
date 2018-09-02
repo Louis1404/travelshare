@@ -7,13 +7,14 @@
   }
 }
 h1 {
-  margin: 0px;
-  padding: 50px;
+  margin: 50px;
   color: $orange;
   font-size: 4em;
 }
 
 #map {
-  height: 200px;
-  width: 300px;
+  height: 40vh;
+  width: 100%;
+  background-color: $light-gray;
+  box-shadow: 5px 5px 20px 0px rgba(210, 210, 210, 1);
 }

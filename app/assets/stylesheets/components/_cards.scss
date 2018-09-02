@@ -69,9 +69,39 @@
 }
 
 
+.background-ticket {
+  background-image: linear-gradient(rgba(240, 255, 255, 0.3), rgba(240, 255, 255, 0.2)), url('image-billet-2.png');
+  background-size: cover;
+  background-position: center;
+  height: 40vh;
+  box-shadow: 5px 5px 20px 0px rgba(210, 210, 210, 1);
+  position: relative;
+  align-content: center;
+  justify-content: center;
+
+  .trip-detail-title {
+    position: absolute;
+    top: 10px;
+    border: 1px solid white;
+    border-radius: 3px;
+    background-color: rgba(240, 240, 240, 0.6);
+    padding: 10px 30px;
+    text-align: center;
+    h2 {
+      margin: 0px;
+    }
+  }
+
+  .trip-detail-content {
+
+  }
+
+}
+
 .horizontal-card {
   border-radius: 5px;
   margin: 50px 40px;
+
 
   .horizontal-card-content {
     font-size: 0.7em;
