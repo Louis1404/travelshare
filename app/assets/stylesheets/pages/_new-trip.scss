@@ -3,25 +3,46 @@
   overflow: scroll;
 }
 
-.validate-trip {
-  height: 70px;
+.trip {
+  height: 50px;
+  margin-top: 20px;
   display: flex;
-  width: 100%;
-  justify-content: center;
-  div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-user{
+  height: 50px;
+  text-align: left;
+  padding: 40px 0px 40px 40px;
+
+}
+
+.onboard {
+  height: 50px;
+  text-align: right;
+  padding: 40px 0px 40px 0px;
 }
 
 .info-user {
   display: flex;
   align-items: center;
   padding: 5px;
-  border-bottom: 2px solid rgba(42, 48, 49,0.4);
 }
 
+@media (min-width: 200px) {
+  .info-user{
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+@media (min-width: 850px) {
+  .user-city {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+}
 .info-user img {
   border-radius: 50%;
   height: 70px;
@@ -33,39 +54,55 @@
 }
 
 .user-city {
-  padding-left: 30px;
+  padding-left: 40px;
   flex-grow: 1;
 }
 
 .user-name {
-  padding-left: 20px;
+  padding-left: 10px;
   min-width: 100px;
   margin-top: 5px;
   width: 150px;
 }
 
+
+
 .form-action {
-  padding-left: 50px;
-  border-radius: 20px;
+  padding-left: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .btn-small {
-  background-color: rgba(42, 48, 49,0.4);
-  color: white;
-  border: 1px solid rgba(42, 48, 49,0.4);
-  border-radius: 30px;
-  padding: 5px 10px;
-  width: 50px;
+  border: none;
+}
+
+.fa-location-arrow {
+  color: #00bd96;
+}
+
+.fa-trash-alt {
+  color: $red;
 }
 
 .btn-med {
-  background-color: $blue;
+  background-color: #00bd96;
   color: white;
-  border: 1px solid $blue;
-  border-radius: 30px;
-  padding: 10px 25px;
+  border-radius: 3px;
+  padding: 10px 15px;
+  &:hover {
+    text-decoration: none;
+    color: white;
+    background-color: #00c99f;
+  }
 }
 
 ul {
   list-style-type: none;
+}
+
+.profil_avatar_photo .avatar {
+  height: 40px;
+  width: 40px;
 }

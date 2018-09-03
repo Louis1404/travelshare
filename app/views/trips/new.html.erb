@@ -2,74 +2,88 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-6 trip-creator-col">
-        <h3> Profiles </h3>
+        <div class="search-user">
+          <%= render 'shared/form_usersearch' %>
+        </div>
         <ul class="list-profiles">
           <% @profiles.each do |profile| %>
-            <li class="list-profiles">
-              <div class="info-user">
-                <div class="profil_avatar_photo">
-                  <%= cl_image_tag(User.find(profile.user_id).photo,
-                  width: 100, height: 100, crop: :thumb, gravity: :face) %>
-                </div>
-                <div class="user-name">
-                  <%= profile.first_name%>
-                  <%= profile.last_name %>
-                </div>
-                <div class="user-city">
-                  <%= profile.city %>
-                </div>
-                <div class="form-action">
-                  <form action=<%= add_travellers_path %>>
-                    <% if @trip %>
-                      <input type="hidden" name="trip" value=<%= @trip.id %>>
+            <div class="profile-card">
+              <li class="list-profiles">
+                <div class="info-user">
+                  <div class="profil_avatar_photo">
+                    <% if !profile.user.photo_url.nil? %>
+                      <%= cl_image_tag(profile.user.photo, class: 'avatar',
+                      width: 100, height: 100, crop: :thumb, gravity: :face) %>
+                    <% else %>
+                      <%= image_tag 'avatar-new-trip.png', class: 'avatar' %>
                     <% end %>
-                    <input type="hidden" name="profile" value=<%= profile.id %>>
-                    <input type="submit" value="+" class="btn-small">
-                  </form>
+                  </div>
+                  <div class="user-name">
+                    <%= profile.first_name%>
+                    <%= profile.last_name %>
+                  </div>
+                  <div class="user-city">
+                    <%= profile.city %>
+                  </div>
+                  <div class="form-action">
+                    <form action=<%= add_travellers_path %>>
+                      <% if @trip %>
+                        <input type="hidden" name="trip" value=<%= @trip.id %>>
+                      <% end %>
+                      <input type="hidden" name="profile" value=<%= profile.id %>>
+                      <button type="submit" class="btn-small">
+                        <i class="fas fa-location-arrow"></i>
+                      </button>
+                    </form>
+                  </div>
                 </div>
-              </div>
-            </li>
+              </li>
+            </div>
           <% end %>
         </ul>
       </div>
       <div class="col-xs-6 trip-creator-col">
-        <div class="lets-go">
-          <h3> Travellers </h3>
+        <div class="onboard">
+          <% if !@travellers.nil? %>
+            <%= link_to "Get on board", search_path(:trip_id => @trip.id, :travellers => @travellers.pluck('id')), class: 'btn-med' %>
+          <% end %>
         </div>
         <ul class="list-profiles-right">
           <% if !@travellers.nil? %>
             <% @travellers.each do |t| %>
-              <li class="list-profiles">
-                <div class="info-user">
-                  <div class="profil_avatar_photo">
-                    <%= cl_image_tag(User.find(t.profile.user_id).photo,
-                    width: 100, height: 100, crop: :thumb, gravity: :face) %>
+              <div class="profile-card">
+                <li class="list-profiles">
+                  <div class="info-user">
+                    <div class="profil_avatar_photo">
+                      <% if !t.profile.user.photo_url.nil? %>
+                        <%= cl_image_tag(t.user.photo, class: 'avatar',
+                        width: 100, height: 100, crop: :thumb, gravity: :face) %>
+                      <% else %>
+                        <%= image_tag 'avatar-new-trip.png', class: 'avatar' %>
+                      <% end %>
+                    </div>
+                    <div class="user-name">
+                      <%= t.profile.first_name %>
+                      <%= t.profile.last_name %>
+                    </div>
+                    <div class="user-city">
+                      <%= t.profile.city %>
+                    </div>
+                    <form action=<%= delete_travellers_path %>>
+                      <input type="hidden" name="trip" value=<%= @trip.id %>>
+                      <input type="hidden" name="traveller" value=<%= t.id %>>
+                      <button type="submit" class="btn-small">
+                      <i class="fas fa-trash-alt"></i>
+                      </button>
+                    </form>
                   </div>
-                  <div class="user-name">
-                    <%= t.profile.first_name %>
-                    <%= t.profile.last_name %>
-                  </div>
-                  <div class="user-city">
-                    <%= t.profile.city %>
-                  </div>
-                  <form action=<%= delete_travellers_path %>>
-                    <input type="hidden" name="trip" value=<%= @trip.id %>>
-                    <input type="hidden" name="traveller" value=<%= t.id %>>
-                    <input type="submit" value="-" class="btn-small">
-                  </form>
-                </div>
-              </li>
+                </li>
+              </div>
             <% end %>
           <% end %>
         </ul>
         </div>
       </div>
     </div>
-    <div class="validate-trip">
-      <div>
-        <% if !@travellers.nil? %>
-          <%= link_to "Let's Go", search_path(:trip_id => @trip.id, :travellers => @travellers.pluck('id')), class: 'btn-med' %>
-        <% end %>
-      </div>
-    </div>
+  </div>
 </div>
