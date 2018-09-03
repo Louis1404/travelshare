@@ -23,11 +23,13 @@ class User < ApplicationRecord
   end
 
   def edit_profile
-    profile = self.profile
-    profile.first_name = self.first_name
-    profile.last_name = self.last_name
-    profile.city = self.city
-    profile.save
+    if self.profile
+      profile = self.profile
+      profile.first_name = self.first_name
+      profile.last_name = self.last_name
+      profile.city = self.city
+      profile.save
+    end
   end
 
 end
