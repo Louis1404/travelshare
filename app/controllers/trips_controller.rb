@@ -87,21 +87,8 @@ class TripsController < ApplicationController
     @cities = create_list_city(@travellers)
     @hash_result = RomToRioApiCaller.new(@cities).call
     @final_destination = ResultComparaisonCaller.new(@hash_result).call
-    # @trip = Trip.new #ou .find par id
-    # authorize @trip
-    # if @trip.save
-    #   @time = params[:travellers].each { |d| puts d }.length
-    #   @travellers = []
-    #   create_travellers
-    # else
-    #   render :new
-    # end
-    # @cities = create_list_city(@travellers)
-    # hash_result = search_on_API(@cities)
-    # compare_result(hash_result)
     @trip.destination = @final_destination
     @trip.save
-    # redirect_to trip_path(@trip.id)
     redirect_to controller: 'trips', action: 'show', id: @trip.id, travellers: @travellers
   end
 
@@ -111,6 +98,12 @@ class TripsController < ApplicationController
 
   def update
     authorize @trip
+  end
+
+  def destination_comparaison
+    render json: {
+      hash_result: ResultComparaisonCaller.new([params[:trip]]).call
+    }
   end
 
   def find_traveller_trip
@@ -124,21 +117,6 @@ class TripsController < ApplicationController
   def trip_params
     params.require(:trip).permit(:description, :title, :destination )
   end
-
-  # def create_travellers
-  #   @time.times do |i|
-  #     traveller = Traveller.new()
-  #     array_de_travelers = params[:travellers].each { |d| puts d }.to_a
-  #     traveller.profile_id = array_de_travelers[i][1]
-  #     if traveller.profile_id == current_user.id
-  #       traveller.organizer = true
-  #     end
-  #     traveller.trip_id = @trip.id
-  #     traveller.save
-  #     @travellers << traveller
-  #   end
-  #   @travellers
-  # end
 
   def create_ways(hash_result)
     @information_destination = hash_result
@@ -172,108 +150,4 @@ class TripsController < ApplicationController
     end
     @cities
   end
-    # API exemple = http://free.rome2rio.com/api/1.4/xml/Search?key=&oName=Bern&dName=Zurich&noRideshare
-    # Rechercher pour chaque ville des travellers la destination la moins cher sur notre liste de destination
-    # Récupérer tous les résultats dans un Hash avec des arrays
-    # Ajouter les résultats de prix de chaque ville de départ par destinations
-    # Prendre la destination qui a le plus petit prix
-    # return le résultat pour le create
-
-  def compare_result(hash_result)
-    array_total_price = {}
-    hash_result.each do |depart|
-      depart.each do |destination|
-        array_total_price["#{destination}"] += destination[:routes][0][:segments][0][:indicativePrice][:price]
-      end
-    end
-    array_for_compare = []
-    array_total_price.each do |key, value|
-      array_for_compare << value
-    end
-    best_match = array_for_compare.sort.first
-    final_destination = array_total_price.key(best_match)
-  end
-
-  # def results
-  #   {
-  #     agencies:
-  #       [{
-  #       code:       'SWISSRAILWAYS',
-  #       name:       'Swiss Railways (SBB/CFF/FFS)',
-  #       url:        'http://www.sbb.ch'
-  #       iconPath:   '/logos/trains/ch.png',
-  #       iconSize:   '27,23',
-  #       iconOffset: '0,0'
-  #       ]},
-  #     routes:
-  #       [{
-  #       name:     'Train',
-  #       distance: 95.92,
-  #       duration: 56,
-  #       stops:
-  #         [{
-  #         name: 'Bern',
-  #         pos:  '46.94926,7.43883',
-  #         kind: 'station'
-  #         },{
-  #         name: 'Zürich HB',
-  #         pos:  '47.37819,8.54019',
-  #         kind: 'station'
-  #         }],
-  #       segments:
-  #         [{
-  #         kind:     'train',
-  #         subkind:     'train',
-  #         isMajor:  1,
-  #         distance: 95.92,
-  #         duration: 56,
-  #         sName:    'Bern',
-  #         sPos:     '46.94938,7.43927',
-  #         tName:    'ZÃ¼rich HB',
-  #         tPos:     '47.37819,8.54019',
-  #         path:     '{wp}Gu{kl@wb@uVo|AqiDyoBhUibDeiDc`AsmDaxBqk@wwA...',
-  #         indicativePrice: {
-  #           price: 45,
-  #           currency: 'USD',
-  #           isFreeTransfer: 0,
-  #           nativePrice: 40,
-  #           nativeCurrency: 'CHF'
-  #         },
-  #         itineraries:
-  #           [{
-  #           legs:
-  #             [{
-  #             url: 'http://fahrplan.sbb.ch/bin/query.exe/en...',
-  #             hops:
-  #               [{
-  #               distance:  95.92,
-  #               duration:  56,
-  #               sName:     'Bern',
-  #               sPos:      '46.94938,7.43927',
-  #               tName:     'ZÃ¼rich HB',
-  #               tPos:      '47.37819,8.54019',
-  #               frequency: 400,
-  #               indicativePrice: {
-  #                 price: 45,
-  #                 currency: 'USD',
-  #                 isFreeTransfer: 0,
-  #                 nativePrice: 40,
-  #                 nativeCurrency: 'CHF'
-  #               },
-  #               lines:
-  #                 [{
-  #                 name:      '',
-  #                 vehicle:   'train',
-  #                 agency:    'SWISSRAILWAYS',
-  #                 frequency: 400,
-  #                 duration:  57,
-  #                 }]
-  #               }]
-  #             }]
-  #           }]
-  #         }]
-  #       }]
-  #     }]
-  #   }
-  # end
 end
