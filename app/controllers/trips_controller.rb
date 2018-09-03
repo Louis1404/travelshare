@@ -100,15 +100,21 @@ class TripsController < ApplicationController
     authorize @trip
   end
 
-  def destination_comparaison
-    render json: {
-      hash_result: ResultComparaisonCaller.new([params[:trip]]).call
-    }
-  end
-
   def find_traveller_trip
     render json: {
       trip: RomToRioApiCaller.new([params[:city]]).call
+    }
+  end
+
+  def destination_comparaison
+    render json: {
+      destination: ResultComparaisonCaller.new([params[:trip]]).call
+    }
+  end
+
+  def get_info_for_destination
+    render json: {
+      details: ResultComparaisonCaller.new([params[:destination]]).call
     }
   end
 
