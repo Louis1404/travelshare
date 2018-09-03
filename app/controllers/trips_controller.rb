@@ -9,9 +9,22 @@ class TripsController < ApplicationController
     skip_authorization
     @trip = Trip.find(params[:id])
     @travellers = []
+    @profiles =[]
     params[:travellers].each do |traveller_id|
         @travellers << Traveller.find(traveller_id)
       end
+    @travellers.each do |traveller|
+      @profiles << Profile.find(traveller.profile_id)
+    end
+    @markers = @profiles.map do |profile|
+      @geocod = Geocoder.search(profile.city)
+      {
+        lat: @geocod[0].geometry["location"]["lat"],
+        lng: @geocod[0].geometry["location"]["lng"]#,
+        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+      }
+    end
+
     @information_destination = BestMatchCaller.new(@trip, @travellers).call
     @ways = create_ways(@information_destination)
   end
