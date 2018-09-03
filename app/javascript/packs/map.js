@@ -14,10 +14,61 @@ const styles = [
         "elementType": "labels.text.fill",
         "stylers": [
             {
-                "color": "#444444"
+                "color": "#e88f35"
             },
             {
                 "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.country",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.locality",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#e88f35"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.locality",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#c92b2b"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.locality",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "color": "#ff0000"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.locality",
+        "elementType": "labels.text",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#e88f35"
             }
         ]
     },
@@ -26,7 +77,10 @@ const styles = [
         "elementType": "labels.text.fill",
         "stylers": [
             {
-                "visibility": "off"
+                "visibility": "on"
+            },
+            {
+                "hue": "#ff8000"
             }
         ]
     },
@@ -53,10 +107,13 @@ const styles = [
         "elementType": "all",
         "stylers": [
             {
-                "color": "#bbf7d5"
+                "color": "#fafffc"
             },
             {
                 "visibility": "on"
+            },
+            {
+                "lightness": "24"
             }
         ]
     },
@@ -131,7 +188,7 @@ const styles = [
         "elementType": "all",
         "stylers": [
             {
-                "color": "#bce2f5"
+                "color": "#77d8e1"
             },
             {
                 "visibility": "on"

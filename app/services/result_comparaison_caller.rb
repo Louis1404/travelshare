@@ -8,8 +8,6 @@ class ResultComparaisonCaller
   def call
     @hash_result.each do |d, destination|
       destination.each do |key, value|
-        key
-        value
         @destination_price[key] += value
       end
     end

@@ -2,7 +2,7 @@ require 'json'
 require 'open-uri'
 
 class TripsController < ApplicationController
-  after_action :verify_authorized, except: [:create]
+  after_action :verify_authorized, except: [:create, :find_traveller_trip]
   # before_action :skip_policy_scope, only: :add_travellers
 
   def show
@@ -113,13 +113,17 @@ class TripsController < ApplicationController
     authorize @trip
   end
 
+  def find_traveller_trip
+    render json: {
+      trip: RomToRioApiCaller.new([params[:city]]).call
+    }
+  end
+
   private
 
   def trip_params
     params.require(:trip).permit(:description, :title, :destination )
   end
-
-   private
 
   # def create_travellers
   #   @time.times do |i|
