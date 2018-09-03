@@ -1,49 +1,39 @@
-<%= content_for(:navbar_class, "navbar-home") %>
 <div class="white-wrapper">
-  <div class="banner-city">
-    <%= image_tag "https://kitt.lewagon.com/placeholder/cities/berlin", class: "image-city"%>
-  </div>
-  <div class="container text-center">
-    <h1>The Best Match: <%= @trip.destination %></h1>
-  </div>
-  <div
-  id="map"
-  data-markers="<%= @markers.to_json %>"
-  ></div>
   <div class="container">
     <div class="row">
-      <div class="col-xs-12">
-        <% @ways.each do |way| %>
-          <div class="horizontal-card background-ticket">
-            <div class="trip-detail-title">
-              <h2>
-                From
-                <%= way.departure_city  %>
-                to
-                <%= way.arrival_city %>
-              </h2>
-            </div>
-            <div class="trip-detail-content">
-              <% profile = Profile.find((Traveller.find(way.traveller_id)).profile_id) %>
-              <div class="traveller-name">
-                <p>Name: <%= profile.first_name %> <%= profile.last_name %></p>
-              </div>
-              <div class="way-to-go">
-                <p>Way: <%= way.content %></p>
-              </div>
-              <div class="way-time">
-                <p>Duration: <%= way.travel_time %> minutes</p>
-              </div>
-              <div class="way-distance">
-                <p>Distance: <%= way.duration %> kms</p>
-              </div>
-              <div class="vide"></div>
-              <div class="way-detail-price">
-                <p>Price: <%= way.price %> $</p>
-              </div>
-            </div>
+      <div class="col-xs-6">
+      </div>
+      <div class="col-xs-6">
+        <div class="city-card-content">
+          <div class="city-card">
+            <%= image_tag "paris.jpg", class: "image-city"%>
           </div>
-        <% end %>
+          <div class="city-name">
+            <h3>Best Match: <%= @trip.destination %></h3>
+          </div>
+          <div class="trip-details">
+            <% @ways.each do |way| %>
+              <div class="trip-detail-content">
+                <% profile = Profile.find((Traveller.find(way.traveller_id)).profile_id) %>
+                <div class="traveller-name">
+                  <p><strong><%= profile.first_name %> <%= profile.last_name %></strong></p>
+                </div>
+                <div class="way-to-go">
+                  <p><%= way.content %></p>
+                </div>
+                <div class="way-time">
+                  <p>Trip time: <%= way.travel_time %> minutes</p>
+                </div>
+                <div class="way-detail-price">
+                  <p><strong><%= way.price %> $</strong></p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <div class="save-trip">
+            <%= link_to "Save", "" ,class: "btn-save" %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
