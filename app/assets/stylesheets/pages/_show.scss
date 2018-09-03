@@ -1,23 +1,18 @@
 .city-card-content {
   background-color: white;
   border-bottom: 4px solid rgb(230, 79, 15);
-  border-radius: 5px;
+  border-radius: 8px;
   box-shadow: 5px 5px 20px 0px rgba(210, 210, 210, 1);
   margin-top: 30px;
-
-  .btn-save {
-    border-radius: 10%;
-    background-color: $red;
-    color: white;
-    border: 1px solid white;
-  }
-
 }
 
 .city-card {
   height: 200px;
   overflow: hidden;
+  border-radius: 8px;
+  color: $red;
   img {
+    background-image: linear-gradient(150deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
     width: 100%;
   }
 }
@@ -25,6 +20,7 @@
 .city-name {
   border-bottom: 1px solid $light-gray;
   text-align: center;
+  color: $red;
 }
 
 .trip-details {
@@ -40,6 +36,8 @@
   padding: 5px;
   margin-bottom: 10px;
   border-bottom: 1px solid $light-gray;
+  line-height: 58px;
+  line-spacing: 0.1em;
 }
 
 .traveller-name {
