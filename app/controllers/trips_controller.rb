@@ -19,8 +19,8 @@ class TripsController < ApplicationController
     @markers = @profiles.map do |profile|
       @geocod = Geocoder.search(profile.city)
       {
-        lat: @geocod[0].geometry["location"]["lat"],
-        lng: @geocod[0].geometry["location"]["lng"]#,
+        lat: @geocod[0].data["geometry"]["location"]["lat"],
+        lng: @geocod[0].data["geometry"]["location"]["lng"]#,
         # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
       }
     end
