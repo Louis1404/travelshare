@@ -23,6 +23,7 @@
 }
 
 .city-name {
+  border-bottom: 1px solid $light-gray;
   text-align: center;
 }
 
@@ -73,7 +74,8 @@
 }
 
 #map {
-  flex: 10 10 50vh;
+  margin: 10px;
+  flex: 0 0 100vh;
   background-color: $light-gray;
   box-shadow: 5px 5px 20px 0px rgba(210, 210, 210, 1);
 }

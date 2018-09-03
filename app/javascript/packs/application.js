@@ -1,3 +1,4 @@
+const axios = require('axios')
 import "bootstrap";
 import { autocomplete } from '../components/autocomplete';
 autocomplete();
@@ -10,3 +11,11 @@ if (clBtn) {
     clBtn.click()
   })
 }
+
+axios.get('/getinfos?city=Berlin')
+  .then(function (response) {
+    console.log(response.data);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });

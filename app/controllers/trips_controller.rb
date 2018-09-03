@@ -115,7 +115,7 @@ class TripsController < ApplicationController
 
   def find_traveller_trip
     render json: {
-      trip: RomToRioApiCaller.new(['Paris']).call
+      trip: RomToRioApiCaller.new([params[:city]]).call
     }
   end
 
