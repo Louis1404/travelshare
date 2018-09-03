@@ -8,6 +8,12 @@ class TripsController < ApplicationController
   def show
     skip_authorization
     @trip = Trip.find(params[:id])
+    @travellers = []
+    params[:travellers].each do |traveller_id|
+        @travellers << Traveller.find(traveller_id)
+      end
+    @information_destination = BestMatchCaller.new(@trip, @travellers).call
+    @ways = create_ways(@information_destination)
   end
 
   def new
@@ -67,7 +73,7 @@ class TripsController < ApplicationController
 
     @cities = create_list_city(@travellers)
     @hash_result = RomToRioApiCaller.new(@cities).call
-    @final_destination = ResultComparaison.new(@hash_result).call
+    @final_destination = ResultComparaisonCaller.new(@hash_result).call
     # @trip = Trip.new #ou .find par id
     # authorize @trip
     # if @trip.save
@@ -82,7 +88,8 @@ class TripsController < ApplicationController
     # compare_result(hash_result)
     @trip.destination = @final_destination
     @trip.save
-    redirect_to trip_path(@trip.id)
+    # redirect_to trip_path(@trip.id)
+    redirect_to controller: 'trips', action: 'show', id: @trip.id, travellers: @travellers
   end
 
   def edit
@@ -115,6 +122,29 @@ class TripsController < ApplicationController
   #   end
   #   @travellers
   # end
+
+  def create_ways(hash_result)
+    @information_destination = hash_result
+    @ways = []
+    @travellers.each do |traveller|
+      profile = Profile.find(traveller.profile_id)
+      @information_destination.each do |key, value|
+        if profile.city == key
+          way = Way.new
+          way.departure_city = profile.city
+          way.arrival_city = @trip.destination
+          way.traveller_id = traveller.id
+          way.price = value["price"]
+          way.content = value["title"]
+          way.travel_time = value["time"]
+          way.duration = value["distance"]
+          way.save
+          @ways << way
+        end
+      end
+    end
+    @ways
+  end
 
   def create_list_city(travellers)
     @cities = []
