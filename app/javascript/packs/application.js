@@ -13,7 +13,7 @@ if (clBtn) {
   })
 }
 
-if (gon.profile) {
+// if (gon.profile) {
 
   // TRIP FINDER
   // fonction de comparaison
@@ -66,18 +66,32 @@ if (gon.profile) {
   return results
   }
 
-  function addTripToDom(profile, trip, destCity) {
-  const cardHTML = createCard(profile, trip)
-  document.body.innerHTML += `<h1>${profile.first_name} va à ${destCity}</h1>`
+  function addTripToDom(profile, data) {
+  // for (const profile of profiles) {
+    // console.log(`${profile.to_json}`)
+    // const traveller = `${profile.to_json}`
+    // const way = traveller.way
+    const cardHTML = createCard(profile, data)
+    const tripDetails = document.querySelector('.trip-details')
+    tripDetails.innerHTML += cardHTML
   }
 
   async function getTrips(profiles, destCity) {
-  for (const profile of profiles) {
-    const { data } = await axios.get(`/getinfos?city=${profile.city}&destination=${destCity}`);
+    const ways = []
+    for (const profile of profiles) {
+    const { data } = await axios.get(`/getinfos?city=${profile.city}&destination=${destCity}&id=${profile.id}`);
     // console.log(profile.first_name, data)
-    addTripToDom(profile, data.trip[`${profile.city}`], destCity)
+    // const tripInfo = JSON.stringify(data.trip[profile.city][destCity])
+    // console.log("TRIP INFOS", tripInfo)
+    // const way = await axios.get(`/getinfos?city=${profile.city}&destination=${destCity}&trip_info=${tripInfo}`);
+    // ways.push(way['data']['trip'])
+    // const content = JSON.parse(way.data.trip.content)
+    // console.log(content)
+    const data_exploitable = data.trip[`${profile.city}`][destCity]
+    addTripToDom(profile, data_exploitable)
   }
   }
+
   // lance le tout
   async function bestMatchFinder() {
   const results = await getInfos(gon.profiles)
@@ -87,24 +101,26 @@ if (gon.profile) {
   const trips = getTrips(gon.profiles, bestMatch.city)
   }
 
-  const createCard = (profile, trip) => {
+  const createCard = (profile, data) => {
+    console.log(profile.first_name)
+    console.log(data['transport'])
     return `
-      <div class="city-card-content">
-          <div class="city-card">
-            <%= image_tag "paris.jpg", class: "image-city"%>
-          </div>
-          <div class="city-name">
-            <h3>Best Match: <%= @trip.destination %></h3>
-          </div>
-          <div class="trip-details">
-
-          </div>
-          <div class="save-trip">
-            <%= link_to "Save", "" ,class: "btn-save" %>
-          </div>
+      <div class="trip-detail-content">
+        <div class="traveller-name">
+          <p><strong>${profile.first_name} ${profile.last_name}</strong></p>
         </div>
+        <div class="way-to-go">
+          <p>${data['transport']}</p>
+        </div>
+        <div class="way-time">
+          <p>Trip time: ${data['time']} minutes</p>
+        </div>
+        <div class="way-detail-price">
+          <p><strong>${data['price']} $</strong></p>
+        </div>
+      </div>
     `
   }
 
-  bestMatchFinder()
-}
+// }
+bestMatchFinder()
