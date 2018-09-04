@@ -1,24 +1,30 @@
 require 'rest-client'
 require 'json'
 
+DCITIES = ['Londres', 'Rome']
+
 class RomToRioApiCaller
-  def initialize(cities)
-    @o_cities = cities
-    @city_destinations = ['Londres', 'Rome']
+  def initialize(city, dcities = DCITIES)
+    @o_city = city
+    @city_destinations = dcities
     @key = ENV['ROM2RIO_API_KEY']
   end
 
   def call
     hash_result = {}
-    @o_cities.each do |city|
-      @city_destinations.each do |destination|
-        if city != destination
-          url = "http://free.rome2rio.com/api/1.4/json/Search?key=#{@key}&oName=#{city}&dName=#{destination}&noRideshare&noCar&noFerry"
-          research_result = JSON.parse(RestClient.get(url).body)
-          price = research_result["routes"][0]["indicativePrices"][0]["price"]
-          hash_result[city] = Hash.new(0) unless hash_result[city]
-          hash_result[city][destination] += price
-        end
+    @city_destinations.each do |destination|
+      if @o_city != destination
+        url = "http://free.rome2rio.com/api/1.4/json/Search?key=#{@key}&oName=#{@o_city}&dName=#{destination}&noRideshare&noCar&noFerry"
+        research_result = JSON.parse(RestClient.get(url).body)
+        # price = research_result["routes"][0]["indicativePrices"][0]["price"]
+        hash_result[@o_city] = {} unless hash_result[@o_city]
+        data = {
+          transport: research_result["routes"][0]["name"],
+          price: research_result["routes"][0]["indicativePrices"][0]["price"],
+          distance: research_result["routes"][0]["distance"],
+          time: research_result["routes"][0]["totalDuration"]
+        }
+        hash_result[@o_city][destination] = data
       end
     end
     hash_result

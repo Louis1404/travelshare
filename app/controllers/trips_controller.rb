@@ -103,8 +103,15 @@ class TripsController < ApplicationController
   end
 
   def find_traveller_trip
+    puts "PARAMS"
+    service = nil
+    if params[:destination]
+      service = RomToRioApiCaller.new(params[:city], [params[:destination]])
+    else
+      service = RomToRioApiCaller.new(params[:city])
+    end
     render json: {
-      trip: RomToRioApiCaller.new([params[:city]]).call
+      trip: service.call
     }
   end
 
