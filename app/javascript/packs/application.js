@@ -12,10 +12,10 @@ if (clBtn) {
   })
 }
 
-axios.get('/getinfos?city=Berlin')
-  .then(function (response) {
-    console.log(response.data);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+// axios.get('/getinfos?city=Berlin')
+//   .then(function (response) {
+//     console.log(response.data);
+//   })
+//   .catch(function (error) {
+//     console.log(error);
+//   });
