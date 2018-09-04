@@ -3,16 +3,9 @@
     ["env", {
       "modules": false,
       "targets": {
-        "browsers": "> 1%",
-        "uglify": true
+        "node": "current"
       },
       "useBuiltIns": true
     }]
-  ],
-
-  "plugins": [
-    "syntax-dynamic-import",
-    "transform-object-rest-spread",
-    ["transform-class-properties", { "spec": true }]
   ]
 }
