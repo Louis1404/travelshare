@@ -1,0 +1,63 @@
+.city-card {
+  background-size: cover !important;
+  position: relative;
+}
+
+.card-category {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  font-size: 16px;
+  text-transform: uppercase;
+
+  p {
+    color: white !important;
+    line-spacing: 0.2em;
+  }
+}
+
+.trip-details {
+  display: flex;
+  margin-top: 10px;
+}
+
+.trip-details img {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px ;
+}
+
+.name-time {
+  padding-left: 15px;
+}
+
+.name-time h3 {
+  font-size: 18px;
+  margin-bottom: 2px;
+  color: black !important;
+  margin-top: auto;
+}
+
+.name-time p {
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+.travel-price {
+  padding-left: 50px;
+  font-size: 18px;
+}
+
+.travel-price h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: black !important;
+  margin-top: auto;
+}
+
+.travel-price p {
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+
