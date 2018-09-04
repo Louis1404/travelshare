@@ -66,22 +66,30 @@ if (clBtn) {
   return results
   }
 
-  function addTripToDom(profile, ways) {
-  // const cardHTML = createCard(profile, trip)
-  const tripDetails = document.querySelector('.trip-details')
-  // tripDetails.innerHTML += cardHTML
+  function addTripToDom(profile, data) {
+  // for (const profile of profiles) {
+    // console.log(`${profile.to_json}`)
+    // const traveller = `${profile.to_json}`
+    // const way = traveller.way
+    const cardHTML = createCard(profile, data)
+    const tripDetails = document.querySelector('.trip-details')
+    tripDetails.innerHTML += cardHTML
   }
 
   async function getTrips(profiles, destCity) {
     const ways = []
-  for (const profile of profiles) {
-    const { data } = await axios.get(`/getinfos?city=${profile.city}&destination=${destCity}`);
+    for (const profile of profiles) {
+    const { data } = await axios.get(`/getinfos?city=${profile.city}&destination=${destCity}&id=${profile.id}`);
     // console.log(profile.first_name, data)
-    const { way } = await axios.get(`/getinfos?city=${profile.id}&destination=${destCity}&trip_info=${data.trip[profile.city]}`);
-    ways.push(way.trip)
+    // const tripInfo = JSON.stringify(data.trip[profile.city][destCity])
+    // console.log("TRIP INFOS", tripInfo)
+    // const way = await axios.get(`/getinfos?city=${profile.city}&destination=${destCity}&trip_info=${tripInfo}`);
+    // ways.push(way['data']['trip'])
+    // const content = JSON.parse(way.data.trip.content)
+    // console.log(content)
+    const data_exploitable = data.trip[`${profile.city}`][destCity]
+    addTripToDom(profile, data_exploitable)
   }
-  console.log("WAYS", ways)
-  addTripToDom(profile, ways, destCity)
   }
 
   // lance le tout
@@ -93,24 +101,26 @@ if (clBtn) {
   const trips = getTrips(gon.profiles, bestMatch.city)
   }
 
-  // const createCard = (profile, trip) => {
-  //   return `
-  //       <div class="trip-detail-content">
-  //         <div class="traveller-name">
-  //           <p><strong><%= profile.first_name %> <%= profile.last_name %></strong></p>
-  //         </div>
-  //         <div class="way-to-go">
-  //           <p><%= way.content %></p>
-  //         </div>
-  //         <div class="way-time">
-  //           <p>Trip time: <%= way.travel_time %> minutes</p>
-  //         </div>
-  //         <div class="way-detail-price">
-  //           <p><strong><%= way.price %> $</strong></p>
-  //         </div>
-  //       </div>
-  //   `
-  // }
+  const createCard = (profile, data) => {
+    console.log(profile.first_name)
+    console.log(data['transport'])
+    return `
+      <div class="trip-detail-content">
+        <div class="traveller-name">
+          <p><strong>${profile.first_name} ${profile.last_name}</strong></p>
+        </div>
+        <div class="way-to-go">
+          <p>${data['transport']}</p>
+        </div>
+        <div class="way-time">
+          <p>Trip time: ${data['time']} minutes</p>
+        </div>
+        <div class="way-detail-price">
+          <p><strong>${data['price']} $</strong></p>
+        </div>
+      </div>
+    `
+  }
 
 // }
 bestMatchFinder()

@@ -103,23 +103,30 @@ class TripsController < ApplicationController
   end
 
   def find_traveller_trip
-    puts "PARAMS"
     service = nil
-    if params[:destination] && params[:trip_info]
-      data = {
-        profile: params[:city],
-        infos: params[:trip_info],
+    # if params[:destination] && params[:trip_info]
+    #   data = {
+    #     profile: params[:city],
+    #     infos: params[:trip_info],
+    #     destination: params[:destination]
+    #   }
+    #   # puts data[:infos]
+    #   service = CreateWayCaller.new(data)
+    if params[:destination]
+      response = RomToRioApiCaller.new(params[:city], [params[:destination]]).call
+      # p response.keys
+      profile_id = params[:id]
+      response[params[:city]]
+      CreateWayCaller.new({
+        profile: profile_id,
+        infos: response[params[:city]][params[:destination]],
         destination: params[:destination]
-      }
-      puts data[:infos]
-      service = CreateWayCaller.new(data)
-    elsif params[:destination]
-      service = RomToRioApiCaller.new(params[:city], [params[:destination]])
+      }).call
     else
-      service = RomToRioApiCaller.new(params[:city])
+      response = RomToRioApiCaller.new(params[:city]).call
     end
     render json: {
-      trip: service.call
+      trip: response
     }
   end
 

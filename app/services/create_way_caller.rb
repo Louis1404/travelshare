@@ -1,3 +1,5 @@
+require 'json'
+
 class CreateWayCaller
 
   def initialize(data)
@@ -11,12 +13,13 @@ class CreateWayCaller
     way = Way.new
     way.departure_city = @profile.city
     way.arrival_city = @destination
-    way.price = @trip_info["price"]
-    way.content = @trip_info['transport']
-    way.travel_time = @trip_info['time']
-    way.distance = @trip_info['distance:']
+    way.price = @trip_info[:price]
+    way.content = @trip_info[:transport]
+    way.travel_time = @trip_info[:time]
+    way.distance = @trip_info[:distance]
     way.traveller_id = @traveller.id
     way.save
+    way
     return way
   end
 end
