@@ -1,24 +1,7 @@
 <div class="white-wrapper">
-  <%= link_to "New trip", new_trip_path, class: "btn btn-lg btn-show"  %>
-  <div class="container second-home-container">
-    <div class="horizontal-card">
-      <div class="trip">
-        <h3>My trips:</h3>
-        <ul class="list-trips">
-          <% @trips.each do |trip| %>
-            <li class="list-trips">
-              <div class="trip-city">
-                <%= trip.destination %>
-              </div>
-              <div class="trip-ways">
-                <% @ways.each do |way| %>
-                  <%= way.price %>
-                <% end %>
-              </div>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
+  <%= link_to "Create a new trip", new_trip_path, class: "btn btn-lg btn-show"  %>
+  <div class="container">
+    <h3>Trips saved:</h3>
+
   </div>
 </div>
