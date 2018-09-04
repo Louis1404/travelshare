@@ -13,7 +13,6 @@ if (clBtn) {
   })
 }
 
-
 // TRIP FINDER
 // fonction de comparaison
 function compare(a, b) {

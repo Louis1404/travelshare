@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, except: [:destroy]
+  get '/users/sign_out', to: 'devise/sessions#destroy'
   root to: 'pages#home'
   resources :trips, except: [:create]
   get '/dashboard', to: 'accounts#dashboard'
