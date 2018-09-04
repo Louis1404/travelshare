@@ -1,6 +1,13 @@
 puts 'Creating profiles'
 
-
+User.create!(
+  email:'clem@clem.com',
+  password:'123456',
+  password_confirmation:'123456',
+  first_name:'Clem',
+  last_name:'Clem',
+  city: 'Lille'
+)
 User.create!(
   email:'paul@dujardin.com',
   password:'123456',
