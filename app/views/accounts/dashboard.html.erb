@@ -1,7 +1,52 @@
 <div class="white-wrapper">
-  <%= link_to "Create a new trip", new_trip_path, class: "btn btn-lg btn-show"  %>
   <div class="container">
-    <h3>Trips saved:</h3>
+    <h2>Your trips saved:<h2>
+    <div class="row">
 
+      <div class="col-xs-12 col-sm-4">
+        <div class="city-card-content">
+          <div class="city-card">
+            <%= image_tag "paris.jpg", class: "image-city"%>
+            <div class="card-category"><p><strong>Go to Paris</strong><p></div>
+          </div>
+          <div class="trip-details">
+            <div class="avatar">
+              <%= image_tag 'avatar-new-trip.png', class: 'avatar' %>
+            </div>
+            <div class="name-time">
+              <h3>Paul Dujardin</h3>
+              <p>Trip: 2h13</P>
+            </div>
+            <div class="travel-price">
+              <h3> Madrid - Paris</h3">
+              <p>70€</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-4">
+        <div class="city-card-content">
+          <div class="city-card">
+            <%= image_tag "paris.jpg", class: "image-city"%>
+            <div class="card-category"><p>Go to Paris<p></div>
+          </div>
+          <div class="trip-details">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-4">
+        <div class="city-card-content">
+          <div class="city-card">
+            <%= image_tag "paris.jpg", class: "image-city"%>
+            <div class="card-category"><p>Go to Paris<p></div>
+          </div>
+          <div class="trip-details">
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
