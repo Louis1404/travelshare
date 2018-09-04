@@ -78,6 +78,7 @@ if (clBtn) {
 
   async function getTrips(profiles, destCity) {
     const ways = []
+    const add_dest_trip = await axios.get(`/getinfos?destination=${destCity}`);
     for (const profile of profiles) {
     const { data } = await axios.get(`/getinfos?city=${profile.city}&destination=${destCity}&id=${profile.id}`);
     // console.log(profile.first_name, data)

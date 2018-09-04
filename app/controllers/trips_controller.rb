@@ -112,9 +112,8 @@ class TripsController < ApplicationController
     #   }
     #   # puts data[:infos]
     #   service = CreateWayCaller.new(data)
-    if params[:destination]
+    if params[:destination] && params[:city]
       response = RomToRioApiCaller.new(params[:city], [params[:destination]]).call
-      # p response.keys
       profile_id = params[:id]
       response[params[:city]]
       CreateWayCaller.new({
@@ -122,6 +121,8 @@ class TripsController < ApplicationController
         infos: response[params[:city]][params[:destination]],
         destination: params[:destination]
       }).call
+    elsif params[:destination]
+      trip = Trip.find()
     else
       response = RomToRioApiCaller.new(params[:city]).call
     end
