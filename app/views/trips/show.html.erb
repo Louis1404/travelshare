@@ -14,7 +14,25 @@
             <h3>Best Match: <%= @trip.destination %></h3>
           </div>
           <div class="trip-details">
-
+            <% if !@ways.nil? %>
+              <% @ways.each do |way| %>
+                <div class="trip-detail-content">
+                  <% profile = Profile.find((Traveller.find(way.traveller_id)).profile_id) %>
+                  <div class="traveller-name">
+                    <p><strong><%= profile.first_name %> <%= profile.last_name %></strong></p>
+                  </div>
+                  <div class="way-to-go">
+                    <p><%= way.content %></p>
+                  </div>
+                  <div class="way-time">
+                    <p>Trip time: <%= way.travel_time %> minutes</p>
+                  </div>
+                  <div class="way-detail-price">
+                    <p><strong><%= way.price %> $</strong></p>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
           </div>
           <div class="save-trip">
             <%= link_to "Save", "" ,class: "btn-save" %>

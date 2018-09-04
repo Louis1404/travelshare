@@ -13,7 +13,7 @@ if (clBtn) {
   })
 }
 
-if (gon.profile) {
+// if (gon.profile) {
 
   // TRIP FINDER
   // fonction de comparaison
@@ -66,18 +66,24 @@ if (gon.profile) {
   return results
   }
 
-  function addTripToDom(profile, trip, destCity) {
-  const cardHTML = createCard(profile, trip)
-  document.body.innerHTML += `<h1>${profile.first_name} va à ${destCity}</h1>`
+  function addTripToDom(profile, ways) {
+  // const cardHTML = createCard(profile, trip)
+  const tripDetails = document.querySelector('.trip-details')
+  // tripDetails.innerHTML += cardHTML
   }
 
   async function getTrips(profiles, destCity) {
+    const ways = []
   for (const profile of profiles) {
     const { data } = await axios.get(`/getinfos?city=${profile.city}&destination=${destCity}`);
     // console.log(profile.first_name, data)
-    addTripToDom(profile, data.trip[`${profile.city}`], destCity)
+    const { way } = await axios.get(`/getinfos?city=${profile.id}&destination=${destCity}&trip_info=${data.trip[profile.city]}`);
+    ways.push(way.trip)
   }
+  console.log("WAYS", ways)
+  addTripToDom(profile, ways, destCity)
   }
+
   // lance le tout
   async function bestMatchFinder() {
   const results = await getInfos(gon.profiles)
@@ -87,24 +93,24 @@ if (gon.profile) {
   const trips = getTrips(gon.profiles, bestMatch.city)
   }
 
-  const createCard = (profile, trip) => {
-    return `
-      <div class="city-card-content">
-          <div class="city-card">
-            <%= image_tag "paris.jpg", class: "image-city"%>
-          </div>
-          <div class="city-name">
-            <h3>Best Match: <%= @trip.destination %></h3>
-          </div>
-          <div class="trip-details">
+  // const createCard = (profile, trip) => {
+  //   return `
+  //       <div class="trip-detail-content">
+  //         <div class="traveller-name">
+  //           <p><strong><%= profile.first_name %> <%= profile.last_name %></strong></p>
+  //         </div>
+  //         <div class="way-to-go">
+  //           <p><%= way.content %></p>
+  //         </div>
+  //         <div class="way-time">
+  //           <p>Trip time: <%= way.travel_time %> minutes</p>
+  //         </div>
+  //         <div class="way-detail-price">
+  //           <p><strong><%= way.price %> $</strong></p>
+  //         </div>
+  //       </div>
+  //   `
+  // }
 
-          </div>
-          <div class="save-trip">
-            <%= link_to "Save", "" ,class: "btn-save" %>
-          </div>
-        </div>
-    `
-  }
-
-  bestMatchFinder()
-}
+// }
+bestMatchFinder()

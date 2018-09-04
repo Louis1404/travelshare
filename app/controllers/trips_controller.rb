@@ -105,7 +105,15 @@ class TripsController < ApplicationController
   def find_traveller_trip
     puts "PARAMS"
     service = nil
-    if params[:destination]
+    if params[:destination] && params[:trip_info]
+      data = {
+        profile: params[:city],
+        infos: params[:trip_info],
+        destination: params[:destination]
+      }
+      puts data[:infos]
+      service = CreateWayCaller.new(data)
+    elsif params[:destination]
       service = RomToRioApiCaller.new(params[:city], [params[:destination]])
     else
       service = RomToRioApiCaller.new(params[:city])
