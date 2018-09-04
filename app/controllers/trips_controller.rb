@@ -8,25 +8,27 @@ class TripsController < ApplicationController
   def show
     skip_authorization
     @trip = Trip.find(params[:id])
-    @travellers = []
-    @profiles =[]
+    # @travellers = []
+    @profiles = []
     params[:travellers].each do |traveller_id|
-        @travellers << Traveller.find(traveller_id)
-      end
-    @travellers.each do |traveller|
-      @profiles << Profile.find(traveller.profile_id)
+      @profiles << Traveller.find(traveller_id).profile
     end
-    @markers = @profiles.map do |profile|
-      @geocod = Geocoder.search(profile.city)
-      {
-        lat: @geocod[0].data["geometry"]["location"]["lat"],
-        lng: @geocod[0].data["geometry"]["location"]["lng"]#,
-        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
-      }
-    end
+    # @travellers.each do |traveller|
+    #   @profiles << Profile.find(traveller.profile_id)
+    # end
+    # @markers = @profiles.map do |profile|
+    #   @geocod = Geocoder.search(profile.city)
+    #   {
+    #     lat: @geocod[0].data["geometry"]["location"]["lat"],
+    #     lng: @geocod[0].data["geometry"]["location"]["lng"]#,
+    #     # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+    #   }
+    # end
 
-    @information_destination = BestMatchCaller.new(@trip, @travellers).call
-    @ways = create_ways(@information_destination)
+    # @information_destination = BestMatchCaller.new(@trip, @travellers).call
+    # @ways = create_ways(@information_destination)
+    gon.trip = @trip
+    gon.profiles = @profiles
   end
 
   def new
@@ -73,35 +75,22 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = Trip.find(params[:trip_id])
-    authorize @trip
-    if @trip.save
-      @travellers = []
-      params[:travellers].each do |traveller_id|
-        @travellers << Traveller.find(traveller_id)
-      end
-    else
-      render :new
-    end
-
-    @cities = create_list_city(@travellers)
-    @hash_result = RomToRioApiCaller.new(@cities).call
-    @final_destination = ResultComparaisonCaller.new(@hash_result).call
-    # @trip = Trip.new #ou .find par id
+    # @trip = Trip.find(params[:trip_id])
     # authorize @trip
     # if @trip.save
-    #   @time = params[:travellers].each { |d| puts d }.length
     #   @travellers = []
-    #   create_travellers
+    #   params[:travellers].each do |traveller_id|
+    #     @travellers << Traveller.find(traveller_id)
+    #   end
     # else
     #   render :new
     # end
+
     # @cities = create_list_city(@travellers)
-    # hash_result = search_on_API(@cities)
-    # compare_result(hash_result)
-    @trip.destination = @final_destination
-    @trip.save
-    # redirect_to trip_path(@trip.id)
+    # @hash_result = RomToRioApiCaller.new(@cities).call
+    # @final_destination = ResultComparaisonCaller.new(@hash_result).call
+    # @trip.destination = @final_destination
+    # @trip.save
     redirect_to controller: 'trips', action: 'show', id: @trip.id, travellers: @travellers
   end
 
@@ -114,8 +103,15 @@ class TripsController < ApplicationController
   end
 
   def find_traveller_trip
+    puts "PARAMS"
+    service = nil
+    if params[:destination]
+      service = RomToRioApiCaller.new(params[:city], [params[:destination]])
+    else
+      service = RomToRioApiCaller.new(params[:city])
+    end
     render json: {
-      trip: RomToRioApiCaller.new([params[:city]]).call
+      trip: service.call
     }
   end
 
@@ -180,18 +176,8 @@ class TripsController < ApplicationController
     # return le résultat pour le create
 
   def compare_result(hash_result)
-    array_total_price = {}
-    hash_result.each do |depart|
-      depart.each do |destination|
-        array_total_price["#{destination}"] += destination[:routes][0][:segments][0][:indicativePrice][:price]
-      end
-    end
-    array_for_compare = []
-    array_total_price.each do |key, value|
-      array_for_compare << value
-    end
-    best_match = array_for_compare.sort.first
-    final_destination = array_total_price.key(best_match)
+    puts params
+    # ResultComparaisonCaller.new(@hash_result).call
   end
 
   # def results
