@@ -23,6 +23,8 @@ gem 'carrierwave', '~> 1.2'
 
 gem "geocoder"
 
+gem "gon"
+
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem "better_errors"

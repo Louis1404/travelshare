@@ -12,10 +12,35 @@ if (clBtn) {
   })
 }
 
-axios.get('/getinfos?city=Berlin')
-  .then(function (response) {
-    console.log(response.data);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+function resultComparator(object) {
+  // console.log("resultComparator")
+  const prices = {}
+  for (var key in object) {
+    // console.log(key)
+    for (var city in object[key]) {
+      // prices[city] = 0
+      console.log("TEST", object[key])
+      console.log("TEST", object[key][city])
+      prices[city] += object[key][city]
+    }
+  }
+  console.log(prices)
+}
+
+
+async function getInfos(profiles) {
+  const results = {}
+  for (const profile of profiles) {
+    const { data } = await axios.get(`/getinfos?city=${profile.city}`);
+    results[`${profile.city}`] = data["trip"][`${profile.city}`]
+  }
+  return results
+}
+
+
+async function chienCheant() {
+  const results = await getInfos(gon.profiles)
+  resultComparator(results)
+}
+
+chienCheant()
