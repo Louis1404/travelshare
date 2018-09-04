@@ -1,15 +1,36 @@
+h1 {
+  font-family: $headers-font;
+  color: white;
+  font-weight: bold;
+
+}
+
 h2 {
-  color: $red;
+  font-family: $headers-font !important;
+  color: $light-gray !important;
+  font-weight: normal !important;
+  font-size: 24px !important;
 }
 
 h3 {
-  color: $red !important;
+  font-family: $headers-font !important;
+  color: $gray !important;
+  font-weight: normal !important;
+  font-size: 20px !important;
 }
 
 h4 {
-  color: $orange;
+  color: $gray !important;
+  font-weight: bold !important;
+  font-size: 18px !important;
+}
+
+h5 {
+  color: $orange !important;
+  font-weight: bold !important;
+  font-size: 16px !important;
 }
 
 p {
-  color: $gray;
+  color: $gray !important;
 }

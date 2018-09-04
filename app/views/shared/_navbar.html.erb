@@ -15,24 +15,24 @@
             <% if current_user && !current_user.photo_url.nil? %>
               <%= cl_image_tag current_user.photo, class: "avatar dropdown-toggle", id: "navbar-travel-menu", "data-toggle" => "dropdown" %>
             <% else %>
-              <%= image_tag 'profile.png', class: "avatar dropdown-toggle", id: "navbar-travel-menu", "data-toggle" => "dropdown" %>
+              <i class="fas fa-lg fa-user-circle dropdown-toggle" data-toggle="dropdown"></i>
             <% end %>
             <ul class="dropdown-menu dropdown-menu-right navbar-travel-dropdown-menu">
               <li>
                 <% if current_user && current_user.profile %>
                   <%= link_to edit_profile_path(current_user.profile) do %>
-                    <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+                    <i class="fas fa-user-edit"></i><%= t(".profile", default: "Profile") %>
                   <% end %>
                 <% end %>
               </li>
               <li>
                 <%= link_to dashboard_path do %>
-                  <i class="fa fa-user"></i> <%= t(".profile", default: "Dashboard") %>
+                  <i class="fas fa-map-signs"></i> <%= t(".profile", default: "Dashboard") %>
                 <% end %>
               </li>
               <li>
                 <%= link_to destroy_user_session_path, method: :get do %>
-                  <i class="fa fa-sign-out"></i> <%= t(".sign_out", default: "Log out") %>
+                  <i class="fas fa-sign-out-alt"></i> <%= t(".sign_out", default: "Log out") %>
                 <% end %>
               </li>
             </ul>
