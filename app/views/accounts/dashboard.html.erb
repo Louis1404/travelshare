@@ -8,10 +8,10 @@
           <% @trips.each do |trip| %>
             <li class="list-trips">
               <div class="trip-city">
-                <%= trip.city %>
+                <%= trip.destination %>
               </div>
               <div class="trip-ways">
-                <% trip.ways.each do |way| %>
+                <% @ways.each do |way| %>
                   <%= way.price %>
                 <% end %>
               </div>
