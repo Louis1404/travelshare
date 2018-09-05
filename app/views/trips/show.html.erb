@@ -11,21 +11,26 @@
               </div>
             </div>
             <div class="trip-details">
-              <div class="trip-detail-content">
-                <div class="traveller">
-                  <div class ="traveller-name">
-                    <h5><strong>Firstname Lastname</strong></H5>
-                    <div class="traveller-info">
-                      <div class="travel-type">
-                        <p>Flight from Paris to Rome</p>
-                      </div>
-                      <div class="travel-time-price"></div>
-                        <p>2h45  / <strong>250€</strong></p>
+              <% if !@ways.nil? %>
+                <% @ways.each do |way| %>
+                  <div class="trip-detail-content">
+                    <% profile = Profile.find((Traveller.find(way.traveller_id)).profile_id) %>
+                    <div class="traveller">
+                      <div class ="traveller-name">
+                        <h5><strong><%= profile.first_name %> <%= profile.last_name %></strong></H5>
+                        <div class="traveller-info">
+                          <div class="travel-type">
+                            <p><%= way.content %></p>
+                          </div>
+                          <div class="travel-time-price"></div>
+                            <p><%= way.travel_time %> m  / <strong><%= way.price %> $</strong></strong></p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                <end>
+              <end>
               <div class="save-trip">
                 <%= link_to "Save trip", "" ,class: "btn-save" %>
               </div>
