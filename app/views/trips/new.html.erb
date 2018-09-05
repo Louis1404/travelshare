@@ -55,10 +55,12 @@
                     <% end %>
                   </div>
                   <div class="user-name">
-                    <p><%= profile.first_name%> <%= profile.last_name %><p>
+                    <p><%= profile.first_name%> <%= profile.last_name %></p>
                   </div>
                   <div class="user-city">
-                    <h5> from <%= profile.city.split(",")[0] %><h5>
+                    <% if !profile.city.nil? %>
+                      <h5> from <%= profile.city.split(",")[0] %></h5>
+                    <% end %>
                   </div>
                   <div class="form-action">
                     <form action=<%= add_travellers_path %>>
