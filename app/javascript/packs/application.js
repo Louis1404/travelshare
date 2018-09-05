@@ -72,7 +72,7 @@ if (clBtn) {
     // const way = traveller.way
     const cardHTML = createCard(profile, data)
     const tripDetails = document.querySelector('.trip-details')
-    tripDetails.innerHTML += cardHTML
+    tripDetails.insertAdjacentHTML("beforeend", cardHTML)
   }
 
   async function getTrips(trip, profiles, destCity) {
@@ -104,20 +104,18 @@ if (clBtn) {
     return `
       <div class="trip-detail-content">
         <div class="traveller-name">
-          <p><strong>${profile.first_name} ${profile.last_name}</strong></p>
+          <h5><strong>${profile.first_name} ${profile.last_name}</strong></h5>
         </div>
-        <div class="way-to-go">
+        <div class="traveller-info">
+        <div class="travel-type">
           <p>${data['transport']}</p>
         </div>
-        <div class="way-time">
-          <p>Trip time: ${data['time']} minutes</p>
-        </div>
-        <div class="way-detail-price">
-          <p><strong>${data['price']} $</strong></p>
+        <div class="travel-time-price"></div>
+          <p>${data['time']} m  / <strong>${data['price']} $</strong></p>
         </div>
       </div>
     `
   }
 
-//bestMatchFinder()
+bestMatchFinder()
 // window.map.
