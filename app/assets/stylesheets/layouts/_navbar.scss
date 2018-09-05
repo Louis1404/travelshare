@@ -83,6 +83,7 @@
   width: 100%;
   background: transparent;
   box-shadow: none;
+  z-index: 10000;
   .navbar-travel-link:hover {
   color: white;
   transition: 0.3s ease;

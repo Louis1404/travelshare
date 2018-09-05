@@ -1,5 +1,10 @@
+
+ul {
+  padding-inline-start: 0px
+}
+
 .trip-creator-col {
-  height: calc(100vh - 140px);
+  height: calc(100vh - 340px);
   overflow: scroll;
 }
 
@@ -20,14 +25,15 @@
 
 .onboard {
   height: 50px;
-  text-align: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 40px 0px 40px 0px;
 }
 
 .info-user {
   display: flex;
   align-items: center;
-  padding: 5px;
 }
 
 @media (min-width: 200px) {
@@ -42,11 +48,6 @@
     display: flex;
     flex-wrap: nowrap;
   }
-}
-.info-user img {
-  border-radius: 50%;
-  height: 70px;
-  width: 70px;
 }
 
 .info-user .profil_avatar_photo {
@@ -74,6 +75,7 @@
 
 .btn-small {
   border: none;
+  width: 50px;
 }
 
 .fa-location-arrow {
@@ -101,7 +103,8 @@ ul {
 }
 
 .profil_avatar_photo .avatar {
-  height: 80px;
+  width: 50px;
+  border-radius: 50%;
 }
 
 .profile-card{
@@ -113,3 +116,58 @@ ul {
   margin: 40px;
 }
 
+.banner_new_trip {
+  width: 100%;
+  height: 350px;
+  position: relative;
+}
+ .for_render_form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+ }
+
+.icone-new-trip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(230, 79, 15);
+  border-radius: 5px;
+  padding: 5px 20px;
+  .fa-users {
+  }
+  .fa-suitcase {
+    font-size: 40px;
+  }
+  .fa-map-pin {
+    font-size: 40px;
+  }
+}
+
+.home-made-banner {
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(rgba(255, 133, 45, 0.6), rgba(229, 77, 50, 0.7));
+  position: relative;
+  height: 300px;
+  h1 {
+    color: white;
+    font-size: 78px;
+  }
+
+  .home-made-banner-image {
+    background-size: cover;
+  }
+  .middle-color {
+    position: absolute;
+    top: 80px;
+    left: 270px;
+  }
+  .image-banner-new-trip {
+    //width: 50vh;
+    height: 300px;
+    background-size: cover;
+    padding: 10px;
+  }
+}
