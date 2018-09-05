@@ -9,11 +9,11 @@
               <%= image_tag "paris.jpg", class: "image-city"%>
               <div class="card-category"><p><strong>Go to <%= trip.destination %></strong><p></div>
             </div>
-            <div class="trip-details">
-              <% @travellers.each do |traveller| %>
-                <% traveller.ways.each do |way| %>
+            <% @travellers.each do |traveller| %>
+              <% traveller.ways.each do |way| %>
+                <div class="trip-details">
                   <div class="avatar">
-                    <%= cl_image_tag current_user.photo, class: "avatar" %>
+                    <%= cl_image_tag traveller.profile.user.photo, class: "avatar" %>
                   </div>
                   <div class="name-time">
                     <h3><%= traveller.profile.first_name %> <%= traveller.profile.last_name %></h3>
@@ -23,9 +23,9 @@
                     <h3><%= way.content %></h3>
                     <p><%= way.price %> €</p>
                   </div>
-                <% end %>
+                </div>
               <% end %>
-            </div>
+            <% end %>
           </div>
         </div>
       <% end %>

@@ -54,7 +54,7 @@ if (clBtn) {
   return result
   }
 
-  // recupere les villes des participants
+  // recupere les villes des participants et fait la recherche des prix
   async function getInfos(profiles) {
   const results = {}
   for (const profile of profiles) {
@@ -62,7 +62,6 @@ if (clBtn) {
     // console.log(profile.first_name, data['trip'])
     results[`${profile.city}`] = data["trip"][`${profile.city}`]
   }
-  // console.log("R", results)
   return results
   }
 
@@ -76,18 +75,9 @@ if (clBtn) {
     tripDetails.innerHTML += cardHTML
   }
 
-  async function getTrips(profiles, destCity) {
-    const ways = []
-    const add_dest_trip = await axios.get(`/getinfos?destination=${destCity}`);
+  async function getTrips(trip, profiles, destCity) {
     for (const profile of profiles) {
-    const { data } = await axios.get(`/getinfos?city=${profile.city}&destination=${destCity}&id=${profile.id}`);
-    // console.log(profile.first_name, data)
-    // const tripInfo = JSON.stringify(data.trip[profile.city][destCity])
-    // console.log("TRIP INFOS", tripInfo)
-    // const way = await axios.get(`/getinfos?city=${profile.city}&destination=${destCity}&trip_info=${tripInfo}`);
-    // ways.push(way['data']['trip'])
-    // const content = JSON.parse(way.data.trip.content)
-    // console.log(content)
+    const { data } = await axios.get(`/getinfos?city=${profile.city}&destination=${destCity}&id=${profile.id}&trip=${trip.id}`);
     const data_exploitable = data.trip[`${profile.city}`][destCity]
     addTripToDom(profile, data_exploitable)
   }
@@ -99,7 +89,7 @@ if (clBtn) {
   // console.log("API CALL RESPONSE", results)
   const bestMatch = resultComparator(results)
   // console.log("BEST MATCH", bestMatch)
-  const trips = getTrips(gon.profiles, bestMatch.city)
+  const trips = getTrips(gon.trip, gon.profiles, bestMatch.city)
   }
 
   const createCard = (profile, data) => {

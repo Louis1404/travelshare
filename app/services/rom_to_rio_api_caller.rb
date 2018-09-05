@@ -14,9 +14,11 @@ class RomToRioApiCaller
     hash_result = {}
     @city_destinations.each do |destination|
       if @o_city != destination
+        p destination
         url = "http://free.rome2rio.com/api/1.4/json/Search?key=#{@key}&oName=#{@o_city}&dName=#{destination}&noRideshare&noCar&noFerry"
         research_result = JSON.parse(RestClient.get(url).body)
-        # price = research_result["routes"][0]["indicativePrices"][0]["price"]
+        p price = research_result["routes"][0]["indicativePrices"]
+        p research_result["routes"][0]["indicativePrices"][0]["price"]
         hash_result[@o_city] = {} unless hash_result[@o_city]
         data = {
           transport: research_result["routes"][0]["name"],
