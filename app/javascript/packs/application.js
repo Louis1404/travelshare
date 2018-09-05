@@ -80,6 +80,14 @@ if (clBtn) {
     const { data } = await axios.get(`/getinfos?city=${profile.city}&destination=${destCity}&id=${profile.id}&trip=${trip.id}`);
     const data_exploitable = data.trip[`${profile.city}`][destCity]
     addTripToDom(profile, data_exploitable)
+    const map = window.map
+    const coords = {
+      lat: profile.latitude,
+      lng: profile.longitude
+    }
+    map.setCenter(coords)
+    map.addMarkers([coords])
+    map.setZoom(10)
   }
   }
 
@@ -93,8 +101,6 @@ if (clBtn) {
   }
 
   const createCard = (profile, data) => {
-    console.log(profile.first_name)
-    console.log(data['transport'])
     return `
       <div class="trip-detail-content">
         <div class="traveller-name">
@@ -113,5 +119,5 @@ if (clBtn) {
     `
   }
 
-// }
 bestMatchFinder()
+// window.map.

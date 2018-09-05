@@ -13,6 +13,7 @@ class TripsController < ApplicationController
     params[:travellers].each do |traveller_id|
       @profiles << Traveller.find(traveller_id).profile
     end
+
     # @travellers.each do |traveller|
     #   @profiles << Profile.find(traveller.profile_id)
     # end
@@ -34,7 +35,8 @@ class TripsController < ApplicationController
   def new
     if params[:trip]
       @trip = Trip.find(params[:trip])
-      @profiles = Profile.where.not(id: @trip.travellers.pluck("profile_id"))
+      @profiles = Profile.where.not(latitude: nil, id: @trip.travellers.pluck("profile_id"))
+      # @profiles = @profiles.where.not(id: @trip.travellers.pluck("profile_id"))
       # Est ce que le @profiles ne sélectionne que les profiles qui ne sont pas dans le trip?
       @travellers = @trip.travellers
     else
@@ -82,11 +84,10 @@ class TripsController < ApplicationController
   def find_traveller_trip
     service = nil
     if params[:destination] && params[:city]
-      p "*" * 50
-      p "ZIZI"
       response = RomToRioApiCaller.new(params[:city], [params[:destination]]).call
       profile_id = params[:id]
       response[params[:city]]
+      params[:destination]
       CreateWayCaller.new({
         profile: profile_id,
         infos: response[params[:city]][params[:destination]],
