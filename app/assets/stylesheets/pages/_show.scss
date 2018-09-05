@@ -1,26 +1,38 @@
 .city-card-content {
   background-color: white;
   border-bottom: 4px solid rgb(230, 79, 15);
-  border-radius: 8px;
+  border-radius: 5px;
   box-shadow: 5px 5px 20px 0px rgba(210, 210, 210, 1);
-  margin-top: 30px;
+  margin-top: 50px;
 }
 
 .city-card {
-  height: 200px;
+  height: 150px;
   overflow: hidden;
-  border-radius: 8px;
-  color: $red;
-  img {
-    background-image: linear-gradient(150deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
-    width: 100%;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  p {
+    line-height: 2px;
+    color: $light-gray !important;
+    font-size: 16px !important;
+    font-weight: thin !important;
+
+  }
+  h3 {
+    line-height: 25px;
+    color: white !important;
+    font-size: 45px !important;
+    font-weight: bold !important;
   }
 }
 
+
 .city-name {
+  color: white;
   border-bottom: 1px solid $light-gray;
   text-align: center;
-  color: $red;
 }
 
 .trip-details {
@@ -29,33 +41,54 @@
 }
 
 .trip-detail-content{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  align-items: center;
-  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
   margin-bottom: 10px;
   border-bottom: 1px solid $light-gray;
-  line-height: 58px;
-  line-spacing: 0.1em;
+  line-height: 12px;
+
+}
+
+.traveller {
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .traveller-name {
-  grid-row: 1 / span 1;
-  grid-column: 1 / span 1;
-  text-align: center;
+  margin-bottom: 18px;
+  p {
+    font-size: 14px !important;
+  }
 }
 
-.way-to-go {
-  grid-row: 1 / span 1;
-  grid-column: 2 / span 1;
-  text-align: center;
+.traveller-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .travel-type {
+    margin-right: 5px;
+  }
+  .travel-time-price {
+    margin-left: 40px;
+  }
 }
 
-.way-time {
-  grid-row: 2 / span 1;
-  grid-column: 1 / span 1;
+.save-trip {
+  background-color: $orange;
+  font-weight: normal;
+  width: 100%;
+  height: 22px;
   text-align: center;
+  .btn-save {
+    color: white;
+    font-size: 18px;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 .way-detail-price {
