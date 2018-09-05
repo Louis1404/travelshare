@@ -100,6 +100,7 @@
   background: transparent;
   box-shadow: none;
   transition: transform .2s;
+  z-index: 10000;
 
   .navbar-travel-link:hover {
     color: white;

@@ -95,7 +95,11 @@ sleep(1)
   city: 'London'
  )
 sleep(1)
+<<<<<<< HEAD
 User.create!(
+=======
+ User.create!(
+>>>>>>> master
   email:'anna@dipatri.com',
   password:'123456',
   password_confirmation:'123456',
