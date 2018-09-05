@@ -144,3 +144,30 @@ ul {
     font-size: 40px;
   }
 }
+
+.home-made-banner {
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(rgba(255, 133, 45, 0.6), rgba(229, 77, 50, 0.7));
+  position: relative;
+  height: 300px;
+  h1 {
+    color: white;
+    font-size: 78px;
+  }
+
+  .home-made-banner-image {
+    background-size: cover;
+  }
+  .middle-color {
+    position: absolute;
+    top: 80px;
+    left: 270px;
+  }
+  .image-banner-new-trip {
+    //width: 50vh;
+    height: 300px;
+    background-size: cover;
+    padding: 10px;
+  }
+}
