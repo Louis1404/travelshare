@@ -1,10 +1,5 @@
 .city-card-content {
-<<<<<<< HEAD
   transition: transform .2s;
-=======
-  transition: transform .1s;
-}
->>>>>>> master
 
   .city-card-content:hover {
     -ms-transform: scale(1.10);
@@ -16,19 +11,49 @@
 .city-card {
   background-size: cover !important;
   position: relative;
+
+  img {
+    background: linear-gradient(150deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2))
+
+  }
 }
 
 .card-category {
   position: absolute;
-  top: 15px;
-  left: 10px;
-  font-size: 16px;
+  top: 30px;
+  left: 20px;
+  font-size: 20px;
   text-transform: uppercase;
 
   p {
     color: white !important;
-    line-spacing: 0.2em;
+    line-spacing: 0.3em;
   }
+}
+
+.card-icone {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  button {
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.6);
+    background: transparent;
+  }
+
+  .fa-check-circle {
+    color: #00bd96;
+    font-size: 25px;
+  }
+
+  .fa-trash-alt {
+    color: $red;
+    font-size: 25px;
+  }
+
 }
 
 .trip-info {

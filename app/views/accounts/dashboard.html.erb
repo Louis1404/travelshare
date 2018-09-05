@@ -8,11 +8,15 @@
             <div class="city-card">
               <%= image_tag "paris.jpg", class: "image-city"%>
               <div class="card-category">
-                <p>
-                  <strong>Go to <%= trip.destination %>
-
-                  </strong>
-                </p>
+                <p><strong><%= trip.destination %></strong></p>
+              </div>
+              <div class="card-icone">
+                <button type="submit" class="btn-small">
+                  <i class="far fa-check-circle"></i>
+                </button>
+                <button type="submit" class="btn-small">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
               </div>
             </div>
             <% trip.travellers.each do |traveller| %>
