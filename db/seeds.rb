@@ -1,4 +1,9 @@
 puts 'Creating profiles'
+Way.destroy_all
+Traveller.destroy_all
+Trip.destroy_all
+Profile.destroy_all
+User.destroy_all
 
 User.create!(
   email:'clem@clem.com',
@@ -35,6 +40,12 @@ sleep(1)
   last_name:'Sanchez',
   city: 'Barcelone'
  )
+
+Profile.where(latitude: nil).each do |p|
+  p.geocode
+  p.save
+end
+
 # sleep(1)
 #  User.create!(
 #   email:'patrick@collins.com',
@@ -98,4 +109,3 @@ sleep(1)
 #   last_name:'Dipatri',
 #   city: 'Milan'
 #  )
-

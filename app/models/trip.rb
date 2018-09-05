@@ -1,3 +1,3 @@
 class Trip < ApplicationRecord
-  has_many :travellers
+  has_many :travellers, dependent: :destroy
 end
