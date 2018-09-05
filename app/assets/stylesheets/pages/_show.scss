@@ -38,6 +38,8 @@
 .trip-details {
   overflow: scroll;
   height: calc(50vh - 80px);
+  display: flex;
+  flex-direction: column;
 }
 
 .trip-detail-content{
@@ -58,21 +60,27 @@
 }
 
 .traveller-name {
-  margin-bottom: 18px;
   p {
     font-size: 14px !important;
   }
 }
 
 .traveller-info {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   .travel-type {
     margin-right: 5px;
+    p {
+      font-size: 16px !important;
+    }
   }
   .travel-time-price {
     margin-left: 40px;
+    p {
+      font-size: 16px !important;
+    }
   }
 }
 
@@ -80,8 +88,11 @@
   background-color: $orange;
   font-weight: normal;
   width: 100%;
-  height: 22px;
+  height: 40px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   .btn-save {
     color: white;
     font-size: 18px;
