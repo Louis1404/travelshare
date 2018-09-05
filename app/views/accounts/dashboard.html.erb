@@ -1,13 +1,19 @@
 <div class="white-wrapper">
   <div class="container">
-    <h2>Your trips saved:<h2>
+    <h2>Your trips saved:</h2>
     <div class="row">
       <% @trips.each do |trip| %>
         <div class="col-xs-12 col-sm-4">
           <div class="city-card-content">
             <div class="city-card">
               <%= image_tag "paris.jpg", class: "image-city"%>
-              <div class="card-category"><p><strong>Go to <%= trip.destination %></strong><p></div>
+              <div class="card-category">
+                <p>
+                  <strong>Go to <%= trip.destination %>
+
+                  </strong>
+                </p>
+              </div>
             </div>
             <% trip.travellers.each do |traveller| %>
               <% traveller.ways.each do |way| %>
@@ -16,8 +22,11 @@
                     <%= cl_image_tag traveller.profile.user.photo, class: "avatar" %>
                   </div>
                   <div class="name-time">
-                    <h3><%= traveller.profile.first_name %> <%= traveller.profile.last_name %></h3>
-                    <p>Trip: <%= way.travel_time %></P>
+                    <h3>
+                      <%= way.traveller.profile.first_name %>
+                      <%= way.traveller.profile.last_name %>
+                    </h3>
+                    <p>Time: <%= way.travel_time %> mins</p>
                   </div>
                   <div class="travel-price">
                     <h3><%= way.content %></h3>

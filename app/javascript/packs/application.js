@@ -93,8 +93,6 @@ if (clBtn) {
   }
 
   const createCard = (profile, data) => {
-    console.log(profile.first_name)
-    console.log(data['transport'])
     return `
       <div class="trip-detail-content">
         <div class="traveller-name">
