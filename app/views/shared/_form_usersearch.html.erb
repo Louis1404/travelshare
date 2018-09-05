@@ -1,5 +1,6 @@
 <%= form_tag(new_trip_path, method: :get) do %>
   <i class="fa fa-search"></i>
+  <%= hidden_field_tag(:trip, @trip.id) %>
   <%= text_field_tag(:search, params[:search], placeholder:' Looking for friends', class: "btn btn-ligth") %>
 <% end %>
 
