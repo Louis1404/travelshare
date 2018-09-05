@@ -45,7 +45,7 @@ Profile.where(latitude: nil).each do |p|
   p.geocode
   p.save
 end
-=======
+
 # sleep(1)
 #  User.create!(
 #   email:'patrick@collins.com',
