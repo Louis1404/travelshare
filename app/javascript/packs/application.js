@@ -119,5 +119,5 @@ if (clBtn) {
     `
   }
 
-//bestMatchFinder()
+bestMatchFinder()
 // window.map.
