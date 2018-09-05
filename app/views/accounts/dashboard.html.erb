@@ -9,7 +9,7 @@
               <%= image_tag "paris.jpg", class: "image-city"%>
               <div class="card-category"><p><strong>Go to <%= trip.destination %></strong><p></div>
             </div>
-            <% @travellers.each do |traveller| %>
+            <% trip.travellers.each do |traveller| %>
               <% traveller.ways.each do |way| %>
                 <div class="trip-details">
                   <div class="avatar">
