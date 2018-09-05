@@ -1,43 +1,39 @@
 <div class="white-wrapper display-flex">
-  <div
-    id="map"
-  ></div>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-8 col-xs-offset-2">
-        <div class="city-card-content">
-          <div class="city-card" style="background-image: linear-gradient(150deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(<%= asset_url('paris')%>)">
-            <div class="city-name">
-              <h5> You will meet in
-              <h3><%= @trip.destination %></h3>
+  <div id="map"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+          <div class="city-card-content">
+            <div class="city-card" style="background-image: linear-gradient(150deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(<%= asset_url('paris')%>)">
+              <div class="city-name">
+                <p> You will meet in <p>
+                <h3>Paris</h3>
+              </div>
             </div>
-          </div>
-          <div class="trip-details">
-            <% if !@ways.nil? %>
-              <% @ways.each do |way| %>
-                <div class="trip-detail-content">
-                  <% profile = Profile.find((Traveller.find(way.traveller_id)).profile_id) %>
-                  <div class="traveller-name">
-                    <p><strong><%= profile.first_name %> <%= profile.last_name %></strong></p>
-                  </div>
-                  <div class="way-to-go">
-                    <p><%= way.content %></p>
-                  </div>
-                  <div class="way-time">
-                    <p>Trip time: <%= way.travel_time %> minutes</p>
-                  </div>
-                  <div class="way-detail-price">
-                    <p><strong><%= way.price %> $</strong></p>
+            <div class="trip-details">
+              <div class="trip-detail-content">
+                <div class="traveller">
+                  <div class ="traveller-name">
+                    <h5><strong>Firstname Lastname</strong></H5>
+                    <div class="traveller-info">
+                      <div class="travel-type">
+                        <p>Flight from Paris to Rome</p>
+                      </div>
+                      <div class="travel-time-price"></div>
+                        <p>2h45  / <strong>250€</strong></p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              <% end %>
-            <% end %>
-          </div>
-          <div class="save-trip">
-            <%= link_to "Save", "" ,class: "btn-save" %>
-          </div>
+              </div>
+              <div class="save-trip">
+                <%= link_to "Save trip", "" ,class: "btn-save" %>
+              </div>
+            </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
