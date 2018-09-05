@@ -2,14 +2,13 @@ class AccountsController < ApplicationController
   skip_after_action :verify_authorized
 
   def dashboard
-    array_trips_id = []
+    @travellers = []
     current_user.profile.travellers.each do |traveller|
-    array_trips_id << traveller.trip_id
+      @travellers << traveller
     end
     @trips = []
-    array_trips_id.each do |id|
-      @trips << Trip.find(id)
+    @travellers.each do |traveller|
+      @trips << Trip.find(traveller.trip_id)
     end
-    @trips
   end
 end

@@ -2,51 +2,33 @@
   <div class="container">
     <h2>Your trips saved:<h2>
     <div class="row">
-
-      <div class="col-xs-12 col-sm-4">
-        <div class="city-card-content">
-          <div class="city-card">
-            <%= image_tag "paris.jpg", class: "image-city"%>
-            <div class="card-category"><p><strong>Go to Paris</strong><p></div>
-          </div>
-          <div class="trip-details">
-            <div class="avatar">
-              <%= image_tag 'avatar-new-trip.png', class: 'avatar' %>
+      <% @trips.each do |trip| %>
+        <div class="col-xs-12 col-sm-4">
+          <div class="city-card-content">
+            <div class="city-card">
+              <%= image_tag "paris.jpg", class: "image-city"%>
+              <div class="card-category"><p><strong>Go to <%= trip.destination %></strong><p></div>
             </div>
-            <div class="name-time">
-              <h3>Paul Dujardin</h3>
-              <p>Trip: 2h13</P>
-            </div>
-            <div class="travel-price">
-              <h3> Madrid - Paris</h3>
-              <p>70€</p>
-            </div>
+            <% @travellers.each do |traveller| %>
+              <% traveller.ways.each do |way| %>
+                <div class="trip-details">
+                  <div class="avatar">
+                    <%= cl_image_tag traveller.profile.user.photo, class: "avatar" %>
+                  </div>
+                  <div class="name-time">
+                    <h3><%= traveller.profile.first_name %> <%= traveller.profile.last_name %></h3>
+                    <p>Trip: <%= way.travel_time %></P>
+                  </div>
+                  <div class="travel-price">
+                    <h3><%= way.content %></h3>
+                    <p><%= way.price %> €</p>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
           </div>
         </div>
-      </div>
-
-      <div class="col-xs-12 col-sm-4">
-        <div class="city-card-content">
-          <div class="city-card">
-            <%= image_tag "paris.jpg", class: "image-city"%>
-            <div class="card-category"><p>Go to Paris<p></div>
-          </div>
-          <div class="trip-details">
-          </div>
-        </div>
-      </div>
-
-      <div class="col-xs-12 col-sm-4">
-        <div class="city-card-content">
-          <div class="city-card">
-            <%= image_tag "paris.jpg", class: "image-city"%>
-            <div class="card-category"><p>Go to Paris<p></div>
-          </div>
-          <div class="trip-details">
-          </div>
-        </div>
-      </div>
-
+      <% end %>
     </div>
   </div>
 </div>

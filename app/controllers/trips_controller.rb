@@ -43,13 +43,6 @@ class TripsController < ApplicationController
     end
     authorize @trip
     @trip.save
-    # @trip = Trip.new # ou .find par id
-    # @profiles = Trip.find(2).travellers.pluck("profile_id")
-    # @profiles = Profile.all # Profile.where.not(id: t) si j'ai une id
-    # si j'ai une ID
-    # @travellers = aux travellers associés au trip
-    # authorize @trip
-    # ajout d'un input hidden dans la view si j'ai une id avec la valeur de l'id
   end
 
   def add_travellers
@@ -75,22 +68,6 @@ class TripsController < ApplicationController
   end
 
   def create
-    # @trip = Trip.find(params[:trip_id])
-    # authorize @trip
-    # if @trip.save
-    #   @travellers = []
-    #   params[:travellers].each do |traveller_id|
-    #     @travellers << Traveller.find(traveller_id)
-    #   end
-    # else
-    #   render :new
-    # end
-
-    # @cities = create_list_city(@travellers)
-    # @hash_result = RomToRioApiCaller.new(@cities).call
-    # @final_destination = ResultComparaisonCaller.new(@hash_result).call
-    # @trip.destination = @final_destination
-    # @trip.save
     redirect_to controller: 'trips', action: 'show', id: @trip.id, travellers: @travellers
   end
 
@@ -104,17 +81,10 @@ class TripsController < ApplicationController
 
   def find_traveller_trip
     service = nil
-    # if params[:destination] && params[:trip_info]
-    #   data = {
-    #     profile: params[:city],
-    #     infos: params[:trip_info],
-    #     destination: params[:destination]
-    #   }
-    #   # puts data[:infos]
-    #   service = CreateWayCaller.new(data)
-    if params[:destination]
+    if params[:destination] && params[:city]
+      p "*" * 50
+      p "ZIZI"
       response = RomToRioApiCaller.new(params[:city], [params[:destination]]).call
-      # p response.keys
       profile_id = params[:id]
       response[params[:city]]
       CreateWayCaller.new({
@@ -122,6 +92,9 @@ class TripsController < ApplicationController
         infos: response[params[:city]][params[:destination]],
         destination: params[:destination]
       }).call
+      @trip = Trip.find(params[:trip])
+      @trip.destination = params[:destination]
+      @trip.save
     else
       response = RomToRioApiCaller.new(params[:city]).call
     end
@@ -135,21 +108,6 @@ class TripsController < ApplicationController
   def trip_params
     params.require(:trip).permit(:description, :title, :destination )
   end
-
-  # def create_travellers
-  #   @time.times do |i|
-  #     traveller = Traveller.new()
-  #     array_de_travelers = params[:travellers].each { |d| puts d }.to_a
-  #     traveller.profile_id = array_de_travelers[i][1]
-  #     if traveller.profile_id == current_user.id
-  #       traveller.organizer = true
-  #     end
-  #     traveller.trip_id = @trip.id
-  #     traveller.save
-  #     @travellers << traveller
-  #   end
-  #   @travellers
-  # end
 
   def create_ways(hash_result)
     @information_destination = hash_result
@@ -183,98 +141,5 @@ class TripsController < ApplicationController
     end
     @cities
   end
-    # API exemple = http://free.rome2rio.com/api/1.4/xml/Search?key=&oName=Bern&dName=Zurich&noRideshare
-    # Rechercher pour chaque ville des travellers la destination la moins cher sur notre liste de destination
-    # Récupérer tous les résultats dans un Hash avec des arrays
-    # Ajouter les résultats de prix de chaque ville de départ par destinations
-    # Prendre la destination qui a le plus petit prix
-    # return le résultat pour le create
 
-  def compare_result(hash_result)
-    puts params
-    # ResultComparaisonCaller.new(@hash_result).call
-  end
-
-  # def results
-  #   {
-  #     agencies:
-  #       [{
-  #       code:       'SWISSRAILWAYS',
-  #       name:       'Swiss Railways (SBB/CFF/FFS)',
-  #       url:        'http://www.sbb.ch'
-  #       iconPath:   '/logos/trains/ch.png',
-  #       iconSize:   '27,23',
-  #       iconOffset: '0,0'
-  #       ]},
-  #     routes:
-  #       [{
-  #       name:     'Train',
-  #       distance: 95.92,
-  #       duration: 56,
-  #       stops:
-  #         [{
-  #         name: 'Bern',
-  #         pos:  '46.94926,7.43883',
-  #         kind: 'station'
-  #         },{
-  #         name: 'Zürich HB',
-  #         pos:  '47.37819,8.54019',
-  #         kind: 'station'
-  #         }],
-  #       segments:
-  #         [{
-  #         kind:     'train',
-  #         subkind:     'train',
-  #         isMajor:  1,
-  #         distance: 95.92,
-  #         duration: 56,
-  #         sName:    'Bern',
-  #         sPos:     '46.94938,7.43927',
-  #         tName:    'ZÃ¼rich HB',
-  #         tPos:     '47.37819,8.54019',
-  #         path:     '{wp}Gu{kl@wb@uVo|AqiDyoBhUibDeiDc`AsmDaxBqk@wwA...',
-  #         indicativePrice: {
-  #           price: 45,
-  #           currency: 'USD',
-  #           isFreeTransfer: 0,
-  #           nativePrice: 40,
-  #           nativeCurrency: 'CHF'
-  #         },
-  #         itineraries:
-  #           [{
-  #           legs:
-  #             [{
-  #             url: 'http://fahrplan.sbb.ch/bin/query.exe/en...',
-  #             hops:
-  #               [{
-  #               distance:  95.92,
-  #               duration:  56,
-  #               sName:     'Bern',
-  #               sPos:      '46.94938,7.43927',
-  #               tName:     'ZÃ¼rich HB',
-  #               tPos:      '47.37819,8.54019',
-  #               frequency: 400,
-  #               indicativePrice: {
-  #                 price: 45,
-  #                 currency: 'USD',
-  #                 isFreeTransfer: 0,
-  #                 nativePrice: 40,
-  #                 nativeCurrency: 'CHF'
-  #               },
-  #               lines:
-  #                 [{
-  #                 name:      '',
-  #                 vehicle:   'train',
-  #                 agency:    'SWISSRAILWAYS',
-  #                 frequency: 400,
-  #                 duration:  57,
-  #                 }]
-  #               }]
-  #             }]
-  #           }]
-  #         }]
-  #       }]
-  #     }]
-  #   }
-  # end
 end
