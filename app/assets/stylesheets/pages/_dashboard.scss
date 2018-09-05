@@ -1,11 +1,11 @@
 .city-card-content {
   transition: transform .2s;
-}
 
-.city-card-content:hover {
-  -ms-transform: scale(1.10);
-  -webkit-transform: scale(1.10);
-  transform: scale(1.10);
+  .city-card-content:hover {
+    -ms-transform: scale(1.10);
+    -webkit-transform: scale(1.10);
+    transform: scale(1.10);
+  }
 }
 
 .city-card {
