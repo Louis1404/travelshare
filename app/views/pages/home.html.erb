@@ -3,8 +3,8 @@
 <div class="banner">
   <div class="banner-content text-center">
     <h1>Travel Share</h1>
-    <h2>travel and meet your friends</h2>
-    <%= link_to "Let's go !", new_trip_path, class: "btn btn-lg btn-home"  %>
+    <h2>Travel, meet your friends</h2>
+    <%= link_to "Let's connect !", new_trip_path, class: "btn btn-lg btn-home"  %>
   </div>
 </div>
 <div class="white-wrapper">
@@ -13,20 +13,18 @@
       <div class="col-xs-12 col-sm-12 col-md-4">
         <div class="simple-card">
           <div class="simple-card-icon">
-            <%= image_tag "user-icon.png", class:"user-icon" %>
+            <i class="fas fa-users"></i>
           </div>
           <div class="simple-card-content">
             <h3>Invite your Friends</h3>
-            <p>
-              Create a profil and invite your friends on a trip
-            </p>
+            <p>Create a profil, invite your friends on a trip</p>
           </div>
         </div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-4">
         <div class="simple-card">
           <div class="simple-card-icon">
-            <%= image_tag "user-icon.png", class:"user-icon" %>
+            <i class="fas fa-map-pin"></i>
           </div>
           <div class="simple-card-content">
             <h3>Find the Best Match</h3>
@@ -37,7 +35,7 @@
       <div class="col-xs-12 col-sm-12 col-md-4">
         <div class="simple-card">
           <div class="simple-card-icon">
-            <%= image_tag "user-icon.png", class:"user-icon" %>
+            <i class="fas fa-suitcase"></i>
           </div>
           <div class="simple-card-content">
             <h3>Book your trip</h3>
@@ -50,22 +48,38 @@
       <div class="col-xs-12">
         <div class="horizontal-card border-left">
           <div class="horizontal-card-content">
-            <h4>Peter, 33 years, London </h4>
-            <p>"Travel Share is so amazing ! I can see my friends everywhere in Europe, in once click, with competitive price ! What else ! I love your app, it's so easly to use. I recommand it to all people (friends and families) who are living in different places."</p>
+            <div>
+              <h4>Peter, 33 years</h4>
+            </div>
+            <div>
+              <h5>from London</h5>
+            </div>
+            <div>
+              <p>Travel Share is so amazing !</p>
+              <p>I can see my friends everywhere in Europe, in once click, with competitive price ! What else ! I love your app, it's so easly to use. I recommand it to all people (friends and families) who are living in different places.</p>
+            </div>
           </div>
           <div class="horizontal-card-photo">
-            <%= image_tag "card-image-1.jpg", class:"image-card-right" %>
+            <%= image_tag "friends1.jpg", class:"image-card-right" %>
           </div>
         </div>
       </div>
       <div class="col-xs-12">
         <div class="horizontal-card border-right">
           <div class="horizontal-card-photo">
-            <%= image_tag "card-image-2.jpg", class:"image-card-left" %>
+            <%= image_tag "friends2.jpg", class:"image-card-left" %>
           </div>
           <div class="horizontal-card-content">
-            <h4>Maria, 25 years, Porto </h4>
-            <p>"Waiting for Travel Share since many years! I can do many searchs to one, having competitive prices ! Thanks to Travel Share, my friends and I, went to Barcelona for less than 100 € !"  </p>
+            <div>
+              <h4>Maria, 25 years</h4>
+            </div>
+            <div>
+              <h5>from Porto</h5>
+            </div>
+            <div>
+              <p>"Waiting for Travel Share since many years!</p>
+              <p>I can do many searchs to one, having competitive prices ! Thanks to Travel Share, my friends and I, went to Barcelona for less than 100 € !"  </p>
+           </div>
           </div>
         </div>
       </div>

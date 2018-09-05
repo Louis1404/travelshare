@@ -13,7 +13,7 @@ if (clBtn) {
   })
 }
 
-if (gon.profile) {
+// if (gon.profile) {
 
   // TRIP FINDER
   // fonction de comparaison
@@ -54,7 +54,7 @@ if (gon.profile) {
   return result
   }
 
-  // recupere les villes des participants
+  // recupere les villes des participants et fait la recherche des prix
   async function getInfos(profiles) {
   const results = {}
   for (const profile of profiles) {
@@ -62,49 +62,56 @@ if (gon.profile) {
     // console.log(profile.first_name, data['trip'])
     results[`${profile.city}`] = data["trip"][`${profile.city}`]
   }
-  // console.log("R", results)
   return results
   }
 
-  function addTripToDom(profile, trip, destCity) {
-  const cardHTML = createCard(profile, trip)
-  document.body.innerHTML += `<h1>${profile.first_name} va à ${destCity}</h1>`
+  function addTripToDom(profile, data) {
+  // for (const profile of profiles) {
+    // console.log(`${profile.to_json}`)
+    // const traveller = `${profile.to_json}`
+    // const way = traveller.way
+    const cardHTML = createCard(profile, data)
+    const tripDetails = document.querySelector('.trip-details')
+    tripDetails.innerHTML += cardHTML
   }
 
-  async function getTrips(profiles, destCity) {
-  for (const profile of profiles) {
-    const { data } = await axios.get(`/getinfos?city=${profile.city}&destination=${destCity}`);
-    // console.log(profile.first_name, data)
-    addTripToDom(profile, data.trip[`${profile.city}`], destCity)
+  async function getTrips(trip, profiles, destCity) {
+    for (const profile of profiles) {
+    const { data } = await axios.get(`/getinfos?city=${profile.city}&destination=${destCity}&id=${profile.id}&trip=${trip.id}`);
+    const data_exploitable = data.trip[`${profile.city}`][destCity]
+    addTripToDom(profile, data_exploitable)
   }
   }
+
   // lance le tout
   async function bestMatchFinder() {
   const results = await getInfos(gon.profiles)
   // console.log("API CALL RESPONSE", results)
   const bestMatch = resultComparator(results)
   // console.log("BEST MATCH", bestMatch)
-  const trips = getTrips(gon.profiles, bestMatch.city)
+  const trips = getTrips(gon.trip, gon.profiles, bestMatch.city)
   }
 
-  const createCard = (profile, trip) => {
+  const createCard = (profile, data) => {
+    console.log(profile.first_name)
+    console.log(data['transport'])
     return `
-      <div class="city-card-content">
-          <div class="city-card">
-            <%= image_tag "paris.jpg", class: "image-city"%>
-          </div>
-          <div class="city-name">
-            <h3>Best Match: <%= @trip.destination %></h3>
-          </div>
-          <div class="trip-details">
-
-          </div>
-          <div class="save-trip">
-            <%= link_to "Save", "" ,class: "btn-save" %>
-          </div>
+      <div class="trip-detail-content">
+        <div class="traveller-name">
+          <p><strong>${profile.first_name} ${profile.last_name}</strong></p>
         </div>
+        <div class="way-to-go">
+          <p>${data['transport']}</p>
+        </div>
+        <div class="way-time">
+          <p>Trip time: ${data['time']} minutes</p>
+        </div>
+        <div class="way-detail-price">
+          <p><strong>${data['price']} $</strong></p>
+        </div>
+      </div>
     `
   }
 
-  bestMatchFinder()
-}
+// }
+bestMatchFinder()

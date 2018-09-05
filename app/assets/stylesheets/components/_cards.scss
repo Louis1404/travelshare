@@ -1,11 +1,10 @@
 
 .simple-card {
   background-color: white;
-  border-bottom: 4px solid rgb(230, 79, 15);
+  border-bottom: 5px solid $orange;
   border-radius: 5px;
   height: 250px;
   box-shadow: 5px 5px 20px 0px rgba(210, 210, 210, 1);
-  margin-top: 30px;
   margin: 40px;
   .simple-card-icon {
     display: flex;
@@ -18,7 +17,7 @@
   }
   .simple-card-content {
     text-color: $gray;
-    font-size: 0.7em;
+    font-size: 0.8em;
     padding-left: 10px;
     padding-right: 10px;
     text-align: center;
@@ -57,7 +56,7 @@
 @media (min-width: 200px) {
   .horizontal-card {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap-reverse;
   }
 }
 
@@ -140,17 +139,15 @@
 
 
   .horizontal-card-content {
-    font-size: 0.7em;
-    padding: 20px 30px;
+    text-color: $gray;
+    font-size: 0.8em;
+    padding: 40px 30px;
     width: 50%;
     height: 100%;
     flex-grow: 1;
     border-radius: 5px;
     background-color: white;
-    text-align: center;
-    h3 {
-      color: rgb(218, 67, 41)
-    }
+    text-align: left;
   }
 
   .horizontal-card-photo {
@@ -182,11 +179,11 @@
 
 .border-left {
   box-shadow: -5px 5px 20px 0px rgba(210, 210, 210, 1);
-  border-left: 4px solid rgb(222, 53, 11);
+  border-left: 5px solid $orange;
 }
 
 .border-right {
   box-shadow: 5px 5px 20px 0px rgba(210, 210, 210, 1);
-  border-right: 4px solid rgb(222, 53, 11);
+  border-right: 5px solid $orange;
 }
 
