@@ -3,21 +3,16 @@
 <div class="white-wrapper">
   <div class="banner_new_trip">
     <%= image_tag 'banner-new-trip.png', class: 'image-banner-new-trip' %>
-    <div class="title-on-banner">
-      <h1> And you, Where do you go?</h1>
-    </div>
-    <div class="on-banner-left">
-      <i class="fas fa-users"></i>
-    </div>
-    <div class="on-banner-middle">
-      <i class="fas fa-map-pin"></i>
-    </div>
-    <div class="on-banner-rigth">
-      <i class="fas fa-suitcase "></i>
-    </div>
   </div>
   <div class="container">
     <div class="row">
+      <!-- <div class="col-xs-8 col-xs-offset-2">
+        <div class="icone-new-trip">
+          <i class="fas fa-users"></i>
+          <i class="fas fa-map-pin"></i>
+          <i class="fas fa-suitcase"></i>
+        </div>
+      </div> -->
       <div class="col-xs-6">
         <div class="for_render_form">
           <%= render '/shared/form_usersearch' %>
@@ -50,7 +45,7 @@
                     <p><%= profile.first_name%> <%= profile.last_name %><p>
                   </div>
                   <div class="user-city">
-                    <h5> from <%= profile.city %><h5>
+                    <h5> from <%= profile.city.split(",")[0] %><h5>
                   </div>
                   <div class="form-action">
                     <form action=<%= add_travellers_path %>>

@@ -33,12 +33,23 @@ class TripsController < ApplicationController
   end
 
   def new
-    if params[:trip]
+    if params[:search].present?
+      if params[:trip]
+        @trip = Trip.find(params[:trip])
+        sql_query = "first_name ILIKE :search OR last_name ILIKE :search OR city ILIKE :search"
+        @profiles = []
+        @profiles = Profile.where(sql_query, search: "%#{params[:search]}%")
+                           .where.not(latitude: nil, id: @trip.travellers.pluck("profile_id"))
+        @travellers = @trip.travellers
+      else
+        sql_query = "first_name ILIKE :search OR last_name ILIKE :search OR city ILIKE :search"
+        @profiles = []
+        @profiles = Profile.where(sql_query, search: "%#{params[:search]}%")
+        @trip = Trip.new
+      end
+    elsif params[:trip]
       @trip = Trip.find(params[:trip])
       @profiles = Profile.where.not(latitude: nil, id: @trip.travellers.pluck("profile_id"))
-      # latitude: nil, A RAJOUTER !!!!!!!!!!!!!!!!!!!!
-      # @profiles = @profiles.where.not(id: @trip.travellers.pluck("profile_id"))
-      # Est ce que le @profiles ne sélectionne que les profiles qui ne sont pas dans le trip?
       @travellers = @trip.travellers
     else
       @trip = Trip.new
