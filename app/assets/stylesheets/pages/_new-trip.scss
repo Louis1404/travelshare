@@ -4,8 +4,10 @@ ul {
 }
 
 .trip-creator-col {
-  height: calc(100vh - 340px);
+  height: calc(55vh);
   overflow: scroll;
+  background: linear-gradient(rgba(255, 133, 45, 0.2), rgba(229, 77, 50, 0.4));
+  border-radius: 5px;
 }
 
 .trip {
@@ -24,11 +26,11 @@ ul {
 }
 
 .onboard {
-  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 40px 0px 40px 0px;
+  height: 260px;
 }
 
 .info-user {
@@ -125,32 +127,36 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80px;
+  height: 260px;
  }
 
-.icone-new-trip {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.value-proposition {
   border-bottom: 1px solid rgb(230, 79, 15);
   border-radius: 5px;
-  padding: 5px 20px;
-  .fa-users {
+  text-align: center;
+  background-color: $light-gray;
+  .icone-new-trip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+    .fa-users {
+    }
+    .fa-suitcase {
+      font-size: 40px;
+    }
+    .fa-map-pin {
+      font-size: 40px;
+    }
   }
-  .fa-suitcase {
-    font-size: 40px;
-  }
-  .fa-map-pin {
-    font-size: 40px;
-  }
+
 }
 
 .home-made-banner {
   display: flex;
   justify-content: space-between;
   background: linear-gradient(rgba(255, 133, 45, 0.6), rgba(229, 77, 50, 0.7));
-  position: relative;
-  height: 300px;
+  width: 100%;
   h1 {
     color: white;
     font-size: 78px;
@@ -166,9 +172,7 @@ ul {
     align-content: center;
   }
   .image-banner-new-trip {
-    //width: 50vh;
-    height: 300px;
+    height: 254px;
     background-size: cover;
-    padding: 10px;
   }
 }
