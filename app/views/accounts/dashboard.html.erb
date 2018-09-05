@@ -11,7 +11,7 @@
             </div>
             <% @travellers.each do |traveller| %>
               <% traveller.ways.each do |way| %>
-                <div class="trip-details">
+                <div class="trip-info">
                   <div class="avatar">
                     <%= cl_image_tag traveller.profile.user.photo, class: "avatar" %>
                   </div>
