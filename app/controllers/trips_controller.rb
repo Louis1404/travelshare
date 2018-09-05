@@ -82,11 +82,10 @@ class TripsController < ApplicationController
   def find_traveller_trip
     service = nil
     if params[:destination] && params[:city]
-      p "*" * 50
-      p "ZIZI"
       response = RomToRioApiCaller.new(params[:city], [params[:destination]]).call
       profile_id = params[:id]
       response[params[:city]]
+      params[:destination]
       CreateWayCaller.new({
         profile: profile_id,
         infos: response[params[:city]][params[:destination]],

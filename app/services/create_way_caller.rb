@@ -19,7 +19,6 @@ class CreateWayCaller
     way.distance = @trip_info[:distance]
     way.traveller_id = @traveller.id
     way.save
-    way
     return way
   end
 end
