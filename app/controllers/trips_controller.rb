@@ -53,7 +53,14 @@ class TripsController < ApplicationController
       @travellers = @trip.travellers
     else
       @trip = Trip.new
-      @profiles = Profile.all
+      @trip.save
+      @travellers = []
+      traveller = Traveller.create(
+      profile: current_user.profile,
+      trip: @trip
+      )
+      @travellers << traveller
+      @profiles = Profile.where.not(latitude: nil, id: traveller.profile_id)
     end
     authorize @trip
     @trip.save
