@@ -1,6 +1,8 @@
 const axios = require('axios')
 import "bootstrap";
 import { autocomplete } from '../components/autocomplete';
+const userIcon = require('../images/user_icon.png')
+const destIcon = require('../images/dest_city.png')
 
 autocomplete();
 
@@ -31,7 +33,8 @@ function locateCityOnMap(city) {
   geocoder.geocode( { 'address': city}, function(results) {
     const coords = {
       lat: results[0].geometry.location.lat(),
-      lng: results[0].geometry.location.lng()
+      lng: results[0].geometry.location.lng(),
+      icon: destIcon
     }
     map.addMarkers([coords])
     // map.setCenter(coords)
@@ -83,12 +86,12 @@ async function getInfos(profiles) {
   return results
 }
 
-function addTripToDom(profile, data) {
+function addTripToDom(profile, data, destCity) {
   // for (const profile of profiles) {
     // console.log(`${profile.to_json}`)
     // const traveller = `${profile.to_json}`
     // const way = traveller.way
-  const cardHTML = createCard(profile, data)
+  const cardHTML = createCard(profile, data, destCity)
   const tripDetails = document.querySelector('.trip-details')
   tripDetails.insertAdjacentHTML("beforeend", cardHTML)
 }
@@ -101,7 +104,7 @@ async function getTrips(trip, profiles, destCity) {
       const coords = window.map.markers[0].position
       window.destCityCoords = coords
     }
-    addTripToDom(profile, data_exploitable)
+    addTripToDom(profile, data_exploitable, destCity)
     const map = window.map
     // const contentString = "<h1>rien ?</h1>"
     // const infoWindow = new google.maps.InfoWindow({
@@ -109,7 +112,8 @@ async function getTrips(trip, profiles, destCity) {
     // })
     const coords = {
       lat: profile.latitude,
-      lng: profile.longitude
+      lng: profile.longitude,
+      icon: userIcon
       // infoWindow: '<h1>RIEN</h1>'
     }
     // map.setCenter(coords)
@@ -119,7 +123,8 @@ async function getTrips(trip, profiles, destCity) {
         [window.destCityCoords.lat(), window.destCityCoords.lng()],
         [coords.lat, coords.lng]
       ],
-      strokeColor: 'red'
+      strokeColor: '#e54d32',
+      strokeWeight: 4,
     }
     map.drawPolyline(lineOptions)
     // map.setZoom(10)
@@ -157,29 +162,23 @@ locateCityOnMap(bestMatch.city)
 const trips = getTrips(gon.trip, gon.profiles, bestMatch.city)
 }
 
-  const createCard = (profile, data) => {
+  const createCard = (profile, data, destCity) => {
     return `
       <div class="trip-detail-content">
-        <div class="traveller-name">
-          <h5><strong>${profile.first_name} ${profile.last_name}</strong></h5>
-        </div>
         <div class="traveller-info">
-        <div class="travel-type">
-          <p>${fontAwesome(data)}</p>
+          <div class="traveller-name">
+            <h5><strong>${profile.first_name} ${profile.last_name}</strong></h5>
+          </div>
+          <div class="travel-type">
+            <p>${(profile.city).split(",")[0]} ${fontAwesome(data)} ${destCity}</p>
+          </div>
         </div>
-        <div class="travel-time-price"></div>
-          <p>${mintoRealTime(data)} / <strong>${usdToEuros(data)} €</strong></p>
+        <div class="travel-time-price">
+          <p><i class="fas fa-clock"></i> ${mintoRealTime(data)} /
+          <i class="fas fa-money-bill-wave-alt"></i> ${usdToEuros(data)} €</p>
         </div>
       </div>
-      <div class="traveller-info">
-      <div class="travel-type">
-        <p>${fontAwesome(data)}</p>
-      </div>
-      <div class="travel-time-price"></div>
-        <p>${mintoRealTime(data)} / <strong>${usdToEuros(data)} €</strong></p>
-      </div>
-    </div>
-  `
+    `
 }
 
 bestMatchFinder()

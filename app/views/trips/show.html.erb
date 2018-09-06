@@ -1,44 +1,25 @@
 <%= content_for(:link_class, "navbar-travel") %>
 
-<div class="white-wrapper display-flex">
-  <div id="map"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-8 col-xs-offset-2">
-          <div class="city-card-content">
-            <div class="city-card" style="background-image: linear-gradient(150deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(<%= asset_url('banner-new-trip-2.png')%>)">
-              <div class="city-name">
-                <p> You will meet in <p>
-                <h3>?</h3>
-              </div>
-            </div>
-            <div class="trip-details">
-              <% if !@ways.nil? %>
-                <% @ways.each do |way| %>
-                  <div class="trip-detail-content">
-                    <% profile = Profile.find((Traveller.find(way.traveller_id)).profile_id) %>
-                    <div class="traveller">
-                      <div class ="traveller-name">
-                        <h5><strong><%= profile.first_name %> <%= profile.last_name %></strong></H5>
-                        <div class="traveller-info">
-                          <div class="travel-type">
-                            <p><%= way.content %></p>
-                          </div>
-                          <div class="travel-time-price"></div>
-                            <p><%= way.travel_time %> m  / <strong><%= way.price %> €</strong></strong></p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                <%end%>
-              <%end%>
-            </div>
-            <div class="save-trip">
-              <%= link_to "Save trip", dashboard_path ,class: "btn-save" %>
+<div class="white-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="city-card-content">
+          <div class="city-card" style="background-image: linear-gradient(150deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(<%= asset_url('montagne.jpg')%>)">
+            <div class="city-name">
+              <p> Your next destination is <p>
+              <h3>...</h3>
             </div>
           </div>
+          <div class="trip-details">
+          </div>
+          <div class="save-trip">
+            <%= link_to "Save trip", dashboard_path ,class: "btn-save" %>
+          </div>
         </div>
+      </div>
+      <div class="col-md-8">
+        <div id="map"></div>
       </div>
     </div>
   </div>
