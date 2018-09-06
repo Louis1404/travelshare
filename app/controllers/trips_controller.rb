@@ -2,6 +2,7 @@ require 'json'
 require 'open-uri'
 
 class TripsController < ApplicationController
+  include ActionView::Helpers::AssetUrlHelper
   after_action :verify_authorized, except: [:create, :find_traveller_trip]
   # before_action :skip_policy_scope, only: :add_travellers
 
