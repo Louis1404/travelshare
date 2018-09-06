@@ -141,12 +141,12 @@ function usdToEuros(data) {
   return `${Math.round(data['price'] * 0.86018)}`
 }
 
-function mintoRealTime(data) {
-  var hours = Math.floor(data['time'] / 60);
-  var minutes = (data['time'] % 60);
+  function mintoRealTime(data) {
+    var hours = Math.floor(data['time'] / 60);
+    var minutes = (data['time'] % 60);
 
-  return `${hours} h ${minutes}`
-}
+    return `${hours} h ${minutes}`
+  }
 
   // lance le tout
 async function bestMatchFinder() {
@@ -157,11 +157,19 @@ locateCityOnMap(bestMatch.city)
 const trips = getTrips(gon.trip, gon.profiles, bestMatch.city)
 }
 
-const createCard = (profile, data) => {
-  return `
-    <div class="trip-detail-content">
-      <div class="traveller-name">
-        <h5><strong>${profile.first_name} ${profile.last_name}</strong></h5>
+  const createCard = (profile, data) => {
+    return `
+      <div class="trip-detail-content">
+        <div class="traveller-name">
+          <h5><strong>${profile.first_name} ${profile.last_name}</strong></h5>
+        </div>
+        <div class="traveller-info">
+        <div class="travel-type">
+          <p>${fontAwesome(data)}</p>
+        </div>
+        <div class="travel-time-price"></div>
+          <p>${mintoRealTime(data)} / <strong>${usdToEuros(data)} €</strong></p>
+        </div>
       </div>
       <div class="traveller-info">
       <div class="travel-type">
