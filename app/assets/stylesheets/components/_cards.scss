@@ -85,14 +85,7 @@
     border-radius: 30px;
     color: $red;
   }
-  #photo-loader {
-    background-color: white;
-    border: 1px solid $blue;
-    border-radius: 30px;
-    color: $blue;
-  }
 }
-
 
 @media (min-width: 200px) {
   .horizontal-card {
@@ -107,7 +100,6 @@
     flex-wrap: nowrap;
   }
 }
-
 
 .background-ticket {
   background-image: linear-gradient(rgba(240, 255, 255, 0.4), rgba(240, 255, 255, 0.4)), url('image-billet-2.png');
