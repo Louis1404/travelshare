@@ -1,60 +1,43 @@
-
-<%= simple_form_for(current_user, url: user_registration_path, method: :put) do |f| %>
-<%= f.error_notification %>
-<div class="form-inputs">
+<div class="container">
   <div class="row">
-    <div class="col-xs-12 col-lg-6">
-      <%= f.input :first_name,
-              required: true,
-              autofocus: true ,
-              input_html: { autocomplete: "first_name" }%>
-    </div>
-    <div class="col-xs-12 col-lg-6">
-      <%= f.input :last_name,
-              required: true,
-              autofocus: true ,
-              input_html: { autocomplete: "last_name" }%>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12 col-lg-6">
-      <%= f.input :email, required: true, autofocus: true %>
-    </div>
-    <div class="col-xs-12 col-lg-6">
-      <%= f.input :city,
-              hint: "leave it blank if you don't want to change it",
-              required: false %>
-    </div>
-  </div>
-  <%= f.input :current_password,
-              hint: "we need your current password to confirm your changes",
-              required: true %>
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+      <div class="form-login">
+        <h2>Edit your profile</h2>
+        <%= simple_form_for(current_user, url: user_registration_path, method: :put) do |f| %>
+        <%= f.error_notification %>
+          <div class="form-inputs">
 
-    <div class="row">
-      <div class="col-xs-12 col-lg-6">
-        <%= f.input :new_password,
-                hint: "leave it blank if you don't want to change it",
-                required: false %>
-      </div>
-      <div class="col-xs-12 col-lg-6">
-    <%= f.input :new_password_confirmation,
-                required: false %>
-      </div>
-    </div>
+            <div class="form-row">
+              <div class="form-group col-sm-4 ">
+                <%= f.input :first_name, required: true, autofocus: true , input_html: { autocomplete: "first_name" }%>
+              </div>
+              <div class="form-group col-sm-4 ">
+                <%= f.input :last_name, required: true, autofocus: true , input_html: { autocomplete: "last_name" }%>
+              </div>
+              <div class="form-group col-sm-4 ">
+                <%= f.input :city, hint: "leave it blank if you don't want to change it",
+                    required: false %>
+              </div>
+            </div>
 
-    <div class="hidden">
-      <%= f.input :photo %>
-      <%= f.error_notification message: 'Something went wrong' %>
-      <%= f.input :photo_cache, as: :hidden %>
+          <%= f.input :email, required: true, autofocus: true %>
+          <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
+          <%= f.input :new_password, hint: "leave it blank if you don't want to change it", required: false %>
+          <%= f.input :new_password_confirmation, required: false %>
+
+
+          <%= f.input :photo %>
+          <%= f.error_notification message: 'Something went wrong' %>
+          <%= f.input :photo_cache, as: :hidden %>
     </div>
-    <button id="photo-loader">Add a photo</button>
-    <hr>
 
     <div class="form-actions">
-      <%= f.button :submit, "Edit", class: "card-submit" %>
+      <%= f.button :submit, "Edit", class: "btn btn-primary devise-submit-btn" %>
     </div>
   <% end %>
-</div>
+  </div>
 
 <p>Unhappy?<%= link_to "Cancel my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete %></p>
+</div>
+
 
