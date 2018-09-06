@@ -19,6 +19,17 @@
       transform: scale(1.3);
     }
   }
+  .navbar-travel-link-truc {
+    color: white;
+    &:hover {
+      color: white;
+      transition: 0.3s ease;
+      text-decoration: none;
+      -ms-transform: scale(1.3);
+      -webkit-transform: scale(1.3);
+      transform: scale(1.3);
+    }
+  }
 }
 
 /* Logo */
@@ -114,7 +125,7 @@
   transition: transform .2s;
   z-index: 10000;
 
-   .navbar-travel-link {
+   .navbar-travel-link-truc {
     display: none;
   }
 }
