@@ -6,38 +6,36 @@
         <%= simple_form_for(current_user, url: user_registration_path, method: :put) do |f| %>
         <%= f.error_notification %>
           <div class="form-inputs">
-
             <div class="form-row">
-              <div class="form-group col-sm-4 ">
+              <div class="form-group col-sm-6 ">
                 <%= f.input :first_name, required: true, autofocus: true , input_html: { autocomplete: "first_name" }%>
               </div>
-              <div class="form-group col-sm-4 ">
+              <div class="form-group col-sm-6 ">
                 <%= f.input :last_name, required: true, autofocus: true , input_html: { autocomplete: "last_name" }%>
               </div>
-              <div class="form-group col-sm-4 ">
-                <%= f.input :city, hint: "leave it blank if you don't want to change it",
-                    required: false %>
-              </div>
             </div>
+            <%= f.input :city, hint: "leave it blank if you don't want to change it", required: false %>
+            <%= f.input :email, required: true, autofocus: true %>
+            <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
+            <%= f.input :new_password, hint: "leave it blank if you don't want to change it", required: false %>
+            <%= f.input :new_password_confirmation, required: false %>
 
-          <%= f.input :email, required: true, autofocus: true %>
-          <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
-          <%= f.input :new_password, hint: "leave it blank if you don't want to change it", required: false %>
-          <%= f.input :new_password_confirmation, required: false %>
-
-
-          <%= f.input :photo %>
-          <%= f.error_notification message: 'Something went wrong' %>
-          <%= f.input :photo_cache, as: :hidden %>
-    </div>
-
-    <div class="form-actions">
-      <%= f.button :submit, "Edit", class: "btn btn-primary devise-submit-btn" %>
-    </div>
-  <% end %>
-  </div>
+            <div class="hidden">
+              <%= f.input :photo, input_html: {class: "test"} %>
+              <%= f.error_notification message: 'Something went wrong' %>
+              <%= f.input :photo_cache, as: :hidden %>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <div class="photo-loader-container">
+            <button id="photo-loader">Add a photo</button>
+          </div>
+          <div class="form-actions">
+            <%= f.button :submit, "Edit", class: "btn-med devise-submit-btn" %>
+          </div>
+        <% end %>
 
 <p>Unhappy?<%= link_to "Cancel my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+  </div>
 </div>
-
-
