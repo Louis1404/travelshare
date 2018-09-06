@@ -1,47 +1,39 @@
 <div class="white-wrapper">
   <div class="container">
-    <h2>Your trips saved:</h2>
+    <h1>Your trips saved</h1>
     <div class="row">
       <% @trips.each do |trip| %>
-        <div class="col-xs-12 col-sm-4">
-          <div class="city-card-content">
-            <div class="city-card">
-              <%= image_tag "paris.jpg", class: "image-city"%>
-              <div class="card-category">
-                <p><strong><%= trip.destination %></strong></p>
-              </div>
-              <div class="card-icone">
-                <button type="submit" class="btn-small">
-                  <i class="far fa-check-circle"></i>
-                </button>
-                <button type="submit" class="btn-small">
-                  <i class="fas fa-trash-alt"></i>
-                </button>
-              </div>
-            </div>
-            <% trip.travellers.each do |traveller| %>
-              <% traveller.ways.each do |way| %>
-                <div class="trip-info">
-                  <div class="avatar">
-                    <%= cl_image_tag traveller.profile.user.photo, class: "avatar" %>
-                  </div>
-                  <div class="name-time">
-                    <h3>
-                      <%= way.traveller.profile.first_name %>
-                      <%= way.traveller.profile.last_name %>
-                    </h3>
-                    <p>Time: <%= way.travel_time %> mins</p>
-                  </div>
-                  <div class="travel-price">
-                    <h3><%= way.content %></h3>
-                    <p><%= way.price %> €</p>
-                  </div>
+        <% if !trip.destination.nil? %>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="city-card-info">
+              <div class="city-card" style="background-image: linear-gradient(150deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(<%= asset_url(trip.destination.downcase + '.jpg')%>)">
+                <div class="card-category">
+                  <p><strong><%= trip.destination %></strong></p>
                 </div>
-              <% end %>
-            <% end %>
+              </div>
+
+              <div class="action-card">
+                <div class="card-icone">
+                  <button type="submit" class="btn-small">
+                  <i class="fas fa-search"></i>
+                  </button>
+                  <%= link_to "book it", "",class: "book-it" %>
+                  <button type="submit" class="btn-small">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </div>
+              </div>
+
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
   </div>
 </div>
+
+
+
+
+
+
