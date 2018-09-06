@@ -110,7 +110,12 @@ if (clBtn) {
     return `${Math.round(data['price'] * 0.86018)}`
   }
 
+  function mintoRealTime(data) {
+    var hours = Math.floor(data['time'] / 60);
+    var minutes = (data['time'] % 60);
 
+    return `${hours} h ${minutes}`
+  }
 
   // lance le tout
   async function bestMatchFinder() {
@@ -132,7 +137,7 @@ if (clBtn) {
           <p>${fontAwesome(data)}</p>
         </div>
         <div class="travel-time-price"></div>
-          <p>${data['time']} m  / <strong>${usdToEuros(data)} €</strong></p>
+          <p>${mintoRealTime(data)} / <strong>${usdToEuros(data)} €</strong></p>
         </div>
       </div>
     `
