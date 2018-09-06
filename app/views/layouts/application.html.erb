@@ -3,8 +3,14 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Travel Share</title>
-    <%= favicon_link_tag 'logo.ico' %>
+    <meta name="og:title" content="Travel and meet your friends!">
+    <meta name="og:description" content="We find for you the best destination for go on a trip with your friends with differents cities origin">
+    <meta name="og:type" content="Travel Share">
+    <meta name="og:url" content="http://www.travel-share.club/">
+    <meta name="og:image" content="o-image.png">
+    <title>Travel and meet your friends!</title>
+    <%= favicon_link_tag 'logorouge.ico'%>
+
     <%= Gon::Base.render_data %>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
