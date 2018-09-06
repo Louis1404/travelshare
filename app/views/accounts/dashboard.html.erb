@@ -8,16 +8,20 @@
             <div class="city-card">
               <%= image_tag "paris.jpg", class: "image-city"%>
               <div class="card-category">
-                <p>
-                  <strong>Go to <%= trip.destination %>
-
-                  </strong>
-                </p>
+                <p><strong><%= trip.destination %></strong></p>
+              </div>
+              <div class="card-icone">
+                <button type="submit" class="btn-small">
+                  <i class="far fa-check-circle"></i>
+                </button>
+                <button type="submit" class="btn-small">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
               </div>
             </div>
             <% trip.travellers.each do |traveller| %>
               <% traveller.ways.each do |way| %>
-                <div class="trip-details">
+                <div class="trip-info">
                   <div class="avatar">
                     <%= cl_image_tag traveller.profile.user.photo, class: "avatar" %>
                   </div>
