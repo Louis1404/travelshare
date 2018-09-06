@@ -155,8 +155,12 @@ ul {
 .home-made-banner {
   display: flex;
   justify-content: space-between;
-  background: linear-gradient(rgba(255, 133, 45, 0.6), rgba(229, 77, 50, 0.7));
+  background-image: image-url("montagne.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
   width: 100%;
+  height: 30vh;
   h1 {
     color: white;
     font-size: 78px;
@@ -172,7 +176,6 @@ ul {
     align-content: center;
   }
   .image-banner-new-trip {
-    height: 302px;
     background-size: cover;
   }
 }
