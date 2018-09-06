@@ -49,8 +49,12 @@ if (clBtn) {
     )
   }
   const result = results.sort(compare)[0]
-  // console.log("RESULT", result.city)
-  // console.log(object[result.city])
+  const destCity = result.city.toLowerCase()
+  const img = require(`../images/${destCity}.jpg`)
+  const cityCard = document.querySelector('.city-card')
+  const bgStyle = `linear-gradient(150deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("${img}")`
+  cityCard.style.backgroundImage = bgStyle
+  cityCard.querySelector('h3').innerText = destCity.toUpperCase()
   return result
   }
 
@@ -91,6 +95,23 @@ if (clBtn) {
   }
   }
 
+
+  function fontAwesome(data) {
+    if (data['transport'].includes("Fly")) {
+      return `<i class="fas fa-plane"></i>`
+    } else if (data[`transport`].includes("Train")) {
+      return `<i class="fas fa-subway"></i>`
+    } else {
+      return data['transport']
+    }
+  };
+
+  function usdToEuros(data) {
+    return `${Math.round(data['price'] * 0.86018)}`
+  }
+
+
+
   // lance le tout
   async function bestMatchFinder() {
   const results = await getInfos(gon.profiles)
@@ -108,10 +129,10 @@ if (clBtn) {
         </div>
         <div class="traveller-info">
         <div class="travel-type">
-          <p>${data['transport']}</p>
+          <p>${fontAwesome(data)}</p>
         </div>
         <div class="travel-time-price"></div>
-          <p>${data['time']} m  / <strong>${data['price']} $</strong></p>
+          <p>${data['time']} m  / <strong>${usdToEuros(data)} €</strong></p>
         </div>
       </div>
     `
