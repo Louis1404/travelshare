@@ -5,22 +5,22 @@
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-xs-6">
+      <div class="col-xs-8">
+        <div class="page-title">
+          <i class="fas fa-quote-left"></i>
+          <h1 class="z-index">Add your friends to your trip</h1>
+        </div>
+      </div>
+      <div class="col-xs-4">
         <div class="for_render_form">
           <%= render '/shared/form_usersearch' %>
         </div>
       </div>
-      <div class="col-xs-6">
-        <div class="onboard">
-          <% if !@travellers.nil? %>
-            <%= link_to "Get on board", trip_path(:id => @trip.id, :travellers => @travellers.pluck('id')), class: 'btn-med' %>
-          <% end %>
-        </div>
-      </div>
     </div>
     <div class="row">
-      <div class="col-xs-6 trip-creator-col">
-        <ul class="list-profiles">
+      <div class="col-xs-6 anotherclassforstyle-left">
+        <i class="fas fa-users"></i>
+        <ul class="list-profiles trip-creator-col">
           <% @profiles.each do |profile| %>
             <div class="profile-card">
               <li class="list-profiles">
@@ -48,7 +48,7 @@
                       <% end %>
                       <input type="hidden" name="profile" value=<%= profile.id %>>
                       <button type="submit" class="btn-small">
-                        <i class="fas fa-location-arrow"></i>
+                        <i class="fas fa-plus"></i>
                       </button>
                     </form>
                   </div>
@@ -58,8 +58,9 @@
           <% end %>
         </ul>
       </div>
-      <div class="col-xs-6 trip-creator-col">
-        <ul class="list-profiles-right">
+      <div class="col-xs-6 anotherclassforstyle-right">
+        <i class="fas fa-suitcase"></i>
+        <ul class="list-profiles-right trip-creator-col">
           <% if !@travellers.nil? %>
             <% @travellers.each do |t| %>
               <div class="profile-card">
@@ -78,13 +79,13 @@
                       <%= t.profile.last_name %>
                     </div>
                     <div class="user-city">
-                      <%= t.profile.city %>
+                      <h5> from <%= t.profile.city.split(",")[0] %></h5>
                     </div>
                     <form action=<%= delete_travellers_path %>>
                       <input type="hidden" name="trip" value=<%= @trip.id %>>
                       <input type="hidden" name="traveller" value=<%= t.id %>>
                       <button type="submit" class="btn-small">
-                      <i class="fas fa-trash-alt"></i>
+                      <i class="fas fa-minus"></i>
                       </button>
                     </form>
                   </div>
@@ -93,6 +94,17 @@
             <% end %>
           <% end %>
         </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="onboard">
+          <% if !@travellers.nil? %>
+            <%= link_to trip_path(:id => @trip.id, :travellers => @travellers.pluck('id')), class: 'btn-med' do %>
+              <i class="fas fa-check"></i> Get on board
+            <% end %>
+          <% end %>
         </div>
       </div>
     </div>
