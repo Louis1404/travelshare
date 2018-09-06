@@ -55,10 +55,11 @@ class TripsController < ApplicationController
       @trip = Trip.new
       @trip.save
       @travellers = []
-      traveller = Traveller.create(
+      traveller = Traveller.new(
       profile: current_user.profile,
       trip: @trip
       )
+      traveller.save
       @travellers << traveller
       @profiles = Profile.where.not(latitude: nil, id: traveller.profile_id)
     end

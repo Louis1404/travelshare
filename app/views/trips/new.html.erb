@@ -1,26 +1,17 @@
+<%= content_for(:navbar_class, "navbar-home") %>
+
 <div class="white-wrapper">
+  <div class="home-made-banner">
+    <%= image_tag 'banner-new-trip.png', class: 'image-banner-new-trip' %>
+  </div>
   <div class="container">
     <div class="row">
-      <div class="col-xs-4">
+      <div class="col-xs-6">
         <div class="for_render_form">
           <%= render '/shared/form_usersearch' %>
         </div>
       </div>
-      <div class="col-xs-4">
-        <div class="bidon">
-          <div class="simple-card-special">
-            <div class="simple-card-icon">
-              <i class="fas fa-users"></i>
-              <i class="fas fa-map-pin"></i>
-              <i class="fas fa-suitcase"></i>
-            </div>
-            <div class="simple-card-content">
-              <h3>Invite your Friends</h3>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-4">
+      <div class="col-xs-6">
         <div class="onboard">
           <% if !@travellers.nil? %>
             <%= link_to "Get on board", trip_path(:id => @trip.id, :travellers => @travellers.pluck('id')), class: 'btn-med' %>

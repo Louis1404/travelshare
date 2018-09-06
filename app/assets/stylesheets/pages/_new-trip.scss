@@ -6,7 +6,7 @@ ul {
 .trip-creator-col {
   height: calc(55vh);
   overflow: scroll;
-  background: linear-gradient(rgba(255, 133, 45, 0.2), rgba(229, 77, 50, 0.4));
+  background: $light-gray;
   border-radius: 5px;
 }
 
@@ -30,7 +30,7 @@ ul {
   justify-content: center;
   align-items: center;
   padding: 40px 0px 40px 0px;
-  height: 260px;
+  height: 180px;
 }
 
 .info-user {
@@ -127,7 +127,7 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 260px;
+  height: 180px;
  }
 
 .value-proposition {
@@ -172,7 +172,7 @@ ul {
     align-content: center;
   }
   .image-banner-new-trip {
-    height: 254px;
+    height: 302px;
     background-size: cover;
   }
 }
