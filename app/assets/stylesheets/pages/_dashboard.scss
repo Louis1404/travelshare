@@ -1,11 +1,10 @@
-.city-card-content {
-  transition: transform .2s;
-
-  .city-card-content:hover {
-    -ms-transform: scale(1.10);
-    -webkit-transform: scale(1.10);
-    transform: scale(1.10);
-  }
+.city-card-info {
+  background-color: white;
+  border-bottom: 4px solid rgb(230, 79, 15);
+  border-radius: 5px;
+  box-shadow: 5px 5px 20px 0px rgba(210, 210, 210, 1);
+  margin-top: 50px;
+  height: 200px;
 }
 
 .city-card {
@@ -22,79 +21,43 @@
   font-size: 20px;
   text-transform: uppercase;
 
-  p {
+  p,strong {
     color: white !important;
     line-spacing: 0.3em;
+    font-size: 25px;
   }
 }
 
 .card-icone {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  position: absolute;
-  top: 20px;
-  right: 20px;
+  justify-content: space-around;
+  align-items: center;
 
   button {
-    text-shadow: 2px 2px 2px rgba(0,0,0,0.6);
     background: transparent;
+    padding: 10px;
   }
 
   .fa-check-circle {
-    color: #00bd96;
+    color: #gray;
     font-size: 25px;
   }
 
   .fa-trash-alt {
-    color: $red;
+    color: $gray;
     font-size: 25px;
   }
 
+  .fa-search{
+    color: $gray;
+    font-size: 25px;
+  }
 }
 
-.trip-info {
-  display: flex;
-  margin-top: 10px;
+.book-it {
+  color: $gray;
+  font-weight: bold;
+  &:hover {
+      text-decoration: none;
+    }
 }
-
-.trip-info img {
-  border-radius: 50%;
-  height: 50px;
-  width: 50px ;
-}
-
-.name-time {
-  padding-left: 15px;
-}
-
-.name-time h3 {
-  font-size: 18px;
-  margin-bottom: 2px;
-  color: black !important;
-  margin-top: auto;
-}
-
-.name-time p {
-  font-size: 18px;
-  margin-top: 5px;
-}
-
-.travel-price {
-  padding-left: 50px;
-  font-size: 18px;
-}
-
-.travel-price h3 {
-  font-size: 18px;
-  margin-bottom: 8px;
-  color: black !important;
-  margin-top: auto;
-}
-
-.travel-price p {
-  font-size: 18px;
-  margin-top: 5px;
-}
-
-
