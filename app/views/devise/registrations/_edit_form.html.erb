@@ -34,8 +34,10 @@
             <%= f.button :submit, "Edit", class: "btn-med devise-submit-btn" %>
           </div>
         <% end %>
+        <p>Unhappy?<%= link_to "Cancel my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete %>
 
-<p>Unhappy?<%= link_to "Cancel my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
+        </p>
+      </div>
+    </div>
   </div>
 </div>
