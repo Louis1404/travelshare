@@ -73,6 +73,12 @@ ul {
     display: flex;
     flex-wrap: wrap;
   }
+  .user-city {
+    p {
+      display: none;
+
+    }
+  }
 }
 
 @media (min-width: 850px) {

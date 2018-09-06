@@ -5,20 +5,20 @@
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-xs-8">
+      <div class="col-sm-12-12 col-md-8">
         <div class="page-title">
           <i class="fas fa-quote-left"></i>
           <h1 class="z-index">Add your friends to your trip</h1>
         </div>
       </div>
-      <div class="col-xs-4">
+      <div class="col-sm-12 col-md-4">
         <div class="for_render_form">
           <%= render '/shared/form_usersearch' %>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-6 anotherclassforstyle-left">
+      <div class="col-xs-12 col-md-6 anotherclassforstyle-left">
         <i class="fas fa-users"></i>
         <ul class="list-profiles trip-creator-col">
           <% @profiles.each do |profile| %>
@@ -58,7 +58,7 @@
           <% end %>
         </ul>
       </div>
-      <div class="col-xs-6 anotherclassforstyle-right">
+      <div class="col-xs-12 col-md-6 anotherclassforstyle-right">
         <i class="fas fa-suitcase"></i>
         <ul class="list-profiles-right trip-creator-col">
           <% if !@travellers.nil? %>
