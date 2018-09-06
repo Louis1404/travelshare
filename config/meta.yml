@@ -1,0 +1,5 @@
+meta_product_name: "Travel Share"
+meta_title: "Travel and meet your friends!"
+meta_description: "We find for you the best destination for go on a trip with your friends with differents cities origin"
+meta_image: "background.jpg"                       # should exist in `app/assets/images/`
+twitter_account: ""
