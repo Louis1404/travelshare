@@ -1,3 +1,43 @@
+.bidon {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  //position: relative;
+  //z-index: 10000;
+  margin: 20px 0;
+  .simple-card-special {
+    //position: absolute;
+    background-color: white;
+    border-bottom: 3px solid $orange;
+    border-radius: 5px;
+    height: 200px;
+    box-shadow: 5px 5px 20px 0px rgba(210, 210, 210, 1);
+    width: 260px;
+    .simple-card-icon {
+      display: flex;
+      align-content: center;
+      justify-content: space-around;
+    }
+    .user-icon {
+      margin: 20px;
+    }
+    .fa-map-pin {
+      font-size: 40px;
+      color: #d3d3d3;
+    }
+    .fa-suitcase {
+      font-size: 40px;
+      color: #d3d3d3;
+    }
+    .simple-card-content {
+      text-color: $gray;
+      font-size: 0.8em;
+      padding-left: 10px;
+      padding-right: 10px;
+      text-align: center;
+    }
+  }
+}
 
 
 .simple-card {
@@ -187,6 +227,3 @@
   box-shadow: 5px 5px 20px 0px rgba(210, 210, 210, 1);
   border-right: 5px solid $orange;
 }
-
-
-

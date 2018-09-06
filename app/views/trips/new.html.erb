@@ -2,39 +2,10 @@
 
 <div class="white-wrapper">
   <div class="home-made-banner">
-     <div class="simple-card">
-        <div class="simple-card-icon">
-          <i class="fas fa-users"></i>
-        </div>
-        <div class="simple-card-content">
-          <h3>Invite your Friends</h3>
-          <p>Create a profil, invite your friends on a trip</p>
-        </div>
-      </div>
-      <div class="simple-card">
-        <div class="simple-card-icon">
-          <i class="fas fa-map-pin"></i>
-        </div>
-        <div class="simple-card-content">
-          <h3>Find the Best Match</h3>
-          <p>Let's us find the best place for you and your friends to meet!</p>
-        </div>
-      </div>
-      <div class="simple-card">
-          <div class="simple-card-icon">
-            <i class="fas fa-suitcase"></i>
-          </div>
-          <div class="simple-card-content">
-            <h3>Book your trip</h3>
-            <p>We give you all information you need for booking your trip.</p>
-          </div>
-        </div>
-    <%= image_tag '', class: 'image-banner-new-trip' %>
+    <%= image_tag 'banner-new-trip.png', class: 'image-banner-new-trip' %>
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-xs-8 col-xs-offset-2">
-      </div>
       <div class="col-xs-6">
         <div class="for_render_form">
           <%= render '/shared/form_usersearch' %>
