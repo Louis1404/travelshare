@@ -1,7 +1,7 @@
 require 'rest-client'
 require 'json'
 
-DCITIES = ['Londres', 'Paris']
+DCITIES = ['Londres', 'Vienne']
 
 class RomToRioApiCaller
   def initialize(city, dcities = DCITIES)
