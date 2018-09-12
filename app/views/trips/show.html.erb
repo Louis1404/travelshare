@@ -4,7 +4,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-4">
-        <% if trip.destination.nil? %>
+        <% if @trip.destination.nil? %>
           <div class="city-card-content">
             <div class="city-card" style="background-image: linear-gradient(150deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(<%= asset_url('montagne.jpg')%>)">
               <div class="city-name">
@@ -20,13 +20,13 @@
           </div>
         <% else %>
           <div class="city-card-content">
-            <div class="city-card" style="background-image: linear-gradient(150deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(<%= asset_url("#{trip.destination}.jpg")%>)">
+            <div class="city-card" style="background-image: linear-gradient(150deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(<%= asset_url("#{@trip.destination.downcase}.jpg")%>)">
               <div class="city-name">
-                <h3><%= trip.destination %></h3>
+                <h3><%= @trip.destination %></h3>
               </div>
             </div>
             <div class="trip-details">
-              <% trip.travellers.each do |t| %>
+              <% @travellers.each do |t| %>
                 <% t.ways.each do |way| %>
                   <div class="trip-detail-content">
                     <div class="traveller-info">
@@ -34,7 +34,7 @@
                         <h5><strong><%= way.traveller.profile.first_name %> <%= way.traveller.profile.last_name %></strong></h5>
                       </div>
                       <div class="travel-type">
-                        <% if way.content.includes("Fly") %>
+                        <% if way.content.include?("Fly") %>
                           <p><%=  (way.departure_city).split(",")[0] %> </p><i class="fas fa-plane"></i>
                           <p> <%=  way.arrival_city%> </p>
                         <% else %>

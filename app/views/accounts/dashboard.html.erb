@@ -14,9 +14,9 @@
 
               <div class="action-card">
                 <div class="card-icone">
-                  <button type="submit" class="btn-small">
-                  <i class="fas fa-search"></i>
-                  </button>
+                  <%= link_to trip_path(trip.id) do %>
+                    <i class="fas fa-search"></i>
+                  <% end %>
                   <%= link_to "book it", "",class: "book-it" %>
                   <button type="submit" class="btn-small">
                     <i class="fas fa-trash-alt"></i>
