@@ -43,10 +43,9 @@
                         <% end %>
                       </div>
                     </div>
-                   <-- Stop here !!!! -->
                     <div class="travel-time-price">
-                      <p><i class="fas fa-clock"></i> ${mintoRealTime(data)} /
-                      <i class="fas fa-money-bill-wave-alt"></i> ${usdToEuros(data)} €</p>
+                      <p><i class="fas fa-clock"></i> <%= way.travel_time %> /
+                      <i class="fas fa-money-bill-wave-alt"></i> <%= way.price %> €</p>
                     </div>
                   </div>
                 <% end %>
