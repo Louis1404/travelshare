@@ -11,8 +11,15 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
     # @travellers = []
     @profiles = []
-    params[:travellers].each do |traveller_id|
-      @profiles << Traveller.find(traveller_id).profile
+    if params[:travellers]
+      params[:travellers].each do |traveller_id|
+        @profiles << Traveller.find(traveller_id).profile
+      end
+    else
+      @travellers = []
+      @trip.travellers.each do |t|
+        @travellers << t
+      end
     end
 
     # @travellers.each do |traveller|
