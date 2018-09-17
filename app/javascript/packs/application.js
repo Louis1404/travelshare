@@ -29,6 +29,7 @@ return 0
 
 function locateCityOnMap(city) {
   map = window.map
+  console.log(map)
   const geocoder = new google.maps.Geocoder()
   geocoder.geocode( { 'address': city}, function(results) {
     const coords = {
