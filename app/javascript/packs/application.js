@@ -156,7 +156,7 @@ function usdToEuros(data) {
   // lance le tout
 async function bestMatchFinder() {
 const results = await getInfos(gon.profiles)
-// console.log("API CALL RESPONSE", results)
+console.log("API CALL RESPONSE", results)
 const bestMatch = resultComparator(results)
 locateCityOnMap(bestMatch.city)
 const trips = getTrips(gon.trip, gon.profiles, bestMatch.city)
