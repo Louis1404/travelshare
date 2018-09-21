@@ -1,5 +1,4 @@
 import GMaps from 'gmaps/gmaps.js';
-import "bootstrap";
 const styles = [
     {
         "featureType": "administrative",
