@@ -35,11 +35,11 @@
                       </div>
                       <div class="travel-type">
                         <% if way.content.include?("Fly") %>
-                          <p><%=  (way.departure_city).split(",")[0] %> </p><i class="fas fa-plane"></i>
-                          <p> <%=  way.arrival_city%> </p>
+                          <p><%=  (way.departure_city).split(",")[0] %> <i class="fas fa-plane"></i>
+                          <%=  way.arrival_city%> </p>
                         <% else %>
-                          <p><%=  (way.departure_city).split(",")[0] %> </p><i class="fas fa-subway"></i>
-                          <p> <%=  way.arrival_city%> </p>
+                          <p><%=  (way.departure_city).split(",")[0] %> <i class="fas fa-subway"></i>
+                          <%=  way.arrival_city%> </p>
                         <% end %>
                       </div>
                     </div>

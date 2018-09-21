@@ -1,4 +1,5 @@
 import GMaps from 'gmaps/gmaps.js';
+import "bootstrap";
 const styles = [
     {
         "featureType": "administrative",
@@ -88,21 +89,40 @@ const styles = [
         ]
     }
 ];
+const userIcon = require('../images/user_icon.png')
+const destIcon = require('../images/dest_city.png')
 
 const mapElement = document.getElementById('map');
 if (mapElement) { // don't try to build a map if there's no div#map to inject in
   const map = new GMaps({ el: '#map', lat: 50, lng: 3});
-  const markers = JSON.parse(mapElement.dataset.markers);
+  // const markers = JSON.parse(mapElement.dataset.markers);
 
-  if ( markers != null ) {
-    map.addMarkers(markers);
-    if (markers.length === 0) {
-      map.setZoom(4);
-    } else if (markers.length === 1) {
-      map.setCenter(markers[0].lat, markers[0].lng);
-    } else {
-      map.setZoom(4);
-    }
+  if ( gon.markers ) {
+    map.addMarkers(gon.markers);
+    const geocoder = new google.maps.Geocoder()
+    geocoder.geocode( { 'address': gon.destmarker}, function(results) {
+      const coords = {
+        lat: results[0].geometry.location.lat(),
+        lng: results[0].geometry.location.lng(),
+        icon: destIcon
+      }
+
+      map.addMarkers([coords])
+      map.setCenter(coords)
+
+      gon.markers.forEach(function(marker) {
+        const lineOptions = {
+          path: [
+            [marker.lat, marker.lng],
+            [coords.lat, coords.lng]
+          ],
+          strokeColor: '#e54d32',
+          strokeWeight: 4,
+        }
+        map.drawPolyline(lineOptions)
+      });
+    })
+    map.setZoom(4);
   }
 
   map.addStyle({

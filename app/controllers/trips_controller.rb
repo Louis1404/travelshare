@@ -27,6 +27,8 @@ class TripsController < ApplicationController
           lng: t.profile.longitude
         }
       end
+      gon.destmarker = @trip.destination
+      gon.markers = @markers
     end
 
     # @information_destination = BestMatchCaller.new(@trip, @travellers).call
