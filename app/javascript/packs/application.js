@@ -182,6 +182,4 @@ const trips = getTrips(gon.trip, gon.profiles, bestMatch.city)
     `
 }
 
-if ( gon.profiles !== undefined ) {
-  bestMatchFinder()
-}
+bestMatchFinder()
