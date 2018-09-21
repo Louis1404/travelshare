@@ -106,8 +106,21 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
         lng: results[0].geometry.location.lng(),
         icon: destIcon
       }
+
       map.addMarkers([coords])
       map.setCenter(coords)
+
+      gon.markers.forEach(function(marker) {
+        const lineOptions = {
+          path: [
+            [marker.lat, marker.lng],
+            [coords.lat, coords.lng]
+          ],
+          strokeColor: '#e54d32',
+          strokeWeight: 4,
+        }
+        map.drawPolyline(lineOptions)
+      });
     })
     map.setZoom(4);
   }
